@@ -3498,3 +3498,69 @@ object-position: top center !important;
         gap: 10px !important;
     }
 }
+
+/* ======================================================= */
+/* كود التطهير النهائي للموبايل والزوم: الـ 4 تعديلات المطلوبة */
+/* ======================================================= */
+
+@media (max-width: 850px) {
+    /* ------------------------------------------------- */
+    /* التعديل الأول والرابع: رفع اللوجو للسقف + جعل الجاب صفر */
+    /* ------------------------------------------------- */
+    
+    /* 1. إجبار الحاوية العلوية (Hero) على اللون الأبيض وإلغاء الطول الثابت */
+    html body .page[dir="rtl"] .hero {
+        background-color: #ffffff !important; /* عشان تلزق في الكروت البيضاء ويبانوا حتة واحدة */
+        background-image: none !important; /* إخفاء أي خلفية غامقة قديمة */
+        height: auto !important; /* طول ديناميكي حسب المحتوى */
+        min-height: auto !important;
+        margin-bottom: 0 !important; /* إلغاء الجاب من تحت */
+        padding-bottom: 0 !important;
+    }
+
+    /* 2. رفع حاوية اللوجو للسقف تماماً (مكان السهم الأخضر) */
+    html body .page[dir="rtl"] .hero-inner,
+    html body .page[dir="rtl"] .hero-inner-zoomed {
+        padding-top: 0 !important; /* إلغاء الفراغ العلوي */
+        padding-bottom: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    /* 3. لزق حاوية اللوجو في أقصى اليمين */
+    html body .page[dir="rtl"] .logo-wrap {
+        padding-top: 5px !important; /* مسافة جمالية بسيطة جداً */
+        margin: 0 !important;
+        margin-right: 0 !important; /* لزق يمين */
+        align-items: flex-end !important; /* محاذاة يمين */
+    }
+
+    /* ------------------------------------------------- */
+    /* التعديل الثاني: التأكيد على أن الجاب (التباعد) صفر */
+    /* ------------------------------------------------- */
+
+    /* 4. إلغاء أي تباعد بين العنوان وبين الكروت اللي تحته */
+    html body .page[dir="rtl"] .page-title {
+        margin-bottom: 0 !important; /* الجاب صفر */
+        padding-bottom: 0 !important;
+        margin-top: 8px !important; /* تباعد بسيط عن اللوجو فوقه */
+    }
+
+    /* 5. إلغاء أي فراغ علوي في حاوية الكروت (Content) */
+    html body .page[dir="rtl"] .content {
+        margin-top: 0 !important; /* لزق Content في الـ Hero فوقها */
+        padding-top: 15px !important; /* مسافة بسيطة عشان الكلام ميبقاش مخنوق */
+    }
+
+    /* ------------------------------------------------- */
+    /* التعديل الثالث: تظبيط خط (المركز السعودي للتنافسية) */
+    /* ------------------------------------------------- */
+
+    /* 6. تكبير وتسميك خط وصف اللوجو */
+    html body .page[dir="rtl"] .logo-wrap span {
+        font-size: 14px !important; /* تكبير درجة */
+        font-weight: 700 !important; /* زيادة السماكة (Bold قوي) */
+        color: #fff !important; /* اللون الأبيض */
+        display: block !important;
+        text-align: right !important;
+    }
+}
