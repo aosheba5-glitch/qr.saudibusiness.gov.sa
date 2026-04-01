@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap");
 
 * {
   margin: 0;
@@ -15,5 +15,17 @@ body,
 
 body {
   background: #ececf4;
-  font-family: "Tajawal", Arial, sans-serif;
+  /* الخط الأساسي لكل النصوص، البيانات، والأرقام */
+  font-family: 'Tajawal', Arial, sans-serif;
+}
+
+/* تخصيص خط Cairo للعناوين الرئيسية فقط كما في التصميم الأصلي */
+h1, h2, h3, 
+.page-title, 
+.company-name, 
+.contact-title,
+.small-card h3,
+.activities-drawer-header h3,
+.header-menu-header h3 {
+  font-family: 'Cairo', sans-serif !important;
 }

@@ -1,7 +1,7 @@
 .page {
   --zoom-scale: 1;
   --space-scale: 1;
-  --hero-height: clamp(210px, 20vw, 300px);
+--hero-height: 60vh !important;
   --content-overlap: clamp(48px, 4vw, 78px);
   --title-gap: clamp(8px, 0.8vw, 14px);
   width: 100%;
@@ -12,33 +12,45 @@
 .page.zoomed {
   --zoom-scale: 1.14;
   --space-scale: 1.08;
-  --hero-height: clamp(220px, 22vw, 320px);
+--hero-height: 60vh !important;
   --content-overlap: clamp(54px, 4.4vw, 86px);
   --title-gap: clamp(8px, 0.8vw, 14px);
 }
 
 /* ===== HEADER ===== */
+/* ===== النسخة النهائية لإصلاح الهيدر - إجبارية ===== */
 
 .hero {
-  position: relative;
-  width: 100%;
-  min-height: 200px;
-  height: var(--hero-height);
-  overflow: hidden;
-  background: #1d2460;
-  transition: height 0.24s ease;
+  position: relative !important;
+  width: 100% !important;
+  height: 60vh !important; /* الارتفاع 60% من الشاشة */
+  min-height: 60vh !important;
+  background-color: #1a1e4d !important; /* لون الخلفية الكحلي */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
 }
 
 .hero-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-  display: block;
-  filter: brightness(0.68);
-  z-index: 1;
+  position: relative !important; /* تغيير من absolute لـ relative لتسهيل التوسط */
+  height: 100% !important;      /* الصورة تأخذ طول الهيدر بالكامل */
+  width: auto !important;       /* العرض يتحدد تلقائياً عشان ميحصلش زوم */
+  max-width: 100% !important;   /* حماية عشان متخرجش بره الشاشة */
+  object-fit: contain !important; /* إظهار الصورة كاملة بدون قص */
+  display: block !important;
+  margin: 0 auto !important;    /* سنترة الصورة في النص */
+  transform: none !important;   /* إلغاء أي زوم قديم */
+  z-index: 1 !important;
+}
+
+/* للموبايل: الصورة تفرش العرض كله */
+@media (max-width: 700px) {
+  .hero-image {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+  }
 }
 
 .hero-overlay {
@@ -163,7 +175,7 @@
   background: #f5f3fb;
   color: #37395d;
   text-decoration: none;
-  font-family: "Tajawal", Arial, sans-serif;
+font-family: 'Cairo', sans-serif;
   font-size: 18px;
   font-weight: 800;
   display: inline-flex;
@@ -199,7 +211,7 @@
   background: transparent;
   color: white;
 
-  font-family: "Tajawal", Arial, sans-serif;
+font-family: 'Cairo', sans-serif;
   font-size: 17px;        /* تكبير الخط */
   font-weight: 800;
   line-height: 1;
@@ -735,7 +747,7 @@
   font-weight: 800;
   cursor: pointer;
   padding: 0;
-  font-family: "Tajawal", Arial, sans-serif;
+font-family: 'Cairo', sans-serif;
 }
 
 .managers span {
@@ -822,7 +834,7 @@
   border-radius: 14px;
   background: transparent;
   color: #ffffff;
-  font-family: "Tajawal", Arial, sans-serif;
+font-family: 'Cairo', sans-serif;
   font-size: 16px;
   font-weight: 800;
   padding: 0 16px;
@@ -1555,3 +1567,1645 @@
   margin-top: calc((var(--content-overlap) - 6px) * -1);
 }
 
+
+/* ===== MOBILE PIXEL-STYLE OVERRIDE ===== */
+@media (max-width: 700px) {
+  .page,
+  .page.zoomed {
+    --zoom-scale: 1;
+    --space-scale: 1;
+    --hero-height: 270px;
+    --content-overlap: 18px;
+    --title-gap: 12px;
+  }
+
+  .page {
+    background: #ececf4;
+  }
+
+  /* ===== HEADER ===== */
+  .hero {
+    min-height: 270px;
+    height: 270px;
+    overflow: visible;
+  }
+
+  .hero-image {
+object-fit: cover !important;
+object-position: top center !important;
+    filter: brightness(0.62);
+    transform: scale(1.04);
+  }
+
+  .hero-overlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(16, 28, 103, 0.9) 0%,
+        rgba(18, 30, 109, 0.82) 46%,
+        rgba(40, 31, 105, 0.7) 76%,
+        rgba(98, 44, 141, 0.58) 100%
+      );
+  }
+
+  .hero-bottom-glow {
+    height: 12px;
+  }
+
+  .hero-inner,
+  .info-card {
+    width: calc(100% - 24px);
+  }
+
+  .hero-inner {
+    padding-top: 10px;
+    padding-bottom: 0;
+  }
+
+  .top-row {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    grid-template-areas:
+      "menu logo"
+      ". title";
+    align-items: start;
+    gap: 10px 12px;
+  }
+
+  .top-actions-wrap {
+    grid-area: menu;
+    align-self: start;
+    justify-self: start;
+  }
+
+  .top-actions {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #ffffff;
+    font-size: 30px;
+    padding: 0;
+  }
+
+  .logo-wrap {
+    grid-area: logo;
+    width: 100%;
+    padding-top: 0;
+    gap: 0;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .logo-image {
+    width: 210px;
+    max-width: 100%;
+    margin: 0 0 10px 0;
+    align-self: flex-end;
+  }
+
+  .page-title {
+    grid-area: title;
+    width: 100%;
+    align-self: flex-end;
+    text-align: right;
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.18;
+    margin-top: 54px;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.22);
+  }
+
+  /* ===== CONTENT POSITION ===== */
+  .content {
+    margin-top: calc(var(--content-overlap) * -1);
+  }
+
+  /* ===== NOTICE ===== */
+  .notice {
+    min-height: unset;
+    padding: 16px 18px;
+    border-radius: 18px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+
+  .notice-text {
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.75;
+    text-align: right;
+  }
+
+  .notice-inline-icon {
+    width: 26px;
+    height: 26px;
+    margin-inline-end: 8px;
+    top: 1px;
+  }
+
+  .notice-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* ===== CARDS ===== */
+  .company-card,
+  .small-card {
+    border-radius: 20px;
+    padding: 18px 18px 16px;
+    margin-bottom: 16px;
+  }
+
+  /* ===== COMPANY HEADER CARD ===== */
+  .company-topbar {
+    display: grid;
+    grid-template-columns: 52px 1fr 72px;
+    grid-template-areas:
+      "logo name status"
+      "logo entity entity"
+      "logo company company";
+    align-items: start;
+    gap: 8px 12px;
+    margin-bottom: 20px;
+  }
+
+  .saudi-logo {
+    grid-area: logo;
+    width: 46px;
+    height: 46px;
+    justify-self: end;
+    align-self: start;
+  }
+
+  .company-divider,
+  .company-divider-mid {
+    display: none;
+  }
+
+  .company-name {
+    grid-area: name;
+    font-size: 18px;
+    line-height: 1.55;
+    text-align: center;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    margin: 0;
+  }
+
+  .status {
+    grid-area: status;
+    justify-self: start;
+    align-self: start;
+    min-width: 0;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+
+  .company-topbar-inline-meta {
+    grid-column: 2 / 4;
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    gap: 8px 10px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .company-topbar-inline-meta > :nth-child(1) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .company-topbar-inline-meta > :nth-child(2) {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+  }
+
+  .company-topbar-inline-meta > :nth-child(3) {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .company-topbar-inline-meta > :nth-child(4) {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: start;
+  }
+
+  .meta-text {
+    font-size: 12px;
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .meta-badge,
+  .meta-badge-white {
+    min-height: 32px;
+    padding: 0 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    justify-self: start;
+  }
+
+  .meta-badge:not(.meta-badge-white) {
+    font-size: 12px;
+  }
+
+  /* ===== MAIN GRID ===== */
+  .company-main-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 16px;
+    margin-bottom: 18px;
+  }
+
+  .contact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 16px;
+  }
+
+  .contact-grid .info-item:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .contact-title,
+  .small-card h3 {
+    font-size: 19px;
+    margin: 4px 0 16px;
+    text-align: right;
+  }
+
+  .info-item {
+    gap: 6px;
+    min-height: auto;
+  }
+
+  .info-item span {
+    font-size: 11px;
+    line-height: 1.55;
+  }
+
+  .info-item strong {
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .badge-value,
+  .registration-badge {
+    font-size: 13px;
+    min-height: 32px;
+    padding: 5px 14px;
+  }
+
+  /* ===== DATES ===== */
+  .dates-row,
+  .dates-row-ltr {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .date-chip {
+    width: 128px;
+    max-width: 100%;
+    min-height: 28px;
+    height: 28px;
+    border-radius: 10px;
+    justify-content: space-between;
+  }
+
+  .date-chip-value {
+    flex: 1;
+    padding: 0 10px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 800;
+  }
+
+  .date-chip-era {
+    min-width: 28px;
+    padding: 0 8px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 800;
+  }
+
+  .money {
+    margin-left: auto;
+    gap: 5px;
+  }
+
+  .riyal-icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  /* ===== TAGS / MANAGERS ===== */
+  .tags {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .tags span {
+    width: 100%;
+    min-width: 0;
+    padding: 13px 14px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.55;
+  }
+
+  .more-activities-btn {
+    width: 100%;
+    text-align: right;
+    padding-inline: 2px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .managers span {
+    width: 100%;
+    min-width: 0;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  /* ===== DRAWERS ===== */
+  .activities-drawer,
+  .header-menu-drawer {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .header-menu-header h3,
+  .activities-drawer-header h3 {
+    font-size: 18px;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    margin-top: 10px;
+  }
+
+  .footer-top {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding: 14px 12px;
+    min-height: auto;
+    background: #eeedf6;
+  }
+
+  .footer-right-group {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .footer-logo-image {
+    width: 64px;
+    height: auto;
+  }
+
+  .footer-right-text {
+    flex: 1;
+    white-space: normal;
+    text-align: right;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .footer-links {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    padding: 14px 12px;
+    min-height: auto;
+  }
+
+  .footer-bottom span {
+    line-height: 1.5;
+  }
+
+  .footer-dot {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .top-actions-wrap {
+    justify-self: start;
+    align-self: start;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 30px;
+    line-height: 1;
+    padding: 0;
+    border-radius: 8px;
+  }
+
+  .top-actions {
+    display: none;
+  }
+}
+
+/* ===== قوة إجبارية لجعل الهيدر 50% دائماً وفي جميع الشاشات ===== */
+.page,
+.page.zoomed {
+  --hero-height: 50vh !important;
+}
+
+.hero {
+  height: 50vh !important;
+  min-height: 50vh !important;
+  max-height: 50vh !important;
+}
+
+/* ===== إلغاء تأثير الألوان والفلتر من على صورة الهيدر ===== */
+.hero-image {
+  filter: none !important;
+}
+
+.hero-overlay {
+  background: transparent !important;
+}
+
+/* ===== دفع الفوتر لأسفل الصفحة دائماً (Web) ===== */
+.page, .page.zoomed {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100vh !important;
+}
+
+.content {
+  /* هذا السطر يجبر قسم المحتوى على التمدد لملء الفراغ، مما يدفع الفوتر للأسفل */
+  flex: 1 0 auto !important; 
+}
+
+.footer {
+  /* لضمان بقائه في القاع وأخذ عرضه الطبيعي */
+  margin-top: auto !important;
+  width: 100% !important;
+  position: static !important; /* نلغي أي تثبيت عائم */
+}
+
+
+/*فوتر الموبيل */
+/* ===== 2. أكواد الفوتر للموبايل فقط (تصغير اللوجو وضبط محاذاة النص) ===== */
+@media (max-width: 700px) {
+  .footer-top {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 16px 12px 14px !important;
+    gap: 16px !important;
+    background: #f8f8fa !important;
+    justify-content: center !important;
+  }
+
+  .footer-right-group {
+    display: flex !important;
+    width: 100% !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .page[dir="rtl"] .footer-right-group {
+    flex-direction: row !important;
+  }
+
+  .page[dir="ltr"] .footer-right-group {
+    flex-direction: row-reverse !important;
+  }
+
+  .footer-logo-image {
+    width: 80px !important; /* تصغير اللوجو للوصول للحجم المطلوب */
+    height: auto !important;
+  }
+
+  .footer-right-text {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    line-height: 1.5 !important;
+    max-width: 230px !important; /* زيادة عرض النص عشان السطر الأول ياخد كلام أكتر */
+    color: #2f3450 !important;
+  }
+
+  .page[dir="rtl"] .footer-right-text {
+    text-align: right !important;
+    border-right: 1.5px solid #dcdce6 !important;
+    padding-right: 10px !important; /* تقليل المسافة عشان يقرب من الخط */
+    margin-right: 10px !important; /* تقليل المسافة لدفع اللوجو لليمين */
+  }
+
+  .page[dir="ltr"] .footer-right-text {
+    text-align: left !important;
+    border-left: 1.5px solid #dcdce6 !important;
+    padding-left: 10px !important;
+    margin-left: 10px !important;
+  }
+
+  .footer-links {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    width: 100% !important;
+    gap: 16px !important;
+  }
+
+  .footer-links a {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: #2d3147 !important;
+    white-space: nowrap !important;
+  }
+
+  .footer-bottom {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #ffffff !important;
+    padding: 16px 12px !important;
+    gap: 6px !important;
+    border-top: none !important;
+  }
+
+  .footer-bottom span {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    line-height: 1.6 !important;
+    text-align: center !important;
+    color: #2d3147 !important;
+  }
+
+  .footer-bottom span:first-child {
+    max-width: 250px !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+
+  .footer-dot {
+    display: none !important;
+  }
+}
+
+
+/* ===== توحيد الحاوية الشفافة (Container) لتطابق الهيدر مع المحتوى ===== */
+
+/* 1. ضبط الصندوق الشفاف للهيدر والكروت ليكونوا مسطرة واحدة */
+.hero-inner,
+.info-card {
+  width: 92% !important; /* العرض الافتراضي للشاشات العادية */
+  max-width: 1140px !important; /* قفل العرض النهائي! هذا ما يمنع التمدد في الشاشات العملاقة */
+  margin: 0 auto !important; /* توسيط الحاوية دائماً في منتصف الشاشة */
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* 2. ضمان أن محتويات الهيدر تلمس حواف الصندوق يميناً ويساراً */
+.top-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 3. إلغاء أي هوامش جانبية قديمة تبوظ المحاذاة */
+.logo-wrap {
+  padding-right: 0 !important;
+  margin-right: 0 !important;
+}
+
+.top-actions-wrap {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* ===== الحل الجذري للقضاء على الفراغات الجانبية والزوم ===== */
+
+.hero {
+  position: relative !important;
+  width: 100% !important;
+  height: 60vh !important;       /* الارتفاع 60% من الشاشة */
+  min-height: 60vh !important;
+  /* لون كحلي غامق جداً مطابق لأطراف الصورة تماماً */
+  background-color: #0b112c !important; 
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+}
+
+.hero-image, 
+.hero-image-zoom { 
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  /* توسيط بدون أي تكبير إضافي */
+  transform: translate(-50%, -50%) !important; 
+  /* جعل الصورة تملأ العرض والارتفاع بذكاء لمنع الفراغات */
+  width: 100% !important;
+  height: 100% !important;
+  /* أهم خاصية: إظهار أكبر قدر من الصورة مع ملء المساحة */
+  object-fit: cover !important; 
+  /* التركيز على أعلى الصورة (البرج) */
+  object-position: top center !important; 
+  z-index: 1 !important;
+}
+
+/* إخفاء أي تدرج أو طبقة إضافية قد تسبب اللون الأزرق المختلف */
+.hero::after {
+  display: none !important;
+}
+/* ======================================================= */
+/* الحل النهائي والشامل: حزام سفلي ثابت 30px لا يتأثر بالزوم */
+/* ======================================================= */
+
+.hero {
+    position: relative !important;
+    width: 100% !important;
+    height: 60vh !important;
+    min-height: 60vh !important;
+    max-height: 60vh !important;
+    background-color: #0b112c !important;
+    overflow: hidden !important;
+    display: block !important;
+}
+
+/* 1. ضبط الصورة لتملأ الخلفية بالكامل */
+.hero-image, 
+.hero-image-zoom {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: top center !important;
+    z-index: 1 !important;
+    transform: none !important;
+    /* إزاحة طفيفة جداً للأسفل لضمان عدم وجود فراغ أبيض ناتج عن الحسابات */
+    bottom: -1px !important;
+}
+
+/* 2. الحزام السفلي: ثابت 30px ومعالج ضد الزوم */
+.hero::after {
+    content: "" !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    display: block !important;
+    z-index: 90 !important;
+
+    /* تحديد السماكة الأساسية */
+    height: 30px !important;
+
+    /* التدرج اللوني: أرجواني يمين -> كحلي يسار */
+    background: linear-gradient(
+        to left, 
+        #5c3db5 0%, 
+        #3b2d8e 45%, 
+        #13173d 100%
+    ) !important;
+
+    /* الضربة القاضية: إلغاء تمطيط الزوم (المعادلة العكسية) */
+    /* لو الموقع كبر 1.14 مرة، الخط ينكمش 1.14 مرة فيفضل حجمه ثابت بصرياً */
+    transform: scaleY(calc(1 / var(--zoom-scale, 1.14))) !important;
+    transform-origin: bottom !important;
+    
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 3. حاوية المحتوى (اللوجو والعنوان) */
+.hero-inner {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 100 !important;
+    width: 92% !important;
+    max-width: 1140px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    padding-top: clamp(30px, 6vh, 60px) !important;
+    pointer-events: none !important;
+}
+
+/* التأكد من أن الأزرار تعمل */
+.top-row {
+    pointer-events: auto !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+}
+
+.logo-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    text-align: right !important;
+}
+
+/* ===== تنسيق الهيدر والحزام السفلي الثابت (Anti-Zoom) ===== */
+
+.hero {
+  position: relative !important;
+  width: 100% !important;
+  height: 60vh !important;
+  min-height: 60vh !important;
+  max-height: 60vh !important;
+  background-color: #0b112c !important;
+  overflow: hidden !important;
+}
+
+.hero-image {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: top center !important;
+  z-index: 1 !important;
+  transform: none !important;
+}
+
+/* الحزام البنفسجي الثابت 30px بالملي */
+.hero-bottom-line-fixed {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 5 !important; /* فوق الصورة وتحت المحتوى */
+
+  /* السماكة المطلوبة بالبكسل */
+  height: 30px !important;
+
+  /* التدرج اللوني المطللوب */
+  background: linear-gradient(
+    to left, 
+    #5c3db5 0%, 
+    #3b2d8e 45%, 
+    #13173d 100%
+  ) !important;
+
+  /* المعادلة العكسية لإلغاء أثر الزوم عمودياً */
+  /* إذا كبر الموقع 1.14 مرة، سيصغر الخط بنفس النسبة ليظل 30px في عين المستخدم */
+  transform: scaleY(calc(1 / var(--zoom-scale, 1.14))) !important;
+  transform-origin: bottom !important;
+  
+  display: block !important;
+}
+
+/* المحتوى فوق كل شيء */
+.hero-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 10 !important;
+}
+
+.hero-inner {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  padding-top: clamp(20px, 5vh, 50px) !important;
+}
+
+/* للموبايل: تقليل السماكة لتناسب الشاشات الصغيرة */
+@media (max-width: 700px) {
+  .hero-bottom-line-fixed {
+    height: 15px !important;
+    /* الموبايل لا يستخدم نظام الزوم غالباً فنلغي الـ scale */
+    transform: none !important; 
+  }
+}
+
+
+/* ======================================================= */
+/* 1. تثبيت الحزام البنفسجي ومنعه من التأثر بالزوم (Anti-Zoom) */
+/* ======================================================= */
+
+.hero-bottom-line-fixed {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 5 !important;
+    
+    /* سماكة ثابتة بالبكسل */
+    height: 30px !important;
+    min-height: 30px !important;
+    
+    /* التدرج اللوني */
+    background: linear-gradient(to left, #5c3db5 0%, #3b2d8e 45%, #13173d 100%) !important;
+
+    /* السطر السحري: يلغي مفعول الزوم على السماكة فقط */
+    /* لو الموقع كبر 1.14 مرة، السطر ده بيصغر الحزام بمقدار 1/1.14 فيفضل حجمه 30px بالظبط */
+    transform: scaleY(calc(1 / var(--zoom-scale, 1.14))) !important;
+    transform-origin: bottom !important;
+}
+
+/* ======================================================= */
+/* 2. التحكم في الكلام (اللوجو والعنوان) والسماح له بالزوم */
+/* ======================================================= */
+
+.hero-inner {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 10 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    /* لجعل الكلام يتوسط الهيدر ويقترب من الأسفل قليلاً */
+    justify-content: center !important; 
+    align-items: center !important;
+    text-align: center !important;
+    /* إلغاء أي بادينج قديم يسبب الفجوة */
+    padding-bottom: 0 !important; 
+}
+
+/* اللوجو والعنوان هيكبروا مع الزوم عادي لأنهم مش واخدين Scale عكسي */
+.logo-wrap {
+    margin-bottom: 10px !important;
+}
+
+.page-title {
+    font-size: 2.2rem !important;
+    margin-top: 5px !important;
+    /* تقليل المسافة تحت العنوان مباشرة */
+    margin-bottom: 0 !important; 
+}
+
+/* ======================================================= */
+/* 3. حل مشكلة الفجوة الكبيرة (The Big Gap) */
+/* ======================================================= */
+
+/* سحب المحتوى السفلي (الشريط الأبيض) لفوق ليقترب من العنوان */
+.content {
+    position: relative !important;
+    z-index: 20 !important;
+    /* رفع المحتوى للأعلى ليتداخل مع الهيدر ويقلل الفراغ */
+    margin-top: -60px !important; 
+}
+
+/* الموبايل: تعديلات بسيطة للفجوة في الشاشات الصغيرة */
+@media (max-width: 700px) {
+    .content {
+        margin-top: -40px !important;
+    }
+    .hero-bottom-line-fixed {
+        height: 20px !important; /* أنحف شوية للموبايل */
+        transform: none !important; /* الموبايل غالباً لا يحتاج موازنة زوم */
+    }
+}
+
+/* ======================================================= */
+/* الجزء الخاص بإصلاح الهيدر والفجوة (إضافة لآخر الملف) */
+/* ======================================================= */
+
+/* 1. تثبيت الحزام البنفسجي ضد الزوم تماماً */
+.hero-bottom-line-fixed {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 5 !important;
+    height: 30px !important;
+    background: linear-gradient(to left, #5c3db5 0%, #3b2d8e 45%, #13173d 100%) !important;
+    /* إلغاء تمطيط الزوم يدوياً */
+    transform: scaleY(calc(1 / var(--zoom-scale, 1.14))) !important;
+    transform-origin: bottom !important;
+}
+
+/* 2. إجبار اللوجو والعنوان يفضلوا فوق (تثبيت الـ Position) */
+.hero-inner {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 10 !important; 
+    padding-top: clamp(20px, 4vw, 40px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    pointer-events: none !important;
+}
+
+/* 3. حل مشكلة الفجوة (Gap) وسحب الشريط الأبيض لفوق */
+.content {
+    position: relative !important;
+    z-index: 20 !important;
+    /* سحب البيانات للأعلى لتقليل المسافة مع "بيانات السجل التجاري" */
+    margin-top: -80px !important; 
+    transition: margin-top 0.24s ease !important;
+}
+
+/* 4. إجبار الشريط الأبيض يظهر فوق الحزام البنفسجي */
+.notice {
+    position: relative !important;
+    z-index: 30 !important;
+    background: white !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
+}
+
+/* تنظيف أي خطوط قديمة ناتجة عن التكرار */
+.hero::after {
+    display: none !important;
+}
+
+/* ======================================================= */
+/* كود "الإنقاذ" لظهور اللوجو والعنوان وفصل الطبقات */
+/* ======================================================= */
+
+/* 1. إلغاء نظام التوسيط القديم اللي رامي الكلام تحت */
+.hero {
+    display: block !important; 
+    position: relative !important;
+    overflow: visible !important; 
+    height: 60vh !important;
+}
+
+/* 2. إجبار اللوجو والعنوان على الظهور "فوق" كل شيء وفي مكانه الطبيعي */
+.hero-inner {
+    position: absolute !important;
+    top: 0 !important; 
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 999 !important; /* أعلى طبقة لضمان عدم الاختفاء */
+    padding-top: 50px !important; /* مسافة اللوجو من فوق */
+    display: flex !important;
+    flex-direction: column !important;
+    pointer-events: none !important;
+}
+
+/* 3. ضمان أن اللوجو والعنوان لونهما أبيض وواضحين */
+.logo-image, .page-title {
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+}
+
+/* 4. الخط البنفسجي: "مسطرة" في قاع الهيدر لا تتأثر بالزوم */
+.hero-bottom-line-fixed {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 30px !important;
+    z-index: 5 !important; /* خلف الكلام والشريط الأبيض */
+    background: linear-gradient(to left, #6d1575 0%, #3b2d8e 45%, #1e1c6e 100%) !important;
+    /* معادلة ثبات السمك العكسية */
+    transform: scaleY(calc(1 / var(--zoom-scale, 1.14))) !important;
+    transform-origin: bottom !important;
+}
+
+/* 5. التحكم في "التعليقة"؛ نزلنا المحتوى شوية عشان العنوان يظهر */
+.content {
+    position: relative !important;
+    z-index: 100 !important; 
+    margin-top: -30px !important; /* تقليل السحب لفوق عشان العنوان يبان */
+}
+
+/* 6. منع صورة الخلفية من تغطية اللوجو */
+.hero-image {
+    z-index: 1 !important;
+}
+
+/* ======================================================= */
+/* الإنقاذ الآمن 100%: ترتيب طبيعي يمنع اختفاء اللوجو تماماً */
+/* ======================================================= */
+
+/* 1. ضبط الهيدر بارتفاع متوازن وتجهيزه للترتيب */
+.hero {
+    position: relative !important;
+    width: 100% !important;
+    height: 55vh !important; 
+    min-height: 400px !important;
+    background-color: #0b112c !important;
+    overflow: hidden !important;
+}
+
+/* 2. حاوية اللوجو: إجبار العناصر تبدأ من السقف (بدون absolute مدمر) */
+.hero-inner {
+    position: relative !important;
+    z-index: 50 !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important; /* ده اللي بيلزق اللوجو فوق */
+    padding-top: 50px !important; /* مسافة اللوجو من أعلى الشاشة */
+}
+
+/* 3. اللوجو والعنوان: المسافة 25px بالملي */
+.logo-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important; /* المحاذاة يمين */
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.page-title {
+    margin-top: 25px !important; /* المسافة اللي طلبتها بالضبط */
+    margin-bottom: 0 !important;
+    color: #fff !important;
+}
+
+/* 4. الشريط الأبيض (الكروت): سحب آمن لأعلى يقربها من العنوان */
+.content {
+    position: relative !important;
+    z-index: 100 !important; /* يظهر فوق الهيدر */
+    /* سحب معقول يخلي الكروت تحت العنوان من غير ما تغطيه */
+    margin-top: -10vh !important; 
+}
+
+/* 5. الشريط البنفسجي: 30px ثابتة وتكبر طبيعي مع الزوم */
+.hero-bottom-line-fixed {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 30px !important;
+    background: linear-gradient(to left, #5c3db5 0%, #3b2d8e 45%, #13173d 100%) !important;
+    z-index: 5 !important;
+    transform: none !important; /* إرجاع الزوم لطبيعته */
+}
+
+/* 6. منع أي تداخلات قديمة */
+.hero::after {
+    display: none !important;
+}
+
+/* ======================================================= */
+/* الحل النهائي والقطعي: رص العناصر ولزق الكروت تحت العنوان */
+/* ======================================================= */
+
+/* 1. الهيدر */
+.hero {
+    position: relative !important;
+    width: 100% !important;
+    height: 60vh !important;
+    background-color: #0b112c !important;
+    overflow: hidden !important;
+    display: block !important;
+}
+
+/* 2. تثبيت اللوجو والعنوان فوق */
+.hero-inner {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 50 !important;
+    /* مسافة اللوجو من سقف الشاشة */
+    padding-top: 40px !important; 
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* 3. مسافة 25px صريحة بين اللوجو والعنوان */
+.logo-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    padding-top: 0 !important;
+    margin: 0 !important;
+}
+
+.page-title {
+    margin-top: 25px !important; /* المسافة اللي طلبتها */
+    margin-bottom: 0 !important;
+    color: #fff !important;
+}
+
+/* 4. السر هنا: معادلة تلغي الفراغ تماماً وتلزق الكروت تحت العنوان */
+.content {
+    position: relative !important;
+    z-index: 100 !important;
+    /*
+      المعادلة دي بتعمل إيه؟
+      بتسحب الكروت لفوق بمقدار طول الهيدر كله (-60vh)
+      وبعدين تنزلها 230 بكسل بس (ودي المساحة اللي واخدها اللوجو والعنوان)
+      النتيجة: الكروت هتلزق تحت العنوان مباشرة بدون أي فراغ أسود!
+    */
+    margin-top: calc(-60vh + 230px) !important; 
+    transition: margin-top 0.24s ease !important;
+}
+
+/* 5. الشريط البنفسجي الثابت تحت */
+.hero-bottom-line-fixed {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 30px !important;
+    background: linear-gradient(to left, #5c3db5 0%, #3b2d8e 45%, #13173d 100%) !important;
+    z-index: 5 !important;
+    transform: none !important; 
+}
+
+/* تنظيف الهيدر */
+.hero::after {
+    display: none !important;
+}
+
+/* ======================================================= */
+/* إصلاح الموبايل والزوم: احتواء البيانات وتثبيت صورة الخلفية */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+    /* 1. إرجاع صورة الخلفية لطبيعتها (مثل الويب تماماً) */
+    .hero-image {
+        transform: none !important; /* مسح الزوم الإجباري القديم */
+        filter: none !important; /* مسح الفلتر اللي كان بيغمق الصورة */
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: top center !important;
+    }
+
+    /* 2. الإغلاق المحكم لعرض الشاشة (منع السكرول العرضي) */
+    body, .page {
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+    }
+
+    /* 3. احتواء الكروت والهيدر ليكونوا داخل الشاشة بنسبة 94% */
+    .hero-inner, .info-card, .content, .notice {
+        width: 94% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    /* 4. فك "الشبكة الإجبارية" للبيانات العلوية والسماح لها بالنزول لسطر جديد */
+    .company-topbar {
+        display: flex !important;
+        flex-wrap: wrap !important; /* السماح بالتوزيع المرن */
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 15px !important;
+        width: 100% !important;
+    }
+
+    .company-topbar-inline-meta {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: flex-start !important;
+        width: 100% !important;
+        gap: 10px !important;
+    }
+
+    /* 5. تحويل شبكات البيانات لعمود واحد لتناسب الموبايل */
+    .company-main-grid, .contact-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important; /* عمود واحد فقط */
+        gap: 15px !important;
+        width: 100% !important;
+    }
+
+    /* 6. احتواء التاجات والتواريخ لتتمدد وتأخذ عرض الشاشة ولا تخرج عنها */
+    .tags {
+        display: flex !important;
+        flex-direction: column !important; /* رص الأنشطة تحت بعضها */
+        width: 100% !important;
+        gap: 10px !important;
+    }
+
+    .tags span {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        white-space: normal !important; /* السماح للكلام الطويل بالنزول سطر */
+        text-align: center !important;
+    }
+
+    /* 7. احتواء التواريخ والأرقام الطويلة */
+    .dates-row, .dates-row-ltr {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important; /* رص التواريخ عمودياً */
+        gap: 8px !important;
+    }
+
+    .date-chip {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+}
+
+/* ======================================================= */
+/* إصلاح الطوارئ للموبايل: اتجاه اللوجو وتوافق الزوم 100% */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+    /* 1. إصلاح اتجاه الهيدر: اللوجو يمين وزرار القائمة يسار */
+    .top-row {
+        display: flex !important;
+        flex-direction: row !important; /* إلغاء العكس اللي بوظ الدنيا */
+        direction: rtl !important; /* إجبار الاتجاه العربي */
+        justify-content: space-between !important;
+        align-items: flex-start !important;
+        width: 100% !important;
+    }
+
+    .logo-wrap {
+        align-items: flex-start !important; /* لزق اللوجو في اليمين */
+        width: auto !important;
+    }
+
+    /* 2. ديناميكية الخلفية: الهيدر يكبر مع الزوم عشان يغطي الكروت */
+    .page.zoomed .hero,
+    .hero {
+        /* السر هنا: ضرب الطول في متغير الزوم عشان الخلفية تكبر مع المحتوى */
+        height: calc(400px * var(--zoom-scale, 1)) !important;
+        min-height: calc(400px * var(--zoom-scale, 1)) !important;
+        background-color: #0b112c !important;
+        position: relative !important;
+        overflow: hidden !important;
+        display: block !important;
+    }
+
+    /* تثبيت صورة الخلفية ومنع تشوهها */
+    .hero-image {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: top center !important;
+        transform: none !important; 
+    }
+
+    /* 3. سحب الكروت لفوق بنسبة تتوافق مع الزوم */
+    .page.zoomed .content,
+    .content {
+        /* كل ما الزوم يكبر، السحبة لفوق بتكبر معاه عشان يفضلوا راكبين على بعض */
+        margin-top: calc(-160px * var(--zoom-scale, 1)) !important;
+        position: relative !important;
+        z-index: 50 !important;
+        width: 94% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    /* 4. إظهار زرار القائمة وتظبيط مكانه في اليسار */
+    .menu-toggle {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 40px !important;
+        height: 40px !important;
+        background: transparent !important;
+        border: 1px solid rgba(255,255,255,0.6) !important;
+        border-radius: 8px !important;
+        color: white !important;
+        font-size: 24px !important;
+        margin-top: 15px !important;
+    }
+}
+
+
+
+/* ======================================================= */
+/* تطابق الموبايل النهائي مع صورة الواتساب 100% (بما فيها الزوم) */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+    /* 1. إصلاح الترتيب: اللوجو يمين والمنيو يسار (قتل الـ Grid القديم) */
+    .top-row {
+        display: flex !important;
+        flex-direction: row !important;
+        direction: rtl !important; /* اللوجو يمين والمنيو يسار إجبارياً */
+        justify-content: space-between !important;
+        align-items: flex-start !important;
+        width: 100% !important;
+    }
+
+    .logo-wrap {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-end !important; /* محاذاة لليمين */
+        width: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .logo-image {
+        width: 190px !important; /* حجم اللوجو زي الصورة */
+        margin-bottom: 5px !important;
+    }
+
+    .page-title {
+        font-size: 26px !important;
+        margin-top: 15px !important;
+        text-align: right !important;
+        color: #fff !important;
+        display: block !important;
+    }
+
+    /* زرار القائمة (Menu) */
+    .top-actions-wrap {
+        display: block !important;
+    }
+
+    .menu-toggle {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 42px !important;
+        height: 42px !important;
+        border: 1px solid rgba(255,255,255,0.5) !important;
+        border-radius: 8px !important;
+        background: transparent !important;
+        color: white !important;
+        font-size: 28px !important;
+        margin-top: 5px !important;
+    }
+
+    /* 2. الهيدر والخلفية: النزول خلف الكروت زي الصورة */
+    .hero {
+        display: block !important;
+        height: 380px !important; /* طول كافي للنزول خلف الكروت */
+        min-height: 380px !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }
+
+    .hero-image {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        transform: none !important; /* إلغاء الزوم الغلط بتاع الموبايل */
+        filter: brightness(0.8) !important;
+    }
+
+    /* 3. سحب الكروت لتتداخل مع الخلفية (التطابق مع الصورة) */
+    .content {
+        /* السحبة دي هي اللي هتركب الكروت على الخلفية البنفسجية */
+        margin-top: -110px !important; 
+        position: relative !important;
+        z-index: 50 !important;
+        width: 94% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    /* ========================================= */
+    /* 4. ديناميكية الزوم للموبايل (عشان ميبوظش) */
+    /* ========================================= */
+    .page.zoomed .hero {
+        height: calc(380px * var(--zoom-scale, 1.14)) !important;
+        min-height: calc(380px * var(--zoom-scale, 1.14)) !important;
+    }
+
+    .page.zoomed .content {
+        margin-top: calc(-110px * var(--zoom-scale, 1.14)) !important;
+    }
+}
+
+
+/* ======================================================= */
+/* محاذاة أسماء المديرين لليمين داخل الإطار */
+/* ======================================================= */
+
+.managers span {
+    text-align: right !important; /* نقل النص لليمين */
+    padding-right: 24px !important; /* مسافة جمالية عشان الكلام ميبقاش لازق في حرف الإطار بالظبط */
+    display: block !important;
+}
+
+/* تأكيد المحاذاة للموبايل كمان */
+@media (max-width: 768px) {
+    .managers span {
+        text-align: right !important;
+        padding-right: 20px !important;
+    }
+}
+
+
+/* ======================================================= */
+/* 1. الحفاظ على الهيدر 60% وتقليل المسافة تحت العنوان */
+/* ======================================================= */
+@media (max-width: 1180px) { 
+    /* هذا المقاس يشمل الموبايل وحالة الزوم العالي للويب */
+    .page.zoomed .hero,
+    .hero {
+        height: 60vh !important;
+        min-height: 60vh !important;
+        max-height: 60vh !important;
+    }
+
+    .page.zoomed .content,
+    .content {
+        /* سحب الكروت بقوة لأعلى لتلتحم بكلمة بيانات السجل التجاري */
+        /* لو الكارت غطى على العنوان زيادة، كبّر الـ 160 (خليه 180 مثلاً) والعكس صحيح */
+        margin-top: calc(-60vh + 160px) !important; 
+    }
+
+    .page.zoomed .page-title,
+    .page-title {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+}
+
+/* ======================================================= */
+/* 2. إصلاح كارت "شركة ميلاد الإبداع" 100% ليطابق الصورة */
+/* ======================================================= */
+@media (max-width: 1180px) {
+    /* إعادة ترتيب الكارت: اللوجو يمين - الاسم وسط - كلمة نشط يسار */
+    .page.zoomed .company-topbar,
+    .company-topbar {
+        display: grid !important;
+        /* توزيع المساحات للغة العربية: يمين (55px) - وسط (1fr) - يسار (تلقائي) */
+        grid-template-columns: 55px 1fr auto !important;
+        grid-template-areas:
+            "logo name status"
+            "tags tags tags" !important;
+        gap: 12px 15px !important;
+        align-items: start !important;
+    }
+
+    /* اللوجو في أقصى اليمين */
+    .page.zoomed .saudi-logo,
+    .saudi-logo {
+        grid-area: logo !important;
+        width: 55px !important;
+        height: 55px !important;
+    }
+
+    /* اسم الشركة */
+    .page.zoomed .company-name,
+    .company-name {
+        grid-area: name !important;
+        text-align: right !important;
+        font-size: 20px !important;
+        line-height: 1.4 !important;
+        margin: 0 !important;
+    }
+
+    /* كلمة (نشط) في أقصى اليسار */
+    .page.zoomed .status,
+    .status {
+        grid-area: status !important;
+        justify-self: end !important; /* يدفعها لأقصى اليسار في الـ RTL */
+        margin-top: 5px !important;
+    }
+
+    /* رص التاجات (نوع المنشأة ونوع الشركة) تحت بعض في اليمين */
+    .page.zoomed .company-topbar-inline-meta,
+    .company-topbar-inline-meta {
+        grid-area: tags !important;
+        display: flex !important;
+        flex-direction: column !important; /* رص رأسي */
+        align-items: flex-end !important; /* محاذاة لليمين */
+        gap: 8px !important;
+        width: 100% !important;
+    }
+
+    /* تنظيف أي أوامر قديمة كانت بتشوه التاجات */
+    .page.zoomed .company-topbar-inline-meta > *,
+    .company-topbar-inline-meta > * {
+        grid-column: auto !important;
+        grid-row: auto !important;
+    }
+
+    /* إصلاح شبكة البيانات (الرقم الموحد، السجل، إلخ) لعمودين فقط */
+    .page.zoomed .company-main-grid,
+    .company-main-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important; /* عمودين بالظبط */
+        gap: 20px 10px !important;
+        direction: rtl !important;
+        margin-top: 15px !important;
+    }
+
+    .page.zoomed .info-item,
+    .info-item {
+        text-align: right !important;
+        align-items: flex-start !important;
+    }
+}
+
+
+
+/* ======================================================= */
+/* حماية الكونتينر (Container) من الانفجار في وضع الزوم */
+/* ======================================================= */
+
+/* إجبار الهيدر، الكروت، والمحتوى على الالتزام بحجم الكونتينر دائماً */
+.page.zoomed .hero-inner,
+.page.zoomed .content,
+.page.zoomed .info-card,
+.hero-inner,
+.content,
+.info-card {
+    width: 92% !important; /* نسبة آمنة للشاشات الصغيرة */
+    max-width: 1140px !important; /* القفل السحري: مستحيل يكبر عن كده */
+    margin-left: auto !important; /* توسيط إجباري */
+    margin-right: auto !important; /* توسيط إجباري */
+    box-sizing: border-box !important;
+}
+
+/* في حالة الموبايل الصغير جداً، نضمن إنه مفيش حاجة تخرج بره الشاشة */
+@media (max-width: 768px) {
+    .page.zoomed .hero-inner,
+    .page.zoomed .content,
+    .page.zoomed .info-card,
+    .hero-inner,
+    .content,
+    .info-card {
+        width: 94% !important;
+    }
+}
+
+/* ======================================================= */
+/* فصل الخلفية (الهيدر والصورة) عن الزوم نهائياً وتثبيتها */
+/* ======================================================= */
+
+/* 1. تثبيت الهيدر في الويب (والزوم) ليكون 60% دائماً ولا يتأثر بالزوم */
+.page.zoomed .hero,
+.hero {
+    height: 60vh !important;
+    min-height: 60vh !important;
+    max-height: 60vh !important;
+    background-color: #0b112c !important;
+    overflow: hidden !important;
+    transform: none !important; /* منع أي تمطيط */
+}
+
+/* 2. تثبيت صورة الخلفية نفسها كـ "جدار ثابت" */
+.page.zoomed .hero-image,
+.hero-image {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; 
+    object-position: top center !important; 
+    transform: none !important; /* إلغاء الزوم من الصورة تماماً */
+    filter: none !important;
+}
+
+/* 3. إعدادات الموبايل (طول ثابت للخلفية لا يتأثر بزوم الموبايل) */
+@media (max-width: 768px) {
+    .page.zoomed .hero,
+    .hero {
+        /* طول ثابت للموبايل زي صورة الواتساب بالظبط، وميكبرش مع الزوم */
+        height: 380px !important; 
+        min-height: 380px !important;
+        max-height: 380px !important;
+    }
+
+    .page.zoomed .content,
+    .content {
+        /* سحب الكروت لتتداخل مع الصورة برقم ثابت لا يضرب مع الزوم */
+        margin-top: -110px !important; 
+    }
+}

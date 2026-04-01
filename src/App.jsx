@@ -236,63 +236,68 @@ function App() {
       dir={t.dir}
       lang={isEnglish ? "en" : "ar"}
     >
-      <header className="hero">
-        <img src={headerImage} alt="header" className="hero-image" />
+<header className="hero">
+  {/* 1. الصورة الخلفية */}
+  <img src={headerImage} alt="header" className="hero-image" />
 
-        <div className="hero-overlay">
-          <div className="hero-bottom-glow"></div>
+  {/* 2. الحزام السفلي (تمت إضافته كعنصر مستقل لضمان الثبات) */}
+  <div className="hero-bottom-line-fixed"></div>
 
-          <div className="hero-inner">
-            <div className="top-row">
-              <div className="logo-wrap">
-                <img src={logo} alt="logo" className="logo-image" />
-                <h1 className="page-title">{t.pageTitle}</h1>
-              </div>
+  {/* 3. الطبقة العلوية والمحتوى */}
+  <div className="hero-overlay">
+    <div className="hero-bottom-glow"></div>
 
-              <div className="top-actions-wrap">
-                <div className="top-actions">
-                  <a
-                    href={businessLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="business-btn"
-                  >
-                    <img src={arrow} alt="arrow" className="btn-icon-img" />
-                    <span>{t.businessPlatform}</span>
-                  </a>
-
-                  <div className="divider header-divider"></div>
-
-                  <button
-                    className="mini-btn"
-                    type="button"
-                    onClick={toggleLanguage}
-                  >
-                    {t.languageBtn}
-                  </button>
-
-                  <button
-                    className="mini-btn zoom-btn"
-                    type="button"
-                    onClick={toggleZoom}
-                  >
-                    <ZoomButtonLabel zoomed={isZoomed} />
-                  </button>
-                </div>
-
-                <button
-                  type="button"
-                  className="menu-toggle"
-                  aria-label={t.menuTitle}
-                  onClick={() => setIsHeaderMenuOpen(true)}
-                >
-                  ☰
-                </button>
-              </div>
-            </div>
-          </div>
+    <div className="hero-inner">
+      <div className="top-row">
+        <div className="logo-wrap">
+          <img src={logo} alt="logo" className="logo-image" />
+          <h1 className="page-title">{t.pageTitle}</h1>
         </div>
-      </header>
+
+        <div className="top-actions-wrap">
+          <div className="top-actions">
+            <a
+              href={businessLink}
+              target="_blank"
+              rel="noreferrer"
+              className="business-btn"
+            >
+              <img src={arrow} alt="arrow" className="btn-icon-img" />
+              <span>{t.businessPlatform}</span>
+            </a>
+
+            <div className="divider header-divider"></div>
+
+            <button
+              className="mini-btn"
+              type="button"
+              onClick={toggleLanguage}
+            >
+              {t.languageBtn}
+            </button>
+
+            <button
+              className="mini-btn zoom-btn"
+              type="button"
+              onClick={toggleZoom}
+            >
+              <ZoomButtonLabel zoomed={isZoomed} />
+            </button>
+          </div>
+
+          <button
+            type="button"
+            className="menu-toggle"
+            aria-label={t.menuTitle}
+            onClick={() => setIsHeaderMenuOpen(true)}
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
 
       <main
         className={`content ${
