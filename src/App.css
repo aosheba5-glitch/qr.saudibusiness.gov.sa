@@ -3522,45 +3522,29 @@ object-position: top center !important;
 
 /*---------------------------------------*/
 
+
+
+
 /* ======================================================= */
-/* إصلاحات اللمسة الأخيرة: البانل، الإيميل، والمسافات */
+/* إصلاح البانل وعلامة التعجب (للموبايل والويب والزوم) */
 /* ======================================================= */
 
-/* 1. إصلاح الإيميل: منع متصفح الموبايل من وضع خط تحته */
-html body .page .info-item a,
-html body .page .info-item a[href^="mailto"],
-html body .page .info-item a[href^="tel"],
-html body .page .info-item strong {
-    text-decoration: none !important;
-    border-bottom: none !important;
-    color: #111827 !important; /* تثبيت اللون عشان ميبقاش أزرق */
-}
-
-/* 2. إصلاح البانل (المركز السعودي): تكبير الخط ومحاذاة الأيقونة */
 html body .page .notice {
-    align-items: flex-start !important; /* سحب الأيقونة لأعلى السطر الأول */
-    padding: 16px 14px !important;
-}
-
-html body .page .notice-inline-icon {
-    margin-top: 2px !important; /* تظبيط العلامة لتوازي الكلمات بالضبط */
+    display: block !important; /* مهم جداً عشان العلامة تظبط */
+    padding: 16px 20px !important;
 }
 
 html body .page .notice-text {
-    font-size: 15px !important; /* تكبير الخط بشكل ملحوظ */
+    font-size: 15px !important; /* تكبير الخط */
     font-weight: 800 !important; /* تسميك الخط */
-    line-height: 1.6 !important;
+    line-height: 1.7 !important;
+    display: block !important;
 }
 
-/* 3. الضربة القاضية للفراغ (الجاب) في الموبايل */
-@media (max-width: 700px) {
-    html body .page .hero {
-        height: 320px !important; /* تصغير الهيدر لضم المسافات */
-    }
-    
-    html body .page .content {
-        margin-top: -160px !important; /* شفط الكروت لفوق بقوة أكبر */
-        position: relative !important;
-        z-index: 10 !important;
-    }
+html body .page .notice-inline-icon {
+    float: right !important; /* الخدعة السحرية لإجبار العلامة في أول سطر يمين */
+    margin-left: 12px !important; /* مسافة بين العلامة والكلام */
+    margin-right: 0 !important;
+    margin-top: 4px !important; /* تنزيل العلامة سِنة بسيطة لتوازي الكلمات */
+    vertical-align: top !important;
 }
