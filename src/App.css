@@ -3424,3 +3424,77 @@ object-position: top center !important;
         direction: rtl !important; /* إجبار التواريخ تتعدل ومتبقاش مقلوبة */
     }
 }
+
+
+/* ======================================================= */
+/* إصلاح الجاب واللوجو (مخصص للموبايل والزوم) */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+    /* 1. رفع اللوجو للسقف (قتل أي مسافة مخفية) */
+    .hero-inner {
+        padding-top: 15px !important; /* مسافة بسيطة جداً من فوق */
+        margin-top: 0 !important;
+    }
+    
+    .logo-wrap {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    /* 2. القضاء على الفراغ (الجاب) بين العنوان والكروت */
+    .page-title {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .content {
+        /* السطر ده هو "الشفاط" اللي هيسحب الكروت تلزق في العنوان */
+        /* لو حسيت إنهم لزقوا بزيادة، صغر الرقم (خليه -160 مثلا) */
+        margin-top: -190px !important; 
+        position: relative !important;
+        z-index: 50 !important;
+    }
+
+    /* 3. ترتيب كارت ميلاد الإبداع (اللوجو يمين، الاسم وسط، نشط يسار) */
+    .company-topbar {
+        display: grid !important;
+        grid-template-columns: auto 1fr 60px !important;
+        grid-template-areas:
+            "status name logo"
+            ". tags logo" !important;
+        direction: rtl !important;
+        gap: 10px 15px !important;
+        border-bottom: none !important;
+    }
+
+    .saudi-logo {
+        grid-area: logo !important;
+        width: 50px !important;
+        height: 50px !important;
+        border-left: 2px solid #e7e7e7 !important;
+        padding-left: 10px !important;
+    }
+
+    .company-name {
+        grid-area: name !important;
+        text-align: right !important;
+        font-size: 19px !important;
+        font-weight: bold !important;
+        margin: 0 !important;
+    }
+
+    .status {
+        grid-area: status !important;
+        justify-self: start !important;
+    }
+
+    /* رص التاجات (نوع المنشأة) */
+    .company-topbar-inline-meta {
+        grid-area: tags !important;
+        display: grid !important;
+        grid-template-columns: auto auto !important;
+        justify-content: end !important;
+        gap: 10px !important;
+    }
+}
