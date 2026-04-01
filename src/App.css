@@ -25,7 +25,7 @@
   width: 100% !important;
   height: 60vh !important; /* الارتفاع 60% من الشاشة */
   min-height: 60vh !important;
-  background-color: #1a1e4d !important; /* لون الخلفية الكحلي */
+ 
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -80,7 +80,7 @@
   );
 }
 
-.hero-inner {
+/* .hero-inner {
   position: relative;
   z-index: 3;
   width: 92% !important;
@@ -91,7 +91,31 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+} */
+
+.hero-inner {
+  /* 1. إلغاء الوضع العائم لربط الهيدر بالبانل */
+  position: relative !important; 
+  inset: auto !important;
+  
+  /* 2. توحيد العرض مع باقي الكروت */
+  width: 92% !important;
+  max-width: 1140px !important;
+  margin: 0 auto !important;
+  
+  /* 3. استخدام مسافة ثابتة لا تتأثر بالزووم */
+  padding-top: 40px !important; 
+  padding-bottom: 20px !important; /* مسافة ثابتة تحت العنوان */
+  
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  
+  /* 4. تفعيل التفاعل (عشان لو في روابط في الهيدر تفتح) */
+  pointer-events: auto !important; 
+  z-index: 100 !important;
 }
+
 
 .top-row {
   display: flex;
@@ -280,12 +304,18 @@ font-family: 'Cairo', sans-serif;
 }
 
 /* ===== CONTENT ===== */
-.content {
+/* .content {
   margin-top: calc(var(--content-overlap) * -1);
   transform-origin: top center;
   position: relative;
   z-index: 2;
   transition: margin-top 0.24s ease, filter 0.25s ease;
+} */
+
+.content {
+  margin-top: -30px !important; 
+  position: relative !important;
+  z-index: 110 !important;
 }
 
 .content-blurred {
@@ -410,7 +440,7 @@ font-family: 'Cairo', sans-serif;
   align-items: center;
   gap: 18px;
   margin-bottom: 22px;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
 .page[dir="rtl"] .company-topbar {
@@ -434,6 +464,7 @@ font-family: 'Cairo', sans-serif;
   width: 1px;
   height: 54px;
   background: #d9dbe5;
+  align-self: stretch;
   flex: 0 0 auto;
 }
 
@@ -447,7 +478,7 @@ font-family: 'Cairo', sans-serif;
   font-weight: 800;
   line-height: 1.25;
   margin: 0;
-  white-space: nowrap;
+  white-space: normal;
   transition: font-size 0.24s ease;
 }
 
@@ -2322,8 +2353,8 @@ object-position: top center !important;
 
 /* 3. حاوية المحتوى (اللوجو والعنوان) */
 .hero-inner {
-    position: absolute !important;
-    inset: 0 !important;
+    position: relative !important; /* التغيير الأهم: غيرناها من absolute لـ relative */
+    /* inset: 0 !important;  <-- امسح السطر ده تماماً */
     z-index: 100 !important;
     width: 92% !important;
     max-width: 1140px !important;
@@ -3524,27 +3555,319 @@ object-position: top center !important;
 
 
 
-
 /* ======================================================= */
-/* إصلاح البانل وعلامة التعجب (للموبايل والويب والزوم) */
+/* التعديل الآمن للبانل (المركز السعودي) بدون تشويه للزوم */
 /* ======================================================= */
 
 html body .page .notice {
-    display: block !important; /* مهم جداً عشان العلامة تظبط */
     padding: 16px 20px !important;
+    align-items: flex-start !important; /* عشان الأيقونة تبدأ من فوق دايماً */
 }
 
 html body .page .notice-text {
     font-size: 15px !important; /* تكبير الخط */
     font-weight: 800 !important; /* تسميك الخط */
-    line-height: 1.7 !important;
-    display: block !important;
+    line-height: 1.8 !important; /* مسافة مريحة بين السطور */
+    display: block !important; /* نرجع النظام الطبيعي للنصوص اللي كان شغال */
+    margin: 0 !important;
 }
 
 html body .page .notice-inline-icon {
-    float: right !important; /* الخدعة السحرية لإجبار العلامة في أول سطر يمين */
-    margin-left: 12px !important; /* مسافة بين العلامة والكلام */
+    float: right !important; /* لزق الأيقونة في اليمين بشكل طبيعي */
+    margin-left: 14px !important; /* مسافة بينها وبين الكلام */
+    margin-top: 4px !important; /* محاذاة مع أول سطر بالملي */
+    width: 28px !important; /* تثبيت العرض عشان ميضربش مع الزوم */
+    height: 28px !important; /* تثبيت الطول */
+    display: inline-flex !important;
+}
+
+
+/* توحيد حواف جميع الكروت على خط واحد */
+.notice,
+.company-card,
+.small-card {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-inline: 0 !important; /* لضمان عدم وجود مسافات جانبية مخفية */
+}
+
+/* 1. إجبار جميع الكروت على الالتزام بعرض الحاوية وعدم التمدد */
+.notice, 
+.company-card, 
+.small-card {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: hidden !important; /* بيقص أي حاجة تحاول تزق الكارت لبرة */
+}
+
+/* 2. السماح لمحتوى الكارت الأوسط بالالتفاف عشان مايزقش الحواف */
+.company-topbar {
+  flex-wrap: wrap !important;
+}
+
+.company-topbar-inline-meta {
+  flex-wrap: wrap !important;
+}
+
+/* 3. السماح لاسم الشركة الطويل إنه ينزل سطر براحته */
+.company-name {
+  white-space: normal !important;
+  word-break: break-word !important;
+}
+
+
+/*-----------اجبار المتصفح على العمل ----------------*/
+
+
+
+/* --- إجبار الكروت على مقاس واحد ومنع التمدد --- */
+.info-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important; /* السر هنا: بيجبر كل الكروت تاخد نفس العرض بالظبط */
+  width: 96% !important;
+  max-width: 1140px !important;
+  margin: 0 auto !important;
+}
+
+.notice, 
+.company-card, 
+.small-card {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  overflow-x: hidden !important; /* بيقص أي محتوى داخلي بيحاول يزق حيطة الكارت ويعرضه */
+}
+
+/* فك الخنقة عن محتوى الكارت الأوسط اللي بيزقه لبرة */
+.company-topbar {
+  flex-wrap: wrap !important;
+}
+
+.company-name {
+  white-space: normal !important;
+  word-break: break-word !important;
+}
+
+
+/*---------------أجبار المتفصح على الزوم والغاء الجاب --------------------*/
+
+/* --- القضاء على الجاب في الموبايل والزووم العالي --- */
+@media (max-width: 700px) {
+  .hero {
+    min-height: 100px !important;
+    height: auto !important; /* بيخلي الخلفية الزرقاء تتمدد وماتتقطعش أبداً */
+    padding-bottom: 5px !important; /* بيدي مساحة سفلية عشان الكارت الأبيض يركب عليها */
+  }
+  
+  .content {
+    margin-top: -5px !important; /* بيسحب الكروت كلها لفوق غصب عنها عشان تقفل أي جاب */
+  }
+}
+
+/*--------------------تعديل للوجو قوي على المتصفح ----------------------*/
+
+
+/* الحل النهائي لمحاذاة الهيدر واللوجو يميناً */
+@media (max-width: 700px) {
+  
+  /* 1. إجبار حاوية اللوجو على التوجه لليمين */
+  .logo-wrap {
+    display: flex !important;
+    align-items: flex-start !important; /* الـ Start في الـ RTL هو اليمين */
+    padding-right: 0 !important;
     margin-right: 0 !important;
-    margin-top: 4px !important; /* تنزيل العلامة سِنة بسيطة لتوازي الكلمات */
-    vertical-align: top !important;
+    width: 100% !important;
+  }
+
+  /* 2. تحريك صورة اللوجو نفسها لأقصى اليمين */
+  .logo-image {
+    margin-left: auto !important; 
+    margin-right: 0 !important;
+    display: block !important;
+  }
+
+  /* 3. تظبيط مسافة الـ 35px للعنوان ومحاذاته يميناً */
+  .page-title {
+    margin-top: 35px !important;
+    text-align: right !important;
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    display: block !important;
+  }
+
+  /* 4. إغلاق الجاب ولزق البانل في العنوان */
+  .hero {
+    height: auto !important;
+    min-height: 100px !important;
+    padding-bottom: 10px !important;
+  }
+  
+  .content {
+    margin-top: -10px !important; /* سحب البانل ليلتصق بالعنوان */
+  }
+}
+
+
+/*-----------------الغاء الجاب مهم جدا ----------------*/
+
+/* الحل النهائي لإلغاء الجاب ولصق البانل بالعنوان */
+
+
+
+/* الحل النهائي والوحيد لإلصاق البانل بالعنوان في الموبايل والزووم */
+
+
+
+
+/* الحل النهائي والوحيد لإلصاق البانل بالعنوان في الموبايل والزووم */
+@media (max-width: 700px) {
+  
+  /* 1. تصفير ارتفاع الهيدر وجعله مرن تماماً */
+  .hero {
+    height: auto !important;
+    min-height: 1px !important; /* تصفير الحد الأدنى */
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* 2. إلغاء أي مساحات داخلية تحت العنوان */
+  .hero-inner {
+    height: auto !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* 3. ضغط العنوان لتقليل الحيز الذي يشغله */
+  .page-title {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    line-height: 1.1 !important; /* تقليل المسافة العمودية للنص */
+  }
+
+  /* 4. سحب البانل الأبيض للأعلى بقوة لإلغاء الجاب */
+  .content {
+    margin-top: -30px !important; /* زدنا السحب لـ -30 لضمان الالتصاق التام */
+    position: relative !important;
+    z-index: 99 !important;
+  }
+
+  /* 5. تصفير المسافة العلوية للإشعار */
+  .notice {
+    margin-top: 0 !important;
+  }
+}
+
+
+
+/*------------ تعديل الفجوه بين العنوان والبانر ----------------*/
+
+
+
+/* --- حل الطوارئ النهائي لتسليم المشروع --- */
+
+
+/* حل مشكلة التداخل والتباعد عند الزووم */
+
+/* 1. إرجاع الهيدر للتدفق الطبيعي بدلاً من Absolute */
+.hero-inner {
+  position: relative !important; /* هذا السطر يمنع التباعد عند 200% */
+  inset: auto !important; 
+  height: auto !important;
+  min-height: 240px;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  padding-top: clamp(30px, 6vh, 60px) !important;
+  z-index: 10 !important;
+}
+
+/* 2. جعل الحاوية الزرقاء مرنة لتتمدد مع الزووم */
+.hero {
+  height: auto !important;
+  min-height: 240px !important; /* يسمح للهيدر بالتمدد بدلاً من قص النص */
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: visible !important;
+}
+
+/* 3. سحب البانل الأبيض ليلتصق بالعنوان ومنع الفجوات */
+.content {
+  margin-top: -40px !important; /* سحب ثابت يمنع الفراغ */
+  position: relative !important;
+  z-index: 20 !important;
+}
+
+/* 4. معالجة وضع الموبايل (زووم 200% فأكثر) */
+@media (max-width: 700px) {
+  .hero {
+    min-height: 200px !important;
+  }
+  .content {
+    margin-top: -30px !important;
+  }
+}
+
+
+
+/*-----------------------حل مشكله التباعد -------------------*/
+
+/* حل فجوة التباعد عند زووم 200% فأكثر */
+
+/* حل سريع وآمن جداً لتقليل الجاب في الزووم والموبايل بدون تخريب التصميم */
+
+
+/* ========================================= */
+/* الإنقاذ الأخير: سحب جميع الحاويات بقوة وإلغاء مسافات الزووم */
+/* ========================================= */
+
+/* سحب البانل بقوة محسوبة أسفل العنوان مباشرة */
+
+
+
+
+/* الخدعة السحرية: سحب المحتوى بالكامل عن طريق الهيدر الأزرق */
+@media (max-width: 700px) {
+  
+  /* 1. إعطاء الهيدر ارتفاع ثابت عشان نوقف جنونه في الزووم */
+  .hero {
+    height: 220px !important;
+    min-height: 220px !important;
+    /* السر هنا: المارجن السالب من تحت بيشفط أي كارت تحته لفوق غصب عنه */
+    margin-bottom: -80px !important; 
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  /* 2. حماية اللوجو والعنوان عشان ما يتأثروش */
+  .hero-inner {
+    position: absolute !important;
+    inset: 0 !important;
+    padding-top: 20px !important; 
+  }
+
+  /* 3. ضمان إن الكارت الأبيض يركب فوق الهيدر الأزرق مش تحته */
+  .content, 
+  .notice {
+    position: relative !important;
+    z-index: 10 !important;
+  }
+}
+
+
+
+/*-----------------------تعديل الخط بتاع بيانات السجل التجارى -----------------------------*/
+
+/* تصغير حجم خط العنوان في الزووم والموبايل لمنع التداخل مع البانل */
+@media (max-width: 700px) {
+  .page-title {
+    font-size: 24px !important; /* حجم خط مناسب مش هيكسر سطر جديد بسهولة */
+    line-height: 1.2 !important; /* لم المسافة بين السطور */
+    margin-bottom: 5px !important;
+  }
 }
