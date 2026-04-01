@@ -3209,3 +3209,109 @@ object-position: top center !important;
         margin-top: -110px !important; 
     }
 }
+
+/* ======================================================= */
+/* 1. القضاء على الفراغ العلوي (Gap) للهيدر في الموبايل والزوم */
+/* ======================================================= */
+@media (max-width: 768px) {
+    /* سحب الكونتينر للسقف وإلغاء أي مسافات مخفية */
+    .hero-inner, .page.zoomed .hero-inner {
+        padding-top: 5px !important; /* مسافة شعرة فقط من السقف */
+        margin-top: 0 !important;
+    }
+    
+    .logo-wrap, .page.zoomed .logo-wrap {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    .menu-toggle, .page.zoomed .menu-toggle {
+        margin-top: 0 !important;
+    }
+}
+
+/* ======================================================= */
+/* 2. استنساخ كارت "شركة ميلاد الإبداع" 100% ليطابق الصورة */
+/* ======================================================= */
+@media (max-width: 768px) {
+    /* تصميم شبكي مطابق للصورة: نشط (يسار) | الاسم (وسط) | اللوجو (يمين) */
+    .company-topbar, .page.zoomed .company-topbar {
+        display: grid !important;
+        grid-template-columns: auto 1fr 65px !important;
+        grid-template-areas:
+            "status name logo"
+            ". tags logo" !important;
+        gap: 12px 15px !important;
+        align-items: start !important;
+        padding-bottom: 5px !important;
+    }
+
+    /* اللوجو + الخط الفاصل الرأسي */
+    .saudi-logo, .page.zoomed .saudi-logo {
+        grid-area: logo !important;
+        width: 50px !important;
+        height: 50px !important;
+        border-left: 2px solid #e7e7e7 !important; /* الخط الفاصل زي الصورة */
+        padding-left: 15px !important;
+        align-self: start !important;
+        margin-top: 5px !important;
+    }
+
+    /* اسم الشركة */
+    .company-name, .page.zoomed .company-name {
+        grid-area: name !important;
+        text-align: right !important;
+        font-size: 19px !important;
+        font-weight: 800 !important;
+        color: #11152b !important;
+        line-height: 1.4 !important;
+        margin: 0 !important;
+        padding-top: 2px !important;
+    }
+
+    /* زرار "نشط" */
+    .status, .page.zoomed .status {
+        grid-area: status !important;
+        justify-self: start !important;
+        align-self: start !important;
+        margin-top: 2px !important;
+        padding: 4px 12px !important;
+        font-size: 13px !important;
+    }
+
+    /* السحر هنا: رص (نوع المنشأة) جنب زرار (شركة) تحت بعض */
+    .company-topbar-inline-meta, .page.zoomed .company-topbar-inline-meta {
+        grid-area: tags !important;
+        display: grid !important;
+        /* عمودين: اليمين للكلام واليسار للزرار */
+        grid-template-columns: auto auto !important; 
+        justify-content: end !important; /* محاذاة الكل لليمين */
+        align-items: center !important;
+        gap: 8px 12px !important;
+        direction: rtl !important;
+        width: 100% !important;
+        margin-top: 5px !important;
+    }
+
+    /* الكلام (نوع المنشأة / نوع الشركة) */
+    .meta-text, .page.zoomed .meta-text {
+        text-align: right !important;
+        font-size: 13px !important;
+        color: #7d869f !important;
+    }
+
+    /* الزراير (شركة / ذات مسؤولية محدودة) */
+    .meta-badge, .meta-badge-white, 
+    .page.zoomed .meta-badge, .page.zoomed .meta-badge-white {
+        justify-self: start !important;
+        font-size: 12px !important;
+        padding: 4px 10px !important;
+        min-height: 28px !important;
+        border-radius: 8px !important;
+    }
+    
+    /* إخفاء أي خطوط قديمة كانت بتبوظ الشكل */
+    .company-divider, .company-divider-mid {
+        display: none !important;
+    }
+}
