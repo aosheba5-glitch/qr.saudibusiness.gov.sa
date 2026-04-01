@@ -83,15 +83,14 @@
 .hero-inner {
   position: relative;
   z-index: 3;
-  width: 96%;
+  width: 92% !important;
+  max-width: 1140px !important;
   height: 100%;
   margin: 0 auto;
   padding-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding-bottom: clamp(8px, 1vw, 18px);
-  
 }
 
 .top-row {
@@ -292,12 +291,11 @@ font-family: 'Cairo', sans-serif;
 .content-blurred {
   filter: blur(4px);
 }
-
 .info-card {
-  width: 96.2%;
+  width: 92% !important;
+  max-width: 1140px !important;
   margin: 0 auto;
 }
-
 /* ===== NOTICE ===== */
 .notice {
   background: #ffffff;
@@ -3320,41 +3318,38 @@ object-position: top center !important;
 /* التعديل النهائي للموبايل - نسخة مطابقة للأصل 100% */
 /* ======================================================= */
 @media (max-width: 700px) {
-  /* 1. الهيدر والخلفية */
+  /* 1. تظبيط الهيدر والخلفية */
   .hero {
-    height: 380px !important; /* تطويل الخلفية عشان تنزل ورا الكروت */
-    background-color: #1a163a !important; /* لون الأصل */
+    height: 380px !important;
+    background-color: #1a163a !important;
   }
-  .hero-image {
-    opacity: 0.8 !important; /* تغميق الصورة */
-  }
-  .hero-inner,
-  .info-card {
+  .hero-inner, .info-card {
     width: 94% !important;
   }
 
-  /* 2. ترتيب اللوجو (يمين) والمنيو (يسار) */
+  /* 2. رفع اللوجو لأقصى اليمين فوق */
+  .hero-inner {
+    padding-top: 15px !important;
+  }
   .top-row {
-    flex-direction: row !important; /* إجبار الاتجاه */
+    flex-direction: row !important;
     align-items: flex-start !important;
   }
   .logo-wrap {
-    padding-top: 5px !important;
-    align-items: flex-end !important; /* اللوجو أقصى اليمين */
+    padding-top: 0 !important;
+    align-items: flex-end !important; /* لزق اللوجو يمين */
   }
   .logo-image {
-    width: 175px !important; /* حجم اللوجو */
-  }
-  
-  /* 3. تكبير وتسميك العناوين (خدعة الـ text-shadow للتسميك الإجباري) */
-  .page-title {
-    font-size: 28px !important; /* تكبير الخط */
-    font-weight: 900 !important;
-    margin-top: 15px !important;
-    color: white !important;
-    text-shadow: 0 0 2px white !important; /* خدعة لتسميك الخط جداً */
+    width: 180px !important;
   }
 
+  /* 3. مسافة صريحة بين اللوجو وعنوان السجل */
+  .page-title {
+    font-size: 26px !important;
+    font-weight: 900 !important;
+    margin-top: 25px !important; /* المسافة اللي طلبتها بالملي */
+    margin-bottom: 0 !important;
+  }
   .top-actions {
     display: none !important;
   }
@@ -3363,32 +3358,14 @@ object-position: top center !important;
     margin-top: 5px !important;
   }
 
-  /* 4. سحب الكروت لتركب على الصورة */
+  /* 4. إلغاء الجاب (سحب الكروت تحت العنوان مباشرة) */
   .content {
-    margin-top: -65px !important; 
+    margin-top: -140px !important; /* شفط الكروت لأعلى */
+    position: relative !important;
     z-index: 10 !important;
   }
 
-  .notice {
-    min-height: 52px;
-    padding: 8px 14px;
-  }
-  .notice-text {
-    font-size: 13px !important;
-    line-height: 1.8;
-  }
-  .notice-inline-icon {
-    width: 24px;
-    height: 24px;
-    margin-inline-end: 6px;
-  }
-
-  .company-card,
-  .small-card {
-    padding: 16px !important;
-  }
-
-  /* 5. كارت شركة ميلاد (نسخة طبق الأصل) */
+  /* 5. كارت شركة ميلاد (نسخة الأصل) */
   .company-topbar {
     display: grid !important;
     grid-template-columns: 55px 1fr auto !important;
@@ -3397,46 +3374,26 @@ object-position: top center !important;
         "logo tags tags" !important;
     gap: 8px 12px !important;
     align-items: start !important;
-    border-bottom: none !important; /* إخفاء الخط السفلي */
+    border-bottom: none !important;
   }
-  
-  /* إخفاء الفواصل القديمة المزعجة */
-  .company-divider, .company-divider-mid {
-    display: none !important; 
-  }
-
   .saudi-logo {
     grid-area: logo !important;
     width: 50px !important;
     height: 50px !important;
-    border-left: 2px solid #e5e7eb !important; /* الخط الفاصل الرمادي */
+    border-left: 2px solid #e5e7eb !important;
     padding-left: 10px !important;
   }
-
   .company-name {
     grid-area: name !important;
-    font-size: 21px !important;
+    font-size: 19px !important;
     font-weight: 900 !important;
     color: #111827 !important;
-    line-height: 1.4 !important;
-    white-space: normal !important;
-    text-shadow: 0 0 1px #111827 !important; /* تسميك اسم الشركة */
+    margin: 0 !important;
   }
-
   .status {
     grid-area: status !important;
-    background-color: #dcfce7 !important;
-    color: #166534 !important;
-    border: 1px solid #bbf7d0 !important;
-    border-radius: 20px !important;
-    padding: 4px 12px !important;
-    font-size: 13px !important;
-    font-weight: 800 !important;
-    justify-self: end !important; /* دفعها لليسار */
-    margin-top: 4px !important;
+    margin-top: 5px !important;
   }
-
-  /* 6. رص (نوع المنشأة) و (شركة) */
   .company-topbar-inline-meta {
     grid-area: tags !important;
     display: grid !important;
@@ -3444,125 +3401,59 @@ object-position: top center !important;
     gap: 8px 12px !important;
     justify-content: start !important;
     width: 100% !important;
-    margin-top: 4px !important;
+  }
+  .company-divider, .company-divider-mid {
+    display: none !important; 
   }
 
-  .meta-text {
-    font-size: 13px !important;
-    color: #6b7280 !important;
-  }
-
-  .meta-badge, .meta-badge-white {
-    min-height: 28px !important;
-    padding: 0 10px !important;
-    font-size: 12px !important;
-    font-weight: 800 !important;
-    border-radius: 8px !important;
-    background-color: #ffffff !important;
-    border: 1px solid #d1d5db !important;
-    color: #111827 !important;
-    box-shadow: none !important;
-  }
-
-  /* 7. شبكة البيانات (عمودين زي الأصل) */
+  /* 6. شبكة البيانات (عمودين) */
   .company-main-grid,
   .contact-grid {
     grid-template-columns: 1fr 1fr !important; 
     gap: 16px 12px !important;
     margin-top: 15px !important;
   }
-
-  .info-item span {
-    font-size: 12px !important;
-    color: #6b7280 !important;
-  }
-
   .info-item strong {
-    font-size: 15px !important;
+    font-size: 14px !important;
     font-weight: 900 !important;
     color: #111827 !important;
-    text-shadow: 0 0 1px rgba(17,24,39,0.3) !important; /* تسميك الأرقام */
   }
 
-  .badge-value {
-    background-color: #ede9fe !important;
-    color: #4c1d95 !important;
-    border: none !important;
-    font-size: 14px !important;
+  /* مقاسات عامة للموبايل */
+  .notice {
+    min-height: 52px;
+    padding: 8px 14px;
   }
-
-  .small-card h3,
-  .contact-title,
-  .activities-drawer-header h3,
-  .header-menu-header h3 {
+  .notice-text {
+    font-size: 13px !important;
+  }
+  .company-card, .small-card {
+    padding: 16px !important;
+  }
+  .small-card h3, .contact-title, .activities-drawer-header h3, .header-menu-header h3 {
     font-size: 21px !important;
-    font-weight: 900 !important;
   }
-
-  .activities-drawer,
-  .header-menu-drawer {
+  .activities-drawer, .header-menu-drawer {
     width: 100%;
     max-width: 100%;
   }
-
-  .tags span,
-  .managers span {
+  .tags span, .managers span {
     width: 100%;
     min-width: auto;
   }
-
   .dates-row {
     flex-wrap: nowrap;
     gap: 8px;
   }
-
-  .date-chip {
-    min-width: 0;
-    height: 28px;
-  }
-
-  .date-chip-era,
-  .date-chip-value {
-    font-size: 12px;
-  }
-
   .footer-top {
-    min-height: auto;
-    padding-top: 10px;
-    padding-bottom: 10px;
     flex-direction: column-reverse;
     align-items: flex-start;
   }
-
   .page[dir="ltr"] .footer-top {
     flex-direction: column-reverse;
     align-items: flex-start;
   }
-
-  .footer-right-group,
-  .footer-links {
-    width: 100%;
-  }
-
-  .footer-links {
-    gap: 12px;
-  }
-
-  .footer-bottom {
-    min-height: auto;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    flex-wrap: wrap;
-    text-align: center;
-  }
-
-  .zoom-actions {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-  }
 }
-
 
 
 
