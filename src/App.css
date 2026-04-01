@@ -3520,30 +3520,4 @@ object-position: top center !important;
         color: #ffffff !important;
     }
 
-    /* 2. عنوان "بيانات السجل التجاري" */
-    html body .page .page-title {
-        font-size: 32px !important; /* عنوان ضخم وواضح */
-        font-weight: 900 !important;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.3) !important; /* ظل خفيف يبرز الكلمة من الخلفية */
-    }
-
-    /* 3. اسم الشركة "شركة ميلاد الإبداع للمقاولات" */
-    html body .page .company-name {
-        font-size: 22px !important; /* تكبير اسم الشركة */
-        font-weight: 900 !important;
-        color: #111827 !important; /* لون أسود/كحلي داكن جداً */
-    }
-
-    /* 4. الأرقام والبيانات (مثل: 7003166456) */
-    html body .page .info-item strong,
-    html body .page .info-value {
-        font-size: 16px !important; /* تكبير الأرقام */
-        font-weight: 900 !important;
-    }
-    
-    /* 5. زراير (شركة / ذات مسؤولية محدودة) */
-    html body .page .company-topbar-inline-meta > :nth-child(even) {
-        font-size: 13px !important; /* تكبير خط الزراير */
-        font-weight: 800 !important;
-    }
-}
+  }
