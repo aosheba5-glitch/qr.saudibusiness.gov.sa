@@ -3316,111 +3316,183 @@ object-position: top center !important;
     }
 }
 
-
 /* ======================================================= */
-/* كود التدمير الشامل: إصلاح الهيدر والكارت المقلوب للموبايل */
+/* إصلاح اتجاه اللوجو (يمين) مع الحفاظ على التصميم الأصلي */
 /* ======================================================= */
 
-@media (max-width: 900px) {
-    /* ------------------------------------------- */
-    /* 1. إصلاح الهيدر وإلغاء المسافة (الفراغ) تماماً */
-    /* ------------------------------------------- */
-    body .page .top-row,
-    body .page.zoomed .top-row {
-        display: grid !important;
-        /* تقسيم الهيدر: العمود الأول (يمين) للوجو، العمود الثاني (يسار) للمنيو */
-        grid-template-columns: 1fr 45px !important; 
-        grid-template-areas:
-            "logo menu"
-            "title title" !important;
+@media (max-width: 850px) {
+    /* ------------------------------------------------- */
+    /* 1. إصلاح اللوجو والمنيو (اللوجو يمين إجباري) */
+    /* ------------------------------------------------- */
+    html body .page .top-row {
+        display: flex !important;
+        flex-direction: row !important; /* إلغاء العكس اللي بوظ الدنيا */
+        direction: rtl !important; /* من اليمين لليسار */
+        justify-content: space-between !important;
+        align-items: flex-start !important;
         width: 100% !important;
-        gap: 5px 10px !important;
-        direction: rtl !important;
     }
 
-    body .page .logo-wrap {
-        grid-area: logo !important;
-        justify-self: start !important; /* لزق اللوجو في اليمين */
+    html body .page .logo-wrap {
+        order: 1 !important; /* إجبار اللوجو يكون الأول (أقصى اليمين) */
         padding-top: 5px !important;
         margin: 0 !important;
     }
 
-    body .page .top-actions-wrap,
-    body .page .menu-toggle {
-        grid-area: menu !important;
-        justify-self: end !important; /* لزق المنيو في اليسار */
-        margin-top: 5px !important;
+    html body .page .top-actions-wrap,
+    html body .page .menu-toggle {
+        order: 2 !important; /* إجبار المنيو تكون التانية (أقصى اليسار) */
     }
 
-    body .page .page-title {
-        grid-area: title !important;
-        /* تدمير المسافة الـ 54 بكسل القديمة اللي كانت بتنزل العنوان */
-        margin-top: 5px !important; 
+    /* تكبير وتسميك خط المركز السعودي */
+    html body .page .logo-wrap span,
+    html body .page .logo-wrap .logo-text {
+        font-size: 15px !important;
+        font-weight: 900 !important; 
+        color: #ffffff !important;
+    }
+
+    html body .page .page-title {
         text-align: right !important;
+        font-weight: 900 !important;
+        margin-top: 15px !important;
     }
 
-    /* ------------------------------------------- */
-    /* 2. إصلاح كارت الشركة المقلوب (إجبار الاتجاه العربي) */
-    /* ------------------------------------------- */
-    body .page .company-topbar {
+    /* ------------------------------------------------- */
+    /* 2. الهيدر والخلفية (إرجاع الصورة وتداخل الكروت) */
+    /* ------------------------------------------------- */
+    html body .page .hero {
+        background-color: #1a163a !important; 
+        height: 380px !important; 
+        min-height: 380px !important;
+        position: relative !important;
+    }
+
+    html body .page .hero-image {
+        display: block !important;
+        object-fit: cover !important;
+        opacity: 0.8 !important; 
+    }
+
+    /* سحب الكروت لفوق */
+    html body .page .content {
+        margin-top: -60px !important; 
+        position: relative !important;
+        z-index: 10 !important;
+    }
+
+    /* ------------------------------------------------- */
+    /* 3. كارت "شركة ميلاد الإبداع" (نسخة طبق الأصل) */
+    /* ------------------------------------------------- */
+    html body .page .company-topbar {
         display: grid !important;
-        direction: rtl !important; /* إجبار الاتجاه عشان اللوجو يرجع يمين */
-        /* التوزيع: 60px للوجو يمين - مساحة حرة للاسم - مساحة لزرار نشط يسار */
-        grid-template-columns: 60px 1fr auto !important; 
+        direction: rtl !important;
+        grid-template-columns: 60px 1fr auto !important;
         grid-template-areas:
             "logo name status"
             "logo tags tags" !important;
-        gap: 12px 15px !important;
-        border-bottom: none !important;
+        gap: 8px 12px !important;
+        border-bottom: 0px solid transparent !important; 
+        padding-bottom: 10px !important;
     }
 
-    /* اللوجو والخط الفاصل */
-    body .page .saudi-logo {
+    html body .page .saudi-logo {
         grid-area: logo !important;
-        border-left: 2px solid #e7e7e7 !important; /* الخط الفاصل */
-        padding-left: 10px !important;
         width: 50px !important;
         height: 50px !important;
+        border-left: 2px solid #e5e7eb !important; 
+        padding-left: 12px !important;
+        margin: 0 !important;
     }
 
-    /* اسم الشركة */
-    body .page .company-name {
+    html body .page .company-name {
         grid-area: name !important;
-        text-align: right !important;
+        color: #111827 !important; 
         font-size: 19px !important;
-        font-weight: 800 !important;
-        margin: 0 !important;
+        font-weight: 900 !important; 
+        text-align: right !important;
         line-height: 1.4 !important;
-    }
-
-    /* زرار (نشط) */
-    body .page .status {
-        grid-area: status !important;
-        justify-self: end !important; /* أقصى اليسار */
         margin: 0 !important;
     }
 
-    /* ترتيب التاجات (نوع المنشأة) كصف تحت الاسم */
-    body .page .company-topbar-inline-meta {
+    html body .page .status {
+        grid-area: status !important;
+        background-color: #dcfce7 !important; 
+        color: #166534 !important; 
+        border: 1px solid #bbf7d0 !important;
+        padding: 4px 14px !important;
+        border-radius: 20px !important; 
+        font-size: 13px !important;
+        font-weight: 800 !important;
+        justify-self: start !important;
+        margin-top: 5px !important;
+    }
+
+    /* ------------------------------------------------- */
+    /* 4. رص (نوع المنشأة) و (شركة) تحت الاسم */
+    /* ------------------------------------------------- */
+    html body .page .company-topbar-inline-meta {
         grid-area: tags !important;
-        display: flex !important;
-        flex-wrap: wrap !important;
+        display: grid !important;
+        grid-template-columns: max-content max-content !important;
+        justify-content: start !important; 
         direction: rtl !important;
-        justify-content: flex-start !important;
-        gap: 10px !important;
+        row-gap: 8px !important;
+        column-gap: 12px !important;
+        align-items: center !important;
+        margin-top: 5px !important;
     }
 
-    /* إخفاء الفواصل القديمة المشوهة */
-    body .page .company-divider,
-    body .page .company-divider-mid {
-        display: none !important;
+    html body .page .company-topbar-inline-meta > :nth-child(odd) {
+        grid-column: 1 !important;
+        color: #6b7280 !important; 
+        font-size: 13px !important;
     }
 
-    /* ------------------------------------------- */
-    /* 3. إصلاح باقي الكارت المقلوب (التواريخ والأرقام) */
-    /* ------------------------------------------- */
-    body .page .company-main-grid,
-    body .page .dates-row {
-        direction: rtl !important; /* إجبار التواريخ تتعدل ومتبقاش مقلوبة */
+    html body .page .company-topbar-inline-meta > :nth-child(even) {
+        grid-column: 2 !important;
+        background-color: #ffffff !important;
+        border: 1px solid #d1d5db !important;
+        color: #111827 !important;
+        padding: 4px 12px !important;
+        border-radius: 8px !important;
+        font-size: 12px !important;
+        font-weight: 700 !important;
+    }
+
+    /* ------------------------------------------------- */
+    /* 5. شبكة البيانات (الرقم الموحد، السجل، إلخ) */
+    /* ------------------------------------------------- */
+    html body .page .company-main-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        direction: rtl !important;
+        gap: 20px 10px !important;
+        margin-top: 15px !important;
+    }
+
+    html body .page .info-item span,
+    html body .page .info-label {
+        color: #6b7280 !important; 
+        font-size: 12px !important;
+        margin-bottom: 6px !important;
+        display: block !important;
+    }
+
+    html body .page .info-item strong,
+    html body .page .info-value {
+        color: #111827 !important; 
+        font-size: 15px !important;
+        font-weight: 900 !important; 
+        display: block !important;
+    }
+
+    html body .page .info-item .meta-badge,
+    html body .page .info-item [style*="background"] {
+        background-color: #ede9fe !important;
+        color: #4c1d95 !important;
+        font-size: 14px !important;
+        font-weight: 800 !important;
+        border: none !important;
     }
 }
