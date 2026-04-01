@@ -3501,3 +3501,49 @@ object-position: top center !important;
         border: none !important;
     }
 }
+
+
+/*...............تكبير خط الفقره .................*/
+
+/* ======================================================= */
+/* تكبير وتسميك الخطوط لأقصى درجة (اللوجو، العنوان، الكارت) */
+/* ======================================================= */
+
+@media (max-width: 850px) {
+    /* 1. خط "المركز السعودي للتنافسية والأعمال" */
+    html body .page .logo-wrap span,
+    html body .page .logo-wrap .logo-text,
+    html body .page .logo-wrap p {
+        font-size: 17px !important; /* كبرنا الخط درجتين */
+        font-weight: 900 !important; /* أقصى سماكة (Black/Extra Bold) */
+        letter-spacing: 0.5px !important; /* تباعد بسيط بيدي فخامة للخط */
+        color: #ffffff !important;
+    }
+
+    /* 2. عنوان "بيانات السجل التجاري" */
+    html body .page .page-title {
+        font-size: 32px !important; /* عنوان ضخم وواضح */
+        font-weight: 900 !important;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.3) !important; /* ظل خفيف يبرز الكلمة من الخلفية */
+    }
+
+    /* 3. اسم الشركة "شركة ميلاد الإبداع للمقاولات" */
+    html body .page .company-name {
+        font-size: 22px !important; /* تكبير اسم الشركة */
+        font-weight: 900 !important;
+        color: #111827 !important; /* لون أسود/كحلي داكن جداً */
+    }
+
+    /* 4. الأرقام والبيانات (مثل: 7003166456) */
+    html body .page .info-item strong,
+    html body .page .info-value {
+        font-size: 16px !important; /* تكبير الأرقام */
+        font-weight: 900 !important;
+    }
+    
+    /* 5. زراير (شركة / ذات مسؤولية محدودة) */
+    html body .page .company-topbar-inline-meta > :nth-child(even) {
+        font-size: 13px !important; /* تكبير خط الزراير */
+        font-weight: 800 !important;
+    }
+}
