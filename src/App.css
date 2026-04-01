@@ -3562,3 +3562,67 @@ object-position: top center !important;
     gap: 10px;
   }
 }
+
+
+
+
+/*0..اخر التعديلات والاضافات الموجوده فى الملف ..0*/
+
+
+
+/* ======================================================= */
+/* إصلاحات اللحظة الأخيرة: محاذاة الويب + مسافات الموبايل */
+/* ======================================================= */
+
+/* 1. إصلاح الويب: جعل اللوجو، العنوان، والكروت على خط واحد بالمسطرة */
+@media (min-width: 701px) {
+    body .page .hero-inner,
+    body .page .info-card {
+        width: 92% !important; /* توحيد العرض */
+        max-width: 1140px !important; /* قفل الحاوية عشان متهربش */
+        margin-left: auto !important;
+        margin-right: auto !important;
+        box-sizing: border-box !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    body .page .logo-wrap {
+        padding-right: 0 !important;
+        margin-right: 0 !important;
+        align-items: flex-end !important; /* لزق المحتوى في أقصى اليمين */
+    }
+}
+
+/* 2. إصلاحات الموبايل: اللوجو والمسافات الصفرية */
+@media (max-width: 700px) {
+    /* أ. رفع اللوجو لأقصى اليمين فوق */
+    body .page .hero-inner {
+        padding-top: 8px !important; /* مسافة شعرة من السقف */
+    }
+
+    body .page .logo-wrap {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+        align-items: flex-end !important; /* إجبار اللوجو لأقصى اليمين */
+    }
+
+    /* ب. إضافة مسافة بين اللوجو وعنوان "بيانات السجل التجاري" */
+    body .page .page-title {
+        margin-top: 25px !important; /* المسافة المطلوبة بين اللوجو والعنوان */
+        margin-bottom: 0 !important; 
+    }
+
+    /* ج. إلغاء الجاب بين العنوان والبانل الأبيض (سحب قوي لأعلى) */
+    body .page .hero {
+        height: 330px !important; /* تقليل طول الهيدر لضم المسافات */
+    }
+
+    body .page .content {
+        /* هذا السطر هو السحر الذي سيلغي الفراغ تحت العنوان */
+        /* إذا كان البانل يغطي على العنوان، قلل الرقم (مثلا -120px) وإذا كان الفراغ لسه موجود كبره (مثلا -160px) */
+        margin-top: -140px !important; 
+        position: relative !important;
+        z-index: 10 !important;
+    }
+}
