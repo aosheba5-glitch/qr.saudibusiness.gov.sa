@@ -3517,3 +3517,50 @@ object-position: top center !important;
         z-index: 10 !important;
     }
 }
+
+
+
+/*---------------------------------------*/
+
+/* ======================================================= */
+/* إصلاحات اللمسة الأخيرة: البانل، الإيميل، والمسافات */
+/* ======================================================= */
+
+/* 1. إصلاح الإيميل: منع متصفح الموبايل من وضع خط تحته */
+html body .page .info-item a,
+html body .page .info-item a[href^="mailto"],
+html body .page .info-item a[href^="tel"],
+html body .page .info-item strong {
+    text-decoration: none !important;
+    border-bottom: none !important;
+    color: #111827 !important; /* تثبيت اللون عشان ميبقاش أزرق */
+}
+
+/* 2. إصلاح البانل (المركز السعودي): تكبير الخط ومحاذاة الأيقونة */
+html body .page .notice {
+    align-items: flex-start !important; /* سحب الأيقونة لأعلى السطر الأول */
+    padding: 16px 14px !important;
+}
+
+html body .page .notice-inline-icon {
+    margin-top: 2px !important; /* تظبيط العلامة لتوازي الكلمات بالضبط */
+}
+
+html body .page .notice-text {
+    font-size: 15px !important; /* تكبير الخط بشكل ملحوظ */
+    font-weight: 800 !important; /* تسميك الخط */
+    line-height: 1.6 !important;
+}
+
+/* 3. الضربة القاضية للفراغ (الجاب) في الموبايل */
+@media (max-width: 700px) {
+    html body .page .hero {
+        height: 320px !important; /* تصغير الهيدر لضم المسافات */
+    }
+    
+    html body .page .content {
+        margin-top: -160px !important; /* شفط الكروت لفوق بقوة أكبر */
+        position: relative !important;
+        z-index: 10 !important;
+    }
+}
