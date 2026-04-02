@@ -4383,56 +4383,34 @@ html body .page .notice-inline-icon {
   }
 }
 
-/* --- تعديل فوتر سدايا في الموبايل: اللوجو يميناً وكبيراً + سطر واحد --- */
+/* ==============================================================
+   إلغاء الفراغ (Gap) وتكبير الهيدر ليكون ملتصقاً بالكارت
+============================================================== */
 
-@media (max-width: 700px) {
-  /* 1. الحاوية: اللوجو يميناً والنص يساره */
-  .footer-right-group {
-    display: flex !important;
-    flex-direction: row-reverse !important; /* اللوجو على اليمين */
-    align-items: center !important;
-    justify-content: center !important;
-    width: 100% !important;
-    gap: 12px !important; /* مسافة كافية بين اللوجو والنص */
-    padding: 10px 0 !important;
+/* 1. زيادة ارتفاع الهيدر ليكون "كبير شوية" */
+.hero {
+  height: 300px !important; /* كبرنا الارتفاع من 240 لـ 300 */
+  min-height: 300px !important;
+}
+
+/* 2. إلغاء أي مسافات داخلية في الهيدر قد تسبب الفراغ */
+.hero-inner {
+  padding-bottom: 0 !important;
+  justify-content: flex-start !important; /* ضمان بقاء اللوجو فوق */
+}
+
+/* 3. جعل الكارت الأبيض "لازق" تماماً في الهيدر */
+.content {
+  margin-top: 0 !important; /* إلغاء أي مارجن سالب أو موجب */
+  padding-top: 0 !important;
+}
+
+/* 4. تعديل خاص لشاشات الموبايل والزووم لضمان الالتصاق */
+@media (max-width: 1180px) {
+  .hero {
+    height: 260px !important;
   }
-
-  /* 2. تكبير اللوجو ووضعه على اليمين */
-  .footer-logo-image {
-    width: 65px !important; /* تكبير حجم اللوجو بشكل ملحوظ */
-    height: auto !important;
-    flex-shrink: 0 !important;
-    order: 1 !important; /* التأكيد على كونه الأول من اليمين */
-  }
-
-  /* 3. تكبير النص وجعله في سطر واحد بدون أي قطع */
-  .footer-right-text {
-    white-space: nowrap !important; /* سطر واحد إجباري */
-    font-size: 13.5px !important; /* حجم خط واضح جداً */
-    font-weight: 800 !important;
-    color: #2f3450 !important;
-    text-align: right !important;
-    line-height: 1 !important;
-    flex-shrink: 1 !important;
-    order: 2 !important;
-  }
-
-  /* 4. تعديل الفاصل الرأسي ( | ) ليكون متناسقاً */
-  .footer-divider {
-    display: none !important; /* إخفاؤه في الموبايل لتوفير مساحة */
-  }
-
-  /* 5. التأكد من أن الروابط بالأسفل كبيرة وواضحة */
-  .footer-links {
-    width: 100% !important;
-    justify-content: center !important;
-    gap: 15px !important;
-    margin-top: 15px !important;
-  }
-
-  .footer-links a, 
-  .footer-links span {
-    font-size: 13.5px !important;
-    font-weight: 700 !important;
+  .content {
+    margin-top: 0 !important;
   }
 }
