@@ -4279,3 +4279,56 @@ html body .page .notice-inline-icon {
   display: inline-block !important;
 }
 
+/* ================================================= */
+/* تصغير العنوان في الهيدر (الموبايل والزووم) */
+/* ================================================= */
+
+@media (max-width: 700px) {
+  /* 🎯 استبدل الكلمة دي باسم الكلاس الحقيقي لو مختلف */
+  .hero-title, 
+  .hero h1 { 
+    /* تصغير حجم الخط عشان يسمح بالكلام ينزل على 3 سطور */
+    font-size: 20px !important; /* الرقم ده هو اللي بيتحكم في الحجم */
+    line-height: 1.4 !important; /* مسافة مريحة بين السطور */
+    max-width: 90% !important; /* عشان العنوان ما يخبطش في حواف الشاشة */
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* --- ضبط نص الهيئة في الموبايل: خط واضح + سطر واحد + بدون خروج --- */
+
+@media (max-width: 700px) {
+  /* 1. تصغير اللوجو شوية عشان يدي مساحة للنص */
+  .footer-logo-image {
+    width: 38px !important; /* تقليل العرض قليلاً */
+    height: auto !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* 2. جعل النص سطر واحد مع حجم خط "مطاط" */
+  .footer-right-text {
+    white-space: nowrap !important; /* ممنوع ينزل سطر جديد */
+    
+    /* الخط بيكبر ويصغر تلقائياً بناءً على عرض الشاشة */
+    /* 10px هو أصغر حجم، 13px هو أكبر حجم، والـ 3vw هو اللي بيحركهم */
+    font-size: clamp(10px, 3vw, 13px) !important; 
+    
+    font-weight: 500 !important;
+    text-align: right !important;
+    line-height: 1 !important;
+    letter-spacing: -0.2px !important; /* تضييق بسيط جداً بين الحروف لزيادة المساحة */
+  }
+
+  /* 3. حاوية النص واللوجو: نوسع المسافة المتاحة */
+  .footer-right-group {
+    display: flex !important;
+    flex-direction: row-reverse !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important; /* تقليل المسافة بين اللوجو والنص */
+    width: 100% !important;
+    padding: 0 5px !important; /* حماية من لمس حواف الشاشة */
+    box-sizing: border-box !important;
+  }
+}
