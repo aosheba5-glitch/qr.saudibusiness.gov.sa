@@ -7,16 +7,17 @@ import infoIcon from "./assets/info.svg";
 import saudiLogo from "./assets/sudia_logo_small.svg";
 import riyalIcon from "./assets/reyal.svg";
 import downLogoFooter from "./assets/downlogofooter.svg";
-import webIcon from "./assets/web_icon.svg";
 
 function DatePair({ hijriDate, gregDate, dir = "rtl" }) {
   return (
     <span className={`dates-row ${dir === "ltr" ? "dates-row-ltr" : ""}`}>
       <span className="date-chip">
+        {/* الحرف أولاً */}
         <span className="date-chip-era">هـ</span>
         <span className="date-chip-value">{hijriDate}</span>
       </span>
       <span className="date-chip">
+        {/* الحرف أولاً */}
         <span className="date-chip-era">م</span>
         <span className="date-chip-value">{gregDate}</span>
       </span>
@@ -57,7 +58,7 @@ function App() {
         menuTitle: "Menu",
         notice:
           "The Saudi Competitiveness & Business Center is not responsible for any missing or inconsistent data. Information is retrieved through full integration with the relevant entities.",
-        companyName: "Milad Al Ebdaa Contracting Company",
+        companyName: <>Milad Al Ebdaa Contracting Company</>,
         active: "Active",
         entityType: "Entity Type",
         entityTypeValue: "Company",
@@ -126,7 +127,9 @@ function App() {
           "Rental of construction equipment with operator 439050",
         ],
         managers: [
-          "Khaled Mohammed Hamad Al-Bassam"     ],
+          "Khaled Mohammed Hamad Al-Bassam",
+          "Amr Abdelkader Ashiba",
+        ],
       };
     }
 
@@ -140,7 +143,7 @@ function App() {
       menuTitle: "القائمة",
       notice:
         "المركز السعودي للتنافسية والأعمال غير مسؤول عن أي نقص أو اختلاف في البيانات، حيث يتم استرجاع البيانات بالتكامل مع الجهات المعنية.",
-      companyName: "شركة ميلاد الإبداع للمقاولات",
+      companyName: <>شركة <span className="mobile-underline">ميلاد الإبداع</span> للمقاولات</>,
       active: "نشط",
       entityType: "نوع المنشأة",
       entityTypeValue: "شركة",
@@ -212,13 +215,20 @@ function App() {
   useEffect(() => {
     document.title = t.browserTitle;
 
+    const svg = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+        <text x="50%" y="52%" dominant-baseline="middle" text-anchor="middle" font-size="44"></text>
+      </svg>
+    `;
+    const faviconUrl = `data:image/svg+xml,${encodeURIComponent(svg)}`;
+
     let link = document.querySelector("link[rel='icon']");
     if (!link) {
       link = document.createElement("link");
       link.setAttribute("rel", "icon");
       document.head.appendChild(link);
     }
-    link.setAttribute("href", webIcon);
+    link.setAttribute("href", faviconUrl);
   }, [t.browserTitle]);
 
   const toggleLanguage = () => {
@@ -286,7 +296,11 @@ function App() {
                   aria-label={t.menuTitle}
                   onClick={() => setIsHeaderMenuOpen(true)}
                 >
-                  ☰
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 6H20" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M4 12H14" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M4 18H20" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
                 </button>
               </div>
             </div>
@@ -337,7 +351,7 @@ function App() {
             <div className="company-main-grid">
               <div className="info-item">
                 <span>{t.registrationType}</span>
-                <strong className="badge-value registration-badge">{t.registrationTypeValue}</strong>
+                <strong className="badge-value">{t.registrationTypeValue}</strong>
               </div>
 
               <div className="info-item">
@@ -401,7 +415,7 @@ function App() {
 
               <div className="info-item">
                 <span>{t.email}</span>
-                <strong>info@m-ebdaa.com</strong>
+                <strong className="mobile-underline">info@m-ebdaa.com</strong>
               </div>
 
               <div className="info-item">
@@ -456,10 +470,7 @@ function App() {
               >
                 ×
               </button>
-              <div className="header-menu-title-wrap">
-                <img src={webIcon} alt="web icon" className="header-title-icon" />
-                <h3>{t.browserTitle}</h3>
-              </div>
+              <h3>{t.menuTitle}</h3>
             </div>
 
             <div className="header-menu-body">
