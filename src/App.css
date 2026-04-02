@@ -4071,3 +4071,26 @@ html body .page .notice-inline-icon {
   padding: 2px 12px !important;
   min-height: 26px !important;
 }
+
+
+/* ==============================================================
+   تنسيق نص التنبيه في الموبايل (ليصبح 3 أسطر)
+============================================================== */
+
+@media (max-width: 700px) {
+  /* استهداف النص داخل صندوق التنبيه */
+  .notice-text {
+    font-size: 11.5px !important; /* تصغير الخط ليتناسب مع عرض الموبايل */
+    line-height: 1.6 !important;  /* براح بين السطور عشان الكلام ميبقاش محشور */
+    text-align: center !important; /* توسيط النص ليعطي شكل الـ 3 أسطر الاحترافي */
+    padding: 0 10px !important;   /* مسافة جانبية بسيطة */
+    display: block !important;
+  }
+
+  /* تكبير الصندوق الأبيض شوية عشان يشيل الـ 3 أسطر مرتاحين */
+  .notice {
+    padding: 12px 10px !important; 
+    height: auto !important;
+    min-height: 85px !important;
+  }
+}
