@@ -4102,10 +4102,10 @@ html body .page .notice-inline-icon {
 @media (max-width: 700px) {
   .notice-text {
     /* تكبير الخط سنة بسيطة عشان يفرش لسطرين بس */
-    font-size: 12.5px !important; 
+    font-size: 11.5px !important; 
     
     /* الوزن المطلوب: 500 (خفيف) */
-    font-weight: 500 !important; 
+    font-weight: 450 !important; 
     
     /* المحاذاة تبدأ من اليمين تماماً */
     text-align: right !important; 
@@ -4120,8 +4120,8 @@ html body .page .notice-inline-icon {
 
   .notice {
     /* تقليل المسافة الداخلية لزيادة العرض المتاح للنص */
-    padding: 10px 12px !important; 
-    min-height: 55px !important;
+    padding: 8px 10px !important; 
+    min-height: 45px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: flex-start !important; /* البداية من اليمين */
