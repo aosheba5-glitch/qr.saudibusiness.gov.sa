@@ -127,8 +127,7 @@ function App() {
           "Rental of construction equipment with operator 439050",
         ],
         managers: [
-          "Khaled Mohammed Hamad Al-Bassam",
-          "Amr Abdelkader Ashiba",
+          "Khaled Mohammed Hamad Al-Bassam"
         ],
       };
     }
