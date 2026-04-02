@@ -4332,3 +4332,53 @@ html body .page .notice-inline-icon {
     box-sizing: border-box !important;
   }
 }
+
+
+/* --- تكبير خط الفوتر في الموبايل مع الحفاظ على التناسق --- */
+
+@media (max-width: 700px) {
+  /* 1. تكبير نص "تطوير الهيئة السعودية..." */
+  .footer-right-text {
+    font-size: 13.5px !important; /* تكبير الخط بشكل ملحوظ */
+    font-weight: 800 !important; /* زيادة سماكة الخط للوضوح */
+    white-space: nowrap !important;
+    color: #2f3450 !important;
+    line-height: 1 !important;
+  }
+
+  /* 2. تصغير اللوجو لتوفير مساحة للخط الكبير */
+  .footer-logo-image {
+    width: 35px !important; 
+    height: auto !important;
+    margin-right: 5px !important;
+  }
+
+  /* 3. تكبير روابط (سياسة الخصوصية، الشروط...) */
+  .footer-links a, 
+  .footer-links span {
+    font-size: 13px !important; /* تكبير الروابط لتكون مقروءة */
+    font-weight: 700 !important;
+    color: #3e4462 !important;
+  }
+
+  /* 4. تكبير نص الحقوق ورقم الإصدار */
+  .footer-bottom span {
+    font-size: 12.5px !important; /* تكبير نص جميع الحقوق */
+    font-weight: 700 !important;
+    color: #2f3450 !important;
+  }
+
+  /* 5. ضبط المسافات لضمان عدم خروج الكلام */
+  .footer-right-group {
+    gap: 8px !important;
+    justify-content: center !important;
+    width: 100% !important;
+    padding: 0 10px !important;
+  }
+
+  .footer-links {
+    gap: 12px !important; /* مسافات متوازنة بين الروابط */
+    margin-top: 10px !important;
+    justify-content: center !important;
+  }
+}
