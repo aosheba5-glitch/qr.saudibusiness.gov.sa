@@ -4384,33 +4384,32 @@ html body .page .notice-inline-icon {
 }
 
 /* ==============================================================
-   إلغاء الفراغ (Gap) وتكبير الهيدر ليكون ملتصقاً بالكارت
+   تعديل الفوتر: جعل نص تطوير الهيئة في سطر واحد
 ============================================================== */
 
-/* 1. زيادة ارتفاع الهيدر ليكون "كبير شوية" */
-.hero {
-  height: 300px !important; /* كبرنا الارتفاع من 240 لـ 300 */
-  min-height: 300px !important;
+.footer-right-group {
+  display: flex !important;
+  align-items: center !important;
+  gap: 15px !important; /* المسافة بين النص واللوجو */
+  flex-wrap: nowrap !important; /* يمنع نزول النص لسطر جديد */
 }
 
-/* 2. إلغاء أي مسافات داخلية في الهيدر قد تسبب الفراغ */
-.hero-inner {
-  padding-bottom: 0 !important;
-  justify-content: flex-start !important; /* ضمان بقاء اللوجو فوق */
+.footer-right-text {
+  white-space: nowrap !important; /* 🎯 أهم سطر: يمنع انكسار النص نهائياً */
+  font-size: 14px !important;
+  line-height: 1 !important;
+  text-align: right !important;
+  color: #2f3450 !important;
+  font-weight: 700 !important;
 }
 
-/* 3. جعل الكارت الأبيض "لازق" تماماً في الهيدر */
-.content {
-  margin-top: 0 !important; /* إلغاء أي مارجن سالب أو موجب */
-  padding-top: 0 !important;
-}
-
-/* 4. تعديل خاص لشاشات الموبايل والزووم لضمان الالتصاق */
-@media (max-width: 1180px) {
-  .hero {
-    height: 260px !important;
+/* تعديل خاص للموبايل عشان السطر ميكبرش ويخرج بره الشاشة */
+@media (max-width: 700px) {
+  .footer-right-text {
+    font-size: 11px !important; /* تصغير الخط شوية في الموبايل عشان يكفي السطر */
   }
-  .content {
-    margin-top: 0 !important;
+  
+  .footer-logo-image {
+    width: 45px !important; /* تصغير اللوجو شوية في الموبايل */
   }
 }
