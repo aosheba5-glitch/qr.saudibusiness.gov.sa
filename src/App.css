@@ -4597,3 +4597,62 @@ html body .page .notice-inline-icon {
     min-width: 115px !important;
   }
 }
+
+
+
+
+/*--------------عمل الخط -------------------*/
+
+/* ======================================================= */
+/* 🖋️ إجبار جميع عناصر الموقع على استخدام خط Cairo */
+/* ======================================================= */
+
+*, 
+body, 
+.page, 
+button, 
+input, 
+textarea, 
+.notice-text, 
+h1, h2, h3, h4, h5, h6, 
+span, 
+strong, 
+a {
+  font-family: 'Cairo', sans-serif !important;
+}
+
+
+
+/*----------علامه التعجب بالملي ----------*/
+
+/* ======================================================= */
+/* 🎯 وضع الأيقونة يميناً (توسيط عمودي) والنص يسارها */
+/* ======================================================= */
+
+html body .page .notice-text {
+  display: flex !important;
+  align-items: center !important; /* السر: توسيط الأيقونة والنص عمودياً مهما زاد عدد السطور */
+  justify-content: flex-start !important;
+  gap: 16px !important; /* المسافة المريحة بين الأيقونة والكلام */
+  text-align: right !important;
+}
+
+html body .page .notice-inline-icon {
+  float: none !important; /* إلغاء نظام الطفو القديم اللي كان بيبوظ التوسيط */
+  margin: 0 !important; /* تصفير المسافات لأننا استخدمنا gap */
+  flex-shrink: 0 !important; /* حماية الأيقونة من الانضغاط لو الكلام كتر */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+
+
+/* ======================================================= */
+/* 🔍 تصغير خط التنبيه (الملاحظة) درجتين */
+/* ======================================================= */
+
+html body .page .notice-text {
+  font-size: 10px !important; /* تم تصغير الخط درجتين (كان 11.5px أو 12px) */
+  line-height: 1.6 !important; /* الحفاظ على مسافة مريحة بين السطور عشان يفضل مقروء */
+}
