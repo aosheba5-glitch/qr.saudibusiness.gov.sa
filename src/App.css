@@ -4760,3 +4760,47 @@ html body div.page .notice .notice-text {
   text-decoration: none !important;
   border-bottom: none !important;
 }
+
+/* ======================================================= */
+/* 🔎 تكبير خطوط الفوتر (الهيئة، الروابط، والحقوق) لمطابقة الصورة */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. تكبير جملة "تطوير الهيئة السعودية..." */
+  html body .page .footer-right-text {
+    font-size: 13.5px !important; /* تكبير الخط */
+    font-weight: 600 !important;  /* إعطاء سُمك للخط ليكون واضحاً */
+  }
+
+  /* 2. تكبير الروابط (سياسة الخصوصية، الشروط والأحكام، الأسئلة الشائعة) */
+  html body .page .footer-links a {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+  }
+
+  /* 3. تكبير جملة "جميع الحقوق محفوظة..." ورقم الإصدار */
+  html body .page .footer-bottom span,
+  html body .page .footer-bottom span:first-child {
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+  }
+
+  /* 4. تكبير اللوجو (SDAIA) درجة بسيطة ليتناسق مع الحجم الجديد للخط */
+  html body .page .footer-logo-image {
+    width: 85px !important; 
+  }
+}
+
+/* ======================================================= */
+/* ✉️ إزالة الخط من تحت البريد الإلكتروني (الحل الجذري لمتصفحات الجوال) */
+/* ======================================================= */
+
+html body div.page .contact-grid .info-item strong.mobile-underline,
+html body div.page .contact-grid .info-item a,
+html body div.page .contact-grid .info-item strong a {
+  text-decoration: none !important;
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  color: inherit !important; /* إجبار المتصفح على الاحتفاظ باللون الداكن ومنعه من التحول للأزرق */
+}
