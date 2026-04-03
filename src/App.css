@@ -5636,3 +5636,78 @@ html body .page[dir="ltr"] .info-item > :last-child {
   align-items: center !important;
   margin-top: 4px !important;
 }
+
+
+/* ======================================================= */
+/* 🏷️ تصغير خط مربعات نوع الكيان والشركة (Company / Limited Liability) */
+/* ======================================================= */
+
+html body .page[dir="ltr"] .entity-type-value,
+html body .page[dir="ltr"] .company-type-value,
+html body .page[dir="ltr"] .badge, 
+html body .page[dir="ltr"] .badge-outline,
+html body .page[dir="ltr"] .tag,
+html body .page[dir="ltr"] .chip {
+  font-size: 12px !important; /* نزلنا الخط درجتين ليكون أنيق ومناسب */
+  padding: 2px 10px !important; /* تظبيط المسافة الفاضية جوه المربع عشان تليق مع الخط الجديد */
+}
+
+
+/* ======================================================= */
+/* 🏷️ تصغير خط مربعات نوع الكيان والشركة (Company / Limited Liability) */
+/* ======================================================= */
+
+html body .page[dir="ltr"] .entity-type-value,
+html body .page[dir="ltr"] .company-type-value,
+html body .page[dir="ltr"] .badge, 
+html body .page[dir="ltr"] .badge-outline,
+html body .page[dir="ltr"] .tag,
+html body .page[dir="ltr"] .chip {
+  font-size: 12px !important; /* نزلنا الخط درجتين ليكون أنيق ومناسب */
+  padding: 2px 10px !important; /* تظبيط المسافة الفاضية جوه المربع عشان تليق مع الخط الجديد */
+}
+
+
+/* ======================================================= */
+/* 📍 تصغير خط العنوان وإجباره على النزول لسطرين (للإنجليزي) */
+/* ======================================================= */
+
+html body .page[dir="ltr"] .info-item strong,
+html body .page[dir="ltr"] .info-item span:last-child {
+  font-size: 13px !important;       /* صغرنا الخط درجة ليكون أنيق */
+  white-space: normal !important;   /* السر هنا: إلغاء السطر الواحد والسماح بكسر النص */
+  line-height: 1.4 !important;      /* مسافة جمالية مريحة بين السطرين */
+  max-width: 220px !important;      /* تحديد عرض يخلي العنوان الطويل ينزل سطر جديد فوراً */
+  word-wrap: break-word !important; /* ضمان عدم خروج الكلام بره الشاشة */
+}
+
+
+/* ======================================================= */
+/* 🚀 إلغاء الفراغ بين العنوان الرئيسي وصندوق التنبيه (عربي وإنجليزي) */
+/* ======================================================= */
+
+/* 1. مسح المسافة الفاضية من تحت العنوان الرئيسي */
+html body .page-title,
+html body .hero-title,
+html body .header-title,
+html body .banner h1,
+html body h1.title {
+  margin-bottom: 5px !important; /* تقليل المسافة لـ 5 بيكسل بس عشان يتنفس */
+  padding-bottom: 0 !important;
+}
+
+/* 2. سحب الصندوق الأبيض (التنبيه) لأعلى ليلتصق بالعنوان */
+html body .alert,
+html body .alert-info,
+html body .alert-box,
+html body .disclaimer-box,
+html body .notice {
+  margin-top: 0px !important; /* إلغاء أي مسافة كانت بتزقه لتحت */
+}
+
+/* 3. في حالة كانت الحاوية كلها محتاجة تتسحب لفوق */
+html body .main-content,
+html body .page-content,
+html body .container-main {
+  padding-top: 0 !important;
+}

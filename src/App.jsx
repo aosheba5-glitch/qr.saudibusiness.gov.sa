@@ -50,7 +50,7 @@ function App() {
     if (isEnglish) {
       return {
         dir: "ltr",
-        pageTitle: "Commercial Registration Data",
+        pageTitle: "Commercial Record Info",
         browserTitle: "Saudi Competitiveness & Business Center",
         businessPlatform: "Business Platform",
         languageBtn: "ع",
