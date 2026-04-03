@@ -4468,3 +4468,55 @@ html body .page .notice-inline-icon {
     top: 20px !important;
   }
 }
+
+
+/* ======================================================= */
+/* 🎯 التعديل النهائي الدقيق: المسافات العلوية وتصغير الأزرار */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. إنزال المحتوى للأسفل (تزويد المسافة العلوية) وتقليل الفراغ بين العناصر */
+  .header-menu-body {
+    padding-top: 90px !important; /* السر هنا: نزلنا المحتوى لتحت */
+    gap: 15px !important;         /* تقليل المسافة بين زر المنصة والقائمة اللي تحته */
+  }
+
+  /* 2. تصغير زر "منصة الأعمال" وتنعيمه */
+  .header-menu-drawer .business-sidebar-btn {
+    padding: 6px 14px 6px 10px !important; /* تقليل الحجم الداخلي للزر */
+    font-size: 15px !important;            /* تصغير الخط */
+    border-radius: 6px !important;         /* تنعيم الحواف */
+    gap: 10px !important;                  /* تقليل المسافة بين الكلمة والمربع */
+  }
+
+  /* تصغير المربع الأبيض والسهم داخل زر منصة الأعمال */
+  .header-menu-drawer .business-sidebar-btn .sidebar-btn-icon {
+    width: 22px !important;
+    height: 22px !important;
+    border-radius: 4px !important;
+  }
+  
+  .header-menu-drawer .business-sidebar-btn .sidebar-btn-icon img {
+    width: 11px !important;
+    height: 11px !important;
+  }
+
+  /* 3. تصغير أزرار اللغة وحجم الخط (En / A+) */
+  .sidebar-outline-btn {
+    min-width: 40px !important;
+    min-height: 32px !important;
+    padding: 4px 8px !important;
+    font-size: 14px !important;
+    border-radius: 6px !important;
+  }
+
+  /* تصغير كلمات "اللغة" و "حجم الخط" لتليق مع الأزرار الجديدة */
+  .sidebar-item-label {
+    font-size: 15px !important;
+  }
+
+  /* تقليل المسافات بين سطور (اللغة) و (حجم الخط) */
+  .sidebar-list-item {
+    padding: 12px 0 !important;
+  }
+}
