@@ -4804,3 +4804,23 @@ html body div.page .contact-grid .info-item strong a {
   box-shadow: none !important;
   color: inherit !important; /* إجبار المتصفح على الاحتفاظ باللون الداكن ومنعه من التحول للأزرق */
 }
+
+
+/* ======================================================= */
+/* 🚫 الإزالة النهائية لخطوط متصفح الآيفون (Apple Data Detectors) */
+/* ======================================================= */
+
+/* استهداف الروابط الوهمية التي يصنعها نظام iOS للأرقام والإيميلات */
+a[x-apple-data-detectors],
+a[x-apple-data-detectors]:hover,
+a[x-apple-data-detectors]:focus,
+html body div.page .contact-grid .info-item *,
+html body div.page .contact-grid .info-item a {
+  color: inherit !important;
+  text-decoration: none !important;
+  -webkit-text-decoration-line: none !important;
+  text-decoration-line: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
