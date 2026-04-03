@@ -4440,3 +4440,31 @@ html body .page .notice-inline-icon {
   transform: rotate(180deg) !important; /* يعكس السهم لليسار */
   filter: brightness(0) invert(1) !important; /* يضمن أن اللون أبيض */
 }
+
+
+/* ======================================================= */
+/* 🔄 التعديل الأخير: القائمة في اليسار والـ X في اليمين */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. إجبار القائمة البيضاء تفتح من اليسار (Left) */
+  .page[dir="rtl"] .header-menu-drawer,
+  .header-menu-drawer {
+    left: 0 !important;
+    right: auto !important;
+  }
+
+  /* 2. إجبار زر الإغلاق (X) يروح أقصى اليمين (Right) فوق الضباب */
+  .page[dir="rtl"] .drawer-outside-close-btn,
+  .drawer-outside-close-btn,
+  .close-drawer-btn {
+    right: 0 !important;
+    left: auto !important;
+    
+    /* تظبيط مكان الـ X جوه المساحة الـ 60 بيكسل */
+    width: 60px !important;
+    display: flex !important;
+    justify-content: center !important;
+    top: 20px !important;
+  }
+}
