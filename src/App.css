@@ -4520,3 +4520,51 @@ html body .page .notice-inline-icon {
     padding: 12px 0 !important;
   }
 }
+
+
+
+/*-------------تعديل الانشظه ------------*/
+
+/* ======================================================= */
+/* 📋 إصلاح أنشطة السجل وقائمة المديرين (على قد الكلام ويمين) */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. إجبار الحاوية على رص العناصر تحت بعض */
+  .tags {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important; /* في العربي ده بيزقهم ناحية اليمين */
+    gap: 12px !important;
+  }
+
+  /* 2. المربعات البنفسجية (الأنشطة والمديرين) */
+  .tags span,
+  .managers span {
+    width: fit-content !important; /* السر هنا: المربع يلم على قد الكلام بالظبط */
+    max-width: 100% !important;    /* حماية عشان لو الكلام طويل ينزل سطر بدل ما يخرج بره الشاشة */
+    
+    text-align: right !important;  /* النص جوه المربع يبدأ من اليمين */
+    
+    /* إجبار إضافي للزق المربع في اليمين تماماً */
+    margin-right: 0 !important;
+    margin-left: auto !important; 
+    
+    padding: 12px 18px !important; /* تظبيط الهوامش الداخلية عشان يبقى شكلها مريح */
+    border-radius: 10px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* 3. زرار (+ 24 نشاطاً آخر) */
+  .more-activities-btn {
+    width: max-content !important;
+    text-align: left !important;
+    
+    /* في صورتك الأصلية الزرار ده محاذي لليسار، الكود ده هيعمل كده */
+    align-self: flex-end !important; 
+    margin-right: auto !important;
+    margin-left: 0 !important;
+    padding: 5px 0 10px 0 !important;
+    font-size: 15px !important;
+  }
+}
