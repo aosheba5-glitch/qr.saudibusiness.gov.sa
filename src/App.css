@@ -4653,7 +4653,23 @@ html body .page .notice-inline-icon {
 /* ======================================================= */
 
 html body .page .notice-text {
-  font-size: 11px !important; /* تم تصغير الخط درجتين (كان 11.5px أو 12px) */
-  line-height: 1.7 !important; /* الحفاظ على مسافة مريحة بين السطور عشان يفضل مقروء */
-  /* font-weight: 800 !important; جعل الخط بالوزن العادي (Regular) */
+  font-size: 12px !important; /* تم تصغير الخط درجتين (كان 11.5px أو 12px) */
+  line-height: 1.6 !important; /* الحفاظ على مسافة مريحة بين السطور عشان يفضل مقروء */
+    font-weight: 1100 !important;/* جعل الخط بالوزن العادي (Regular)  */
+  }
+
+/* ======================================================= */
+/* ⚖️ إجبار سُمك خط التنبيه ليكون 400 في الموبايل تحديداً */
+/* ======================================================= */
+
+/* @media (max-width: 768px) {
+  html body div.page .notice .notice-text {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+  }
 }
+
+html body div.page .notice .notice-text {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+} */
