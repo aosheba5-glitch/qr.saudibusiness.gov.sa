@@ -5154,3 +5154,61 @@ html body .page[dir="ltr"] .close-btn {
   /* أعلى طبقة ممكنة عشان مفيش حاجة تغطي عليه */
   z-index: 2147483647 !important; 
 }
+
+
+/* ======================================================= */
+/* ⬇️ رص زرار البيزنس فوق كلمة Language ومحاذاتهم لليسار (إنجليزي) */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. إجبار حاوية القائمة إنها ترص العناصر تحت بعضها (عمودياً) وتبدأ من الشمال */
+  html body .page[dir="ltr"] .header-menu-body {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important; /* كل حاجة تبدأ من الشمال */
+    gap: 20px !important; /* مسافة مريحة بين الزرار والقائمة اللي تحته */
+  }
+
+  /* 2. إجبار زرار "Business Platform" إنه يكون أول عنصر فوق (رقم 1) */
+  html body .page[dir="ltr"] .header-menu-drawer .business-sidebar-btn,
+  html body .page[dir="ltr"] .business-sidebar-btn {
+    order: -1 !important; /* السر هنا: ده بيجبره يروح فوق أي حاجة تانية */
+    margin: 0 !important; /* تصفير الهوامش عشان يلزق في الشمال مع Language بالملي */
+    align-self: flex-start !important;
+  }
+
+  /* 3. تظبيط قائمة اللغة وحجم الخط عشان تمشي على نفس الخط */
+  html body .page[dir="ltr"] .sidebar-list {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+/* ======================================================= */
+/* ⬅️ إجبار زر منصة الأعمال لليسار فوق Language (للويب والموبايل) */
+/* ======================================================= */
+
+html body .page[dir="ltr"] .header-menu-body {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+}
+
+/* السحر هنا: زق الزرار للشمال ومنعه من التمدد */
+html body .page[dir="ltr"] .header-menu-drawer .business-sidebar-btn,
+html body .page[dir="ltr"] .business-sidebar-btn {
+  order: -1 !important;              /* يجبره يطلع أول واحد فوق */
+  margin-left: 0 !important;         /* يلغي أي مسافة من الشمال */
+  margin-right: auto !important;     /* يزقه من اليمين للشمال بقوة */
+  align-self: flex-start !important; /* تأكيد المحاذاة لليسار */
+  width: auto !important;            /* منعه من إنه يكبر أو يمتد */
+  display: inline-flex !important;
+}
+
+/* تظبيط عرض قائمة اللغة عشان تبقى تحته مضبوطة */
+html body .page[dir="ltr"] .sidebar-list {
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
