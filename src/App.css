@@ -5083,8 +5083,8 @@ html body .page[dir="ltr"] .activity-chip {
   .hero-section,
   .header-bg,
   .top-section {
-    padding-bottom: 220px !important; /* كبرنا المساحة جداً هنا */
-    min-height: 500px !important;     /* زودنا الطول الإجمالي للخلفية */
+    padding-bottom: 290px !important; /* كبرنا المساحة جداً هنا */
+    min-height: 600px !important;     /* زودنا الطول الإجمالي للخلفية */
   }
 
   /* سحب الكروت لفوق أكتر عشان تغطي مساحة أكبر من الصورة */
@@ -5092,4 +5092,65 @@ html body .page[dir="ltr"] .activity-chip {
   .main-content {
     margin-top: -180px !important; /* سحبنا الكروت لفوق بمسافة أكبر */
   }
+}
+
+
+
+/* ======================================================= */
+/* ❌ إظهار زر الإغلاق (X) في يسار الشاشة للنسخة الإنجليزية */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. إجبار القائمة البيضاء تفتح من اليمين في الإنجليزي */
+  html body .page[dir="ltr"] .header-menu-drawer {
+    right: 0 !important;
+    left: auto !important;
+  }
+
+  /* 2. إجبار زر الـ (X) يظهر في أقصى الشمال (منطقة الضباب) */
+  html body .page[dir="ltr"] .drawer-outside-close-btn,
+  html body .page[dir="ltr"] .close-drawer-btn {
+    left: 0 !important;      /* سحب الزرار لأقصى الشمال */
+    right: auto !important;
+    position: fixed !important;
+    top: 20px !important;
+    width: 60px !important;
+    display: flex !important;
+    justify-content: center !important;
+    color: #ffffff !important; /* لونه أبيض عشان ينور على الضباب */
+    font-size: 38px !important;
+    z-index: 100000 !important; /* عشان يكون فوق أي حاجة تانية */
+  }
+}
+
+/* ======================================================= */
+/* ❌ إظهار زر الإغلاق (X) بقوة في الويب والموبايل (النسخة الإنجليزية) */
+/* ======================================================= */
+
+html body .page[dir="ltr"] .drawer-outside-close-btn,
+html body .page[dir="ltr"] .close-drawer-btn,
+html body .page[dir="ltr"] .header-menu-drawer button.close-btn,
+html body .page[dir="ltr"] .close-btn {
+  position: fixed !important;
+  left: 20px !important;       /* إجبار الزرار يروح أقصى الشمال */
+  right: auto !important;      /* إلغاء أي ارتباط باليمين */
+  top: 25px !important;
+  
+  /* أوامر الإظهار الإجبارية */
+  display: flex !important;    
+  visibility: visible !important; 
+  opacity: 1 !important;
+  
+  /* الشكل والتنسيق */
+  color: #ffffff !important;   /* لون أبيض ناصع */
+  font-size: 38px !important;
+  background: transparent !important;
+  border: none !important;
+  width: 50px !important;
+  height: 50px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  
+  /* أعلى طبقة ممكنة عشان مفيش حاجة تغطي عليه */
+  z-index: 2147483647 !important; 
 }
