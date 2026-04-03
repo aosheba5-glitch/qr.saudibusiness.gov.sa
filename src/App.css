@@ -4673,3 +4673,90 @@ html body div.page .notice .notice-text {
   font-size: 11px !important;
   font-weight: 700 !important;
 } */
+
+
+
+/* ======================================================= */
+/* 📱 التعديل النهائي لفوتر الموبايل (سطر واحد + اللوجو يمين) */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. إجبار الترتيب: اللوجو يمين والنص يسار في النسخة العربية */
+  html body .page[dir="rtl"] .footer-right-group {
+    display: flex !important;
+    flex-direction: row !important; /* هذا السطر يجبر اللوجو ليكون في اليمين */
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  /* ترتيب النسخة الإنجليزية (اللوجو يسار) */
+  html body .page[dir="ltr"] .footer-right-group {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  /* 2. إجبار النص ليكون على سطر واحد فقط */
+  html body .page .footer-right-text {
+    white-space: nowrap !important; /* السر هنا: منع النزول لسطرين نهائياً */
+    max-width: none !important; /* إلغاء التقييد القديم للعرض */
+    font-size: 11.5px !important; /* تصغير الخط درجة بسيطة لضمان ظهوره في سطر واحد */
+    color: #2f3450 !important;
+  }
+
+  /* 3. تظبيط الخط الفاصل للنسخة العربية (يمين النص) */
+  html body .page[dir="rtl"] .footer-right-text {
+    border-right: 1.5px solid #dcdce6 !important; 
+    border-left: none !important;
+    padding-right: 12px !important;
+    margin-right: 12px !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  /* تظبيط الخط الفاصل للنسخة الإنجليزية (يسار النص) */
+  html body .page[dir="ltr"] .footer-right-text {
+    border-left: 1.5px solid #dcdce6 !important; 
+    border-right: none !important;
+    padding-left: 12px !important;
+    margin-left: 12px !important;
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* 4. تظبيط حجم اللوجو ليتناسق مع السطر الواحد */
+  html body .page .footer-logo-image {
+    width: 75px !important;
+    height: auto !important;
+    flex-shrink: 0 !important; /* منع انضغاط أو تشوه اللوجو */
+    margin: 0 !important;
+  }
+}
+
+/* ======================================================= */
+/* 📱 إجبار جملة "جميع الحقوق محفوظة" لتكون على سطر واحد */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  html body .page .footer-bottom span:first-child {
+    max-width: none !important;      /* إلغاء حاجز الـ 250 بيكسل القديم */
+    white-space: nowrap !important;  /* السر: منع النزول لسطر جديد إجبارياً */
+    font-size: 11px !important;      /* تصغير الخط درجة لضمان احتواء الشاشة للجملة كاملة */
+    width: auto !important;
+    display: inline-block !important; 
+  }
+}
+
+
+/* ======================================================= */
+/* ✉️ إزالة الخط من تحت البريد الإلكتروني */
+/* ======================================================= */
+
+.contact-grid .info-item .mobile-underline,
+.contact-grid .info-item strong {
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
