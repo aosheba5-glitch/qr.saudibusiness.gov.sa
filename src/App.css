@@ -4581,13 +4581,13 @@ html body .page .notice-inline-icon {
 @media (max-width: 768px) {
   /* 1. تكبير أرقام التاريخ (مثل 1432-11-07) */
   .date-chip-value {
-    font-size: 11.5px !important; /* تم التكبير درجة */
+    font-size: 12.5px !important; /* تم التكبير درجة */
     padding: 0 8px !important;    /* إعطاء مساحة جانبية ليتنفس الرقم */
   }
 
   /* 2. تكبير مربع الحرف (هـ / م) */
   .date-chip-era {
-    font-size: 10.5px !important; /* تم تكبير الحرف درجة */
+    font-size: 12.5px !important; /* تم تكبير الحرف درجة */
     min-width: 24px !important;   /* تكبير عرض مربع الحرف ليستوعبه */
   }
 
