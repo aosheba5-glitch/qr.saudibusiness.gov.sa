@@ -4322,3 +4322,73 @@ html body .page .notice-inline-icon {
     top: 30px !important; /* تظبيط المسافة من فوق */
   }
 }
+
+
+
+/*----------تعديل القايمه الجانيه موبيل --------------------------*/
+
+
+/* ======================================================= */
+/* 6. إصلاح مكان القائمة (يسار) وزر الإغلاق (يمين) وتفعيل الاسكرول */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. القائمة البيضاء تفتح من اليسار (Left) مع ترك مساحة للضباب */
+  .page[dir="rtl"] .header-menu-drawer,
+  .header-menu-drawer {
+    width: calc(100% - 60px) !important; /* هنسيب 60 بيكسل للضباب في اليمين */
+    max-width: 400px !important;
+    left: 0 !important; /* إجبار القائمة تكون على الشمال */
+    right: auto !important;
+  }
+
+  /* 2. زر الإغلاق (X) يظهر في اليمين (Right) فوق الضباب */
+  .page[dir="rtl"] .drawer-outside-close-btn,
+  .drawer-outside-close-btn {
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    width: 60px !important; /* نفس عرض مساحة الضباب */
+    height: 60px !important;
+    color: #ffffff !important; /* أبيض عشان ينور على الضباب */
+    font-size: 34px !important;
+    top: 20px !important;
+    right: 0 !important; /* إجبار الـ X تكون في اليمين */
+    left: auto !important;
+    font-weight: 300 !important;
+  }
+
+  /* 3. تظبيط وتفعيل الاسكرول (Scroll) جوه القائمة */
+  .header-menu-body {
+    max-height: 100vh !important;
+    overflow-y: auto !important; /* تفعيل الاسكرول العمودي */
+    overflow-x: hidden !important;
+    padding-bottom: 50px !important; /* مسافة أمان من تحت عشان مفيش محتوى يستخبى */
+  }
+}
+/* ======================================================= */
+/* إرجاع أزرار اللغة (En و A+) للشكل المفرغ كما في الأصل  */
+/* ======================================================= */
+.sidebar-outline-btn {
+  background-color: transparent !important; /* خلفية شفافة/بيضاء */
+  border: 1px solid #11152b !important; /* إطار كحلي */
+  color: #11152b !important; /* نص كحلي */
+  padding: 6px 14px !important;
+  border-radius: 8px !important;
+  font-family: 'Cairo', sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 48px !important;
+  min-height: 40px !important;
+}
+
+/* إجبار لون النص والرموز بداخل أزرار اللغة ليكون داكناً */
+.sidebar-outline-btn .zoom-btn-text,
+.sidebar-outline-btn .zoom-sign,
+.sidebar-outline-btn .zoom-btn-letter {
+  color: #11152b !important; 
+}
