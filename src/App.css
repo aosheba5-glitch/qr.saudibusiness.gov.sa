@@ -4392,3 +4392,74 @@ html body .page .notice-inline-icon {
 .sidebar-outline-btn .zoom-btn-letter {
   color: #11152b !important; 
 }
+
+
+
+/* ======================================================= */
+/* 🚀 التعديل النهائي والقطعي للقائمة الجانبية في الموبايل  */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. القائمة البيضاء تفتح من اليمين (Right) وتسيب مساحة للضباب في اليسار */
+  .page[dir="rtl"] .header-menu-drawer,
+  .header-menu-drawer {
+    right: 0 !important; 
+    left: auto !important;
+    width: calc(100% - 60px) !important; /* سحب 60 بيكسل للضباب */
+    max-width: 400px !important;
+    background: #ffffff !important;
+  }
+
+  /* 2. زر الإغلاق (X) يروح لليسار (Left) جوه الضباب ويكون لونه أبيض */
+  .page[dir="rtl"] .drawer-outside-close-btn,
+  .drawer-outside-close-btn {
+    left: 0 !important; 
+    right: auto !important;
+    width: 60px !important; 
+    height: 60px !important;
+    color: #ffffff !important; /* إجبار اللون الأبيض */
+    font-size: 34px !important;
+    top: 20px !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    background: transparent !important;
+    z-index: 10001 !important;
+  }
+
+  /* 3. زر منصة الأعمال: يتلم على قد الكلمة ويروح أقصى اليمين */
+  .business-sidebar-btn {
+    width: max-content !important; /* على قد المحتوى بس */
+    margin-right: 0 !important; /* لزق في اليمين */
+    margin-left: auto !important; /* دفع من اليسار */
+    background-color: #726b96 !important;
+    color: #ffffff !important;
+    padding: 8px 16px 8px 12px !important;
+    border-radius: 8px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 14px !important;
+  }
+
+  /* 4. إرجاع زراير (En) و (A+) مفرغة (خلفية بيضاء وإطار كحلي) */
+  .sidebar-outline-btn {
+    background-color: #ffffff !important; 
+    border: 1px solid #11152b !important; 
+    color: #11152b !important; 
+    padding: 6px 14px !important;
+    border-radius: 8px !important;
+    min-width: 48px !important;
+    min-height: 40px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* إجبار النص جوه الزراير المفرغة يكون كحلي */
+  .sidebar-outline-btn .zoom-btn-text,
+  .sidebar-outline-btn .zoom-sign,
+  .sidebar-outline-btn .zoom-btn-letter {
+    color: #11152b !important;
+  }
+}
