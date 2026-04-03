@@ -4653,7 +4653,7 @@ html body .page .notice-inline-icon {
 /* ======================================================= */
 
 html body .page .notice-text {
-  font-size: 12.5px !important; /* تم تصغير الخط درجتين (كان 11.5px أو 12px) */
+  font-size: 12.25px !important; /* تم تصغير الخط درجتين (كان 11.5px أو 12px) */
   line-height: 1.6 !important; /* الحفاظ على مسافة مريحة بين السطور عشان يفضل مقروء */
     /* font-weight: 1100 !important;جعل الخط بالوزن العادي (Regular)  */
   }
