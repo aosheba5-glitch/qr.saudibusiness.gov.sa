@@ -5274,3 +5274,365 @@ html body .page[dir="ltr"] .sidebar-list {
     direction: ltr !important; /* لضمان ترتيب رمز العملة بجوار الرقم بشكل صحيح */
   }
 }
+
+
+/* ======================================================= */
+/* 🛠️ إنقاذ المربعات والتواريخ من التشوه (النسخة الإنجليزية) */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. إلغاء التمدد العشوائي وإرجاع المربعات لحجمها الطبيعي (Main CR والتواريخ) */
+  html body .page[dir="ltr"] .info-item span:last-child,
+  html body .page[dir="ltr"] .date-chip,
+  html body .page[dir="ltr"] .date-chip span,
+  html body .page[dir="ltr"] .date-chip span:last-child {
+    display: inline-flex !important; 
+    width: auto !important; /* السر هنا: نلغي الـ 100% عشان المربع يلم نفسه */
+  }
+
+  /* 2. إرجاع التواريخ لترتيبها الأفقي السليم (حرف هـ / م جنب الرقم) */
+  html body .page[dir="ltr"] .date-chip {
+    flex-direction: row !important; /* جنب بعض مش تحت بعض */
+    align-items: stretch !important;
+    margin-bottom: 6px !important;
+  }
+
+  /* 3. ضمان بقاء رقم رأس المال وكل النصوص العادية لازقة في اليسار */
+  html body .page[dir="ltr"] .info-item strong {
+    display: block !important;
+    text-align: left !important;
+    width: 100% !important;
+  }
+}
+
+/* ======================================================= */
+/* 🛠️ إنقاذ المربعات والتواريخ من التشوه (النسخة الإنجليزية) */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. إلغاء التمدد العشوائي وإرجاع المربعات لحجمها الطبيعي (Main CR والتواريخ) */
+  html body .page[dir="ltr"] .info-item span:last-child,
+  html body .page[dir="ltr"] .date-chip,
+  html body .page[dir="ltr"] .date-chip span,
+  html body .page[dir="ltr"] .date-chip span:last-child {
+    display: inline-flex !important; 
+    width: auto !important; /* السر هنا: نلغي الـ 100% عشان المربع يلم نفسه */
+  }
+
+  /* 2. إرجاع التواريخ لترتيبها الأفقي السليم (حرف هـ / م جنب الرقم) */
+  html body .page[dir="ltr"] .date-chip {
+    flex-direction: row !important; /* جنب بعض مش تحت بعض */
+    align-items: stretch !important;
+    margin-bottom: 6px !important;
+  }
+
+  /* 3. ضمان بقاء رقم رأس المال وكل النصوص العادية لازقة في اليسار */
+  html body .page[dir="ltr"] .info-item strong {
+    display: block !important;
+    text-align: left !important;
+    width: 100% !important;
+  }
+}
+
+/* ======================================================= */
+/* 📅 تحويل (هـ/م) إلى (H/G) في النسخة الإنجليزية (للويب والموبايل) */
+/* ======================================================= */
+
+/* 1. إخفاء الحروف العربية (هـ / م) مع الاحتفاظ بمكانهم */
+html body .page[dir="ltr"] .date-chip span:first-child {
+  color: transparent !important; 
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* 2. طباعة حرف (H) على المربع الأول (الهجري) */
+html body .page[dir="ltr"] .date-chip:first-child span:first-child::after,
+html body .page[dir="ltr"] .date-chip:nth-child(1) span:first-child::after,
+html body .page[dir="ltr"] .date-chip:first-of-type span:first-child::after {
+  content: "H" !important;
+  color: #2f3450 !important; /* نفس درجة اللون الكحلي */
+  position: absolute !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+/* 3. طباعة حرف (G) على المربع الثاني (الميلادي) */
+html body .page[dir="ltr"] .date-chip:last-child span:first-child::after,
+html body .page[dir="ltr"] .date-chip:nth-child(2) span:first-child::after,
+html body .page[dir="ltr"] .date-chip:last-of-type span:first-child::after {
+  content: "G" !important;
+  color: #2f3450 !important; /* نفس درجة اللون الكحلي */
+  position: absolute !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+
+/* ======================================================= */
+/* 🏷️ تضييق مربع (Main CR) ليكون بحجم الكلمة فقط (للويب والموبايل) */
+/* ======================================================= */
+
+html body .page[dir="ltr"] .info-item span:last-child,
+html body .page[dir="ltr"] .info-item strong {
+  width: max-content !important; /* السر هنا: بيلم المربع على قد الكلام بالظبط */
+  min-width: auto !important;    /* بيلغي أي عرض إجباري قديم */
+}
+
+
+/* ======================================================= */
+/* 📅 الإصلاح الجذري للتواريخ وحروف (H/G) بدون أي ظلال */
+/* ======================================================= */
+
+/* 1. تظبيط حجم المربعات بالكامل ولمّها على قد الكلام بشكل أنيق */
+html body .page[dir="ltr"] .date-chip {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  width: max-content !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  margin-bottom: 8px !important;
+}
+
+/* تظبيط مربع الرقم (التاريخ) */
+html body .page[dir="ltr"] .date-chip span:last-child {
+  display: flex !important;
+  align-items: center !important;
+  width: auto !important; 
+  padding: 4px 12px !important; /* مسافات داخلية مريحة للرقم */
+}
+
+/* 2. إخفاء الحرف العربي (هـ/م) نهائياً من الوجود (السر في font-size: 0) */
+html body .page[dir="ltr"] .date-chip span:first-child {
+  font-size: 0 !important; /* يخفي الحرف العربي تماماً بدون ترك أي أثر أو ظل */
+  color: transparent !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 35px !important; /* تثبيت عرض المربع الرمادي عشان الـ H والـ G يبقوا قد بعض بالملي */
+  padding: 0 !important;
+}
+
+/* 3. طباعة حرف H بوضوح ونظافة */
+html body .page[dir="ltr"] .date-chip:first-child span:first-child::after,
+html body .page[dir="ltr"] .date-chip:nth-child(1) span:first-child::after,
+html body .page[dir="ltr"] .date-chip:first-of-type span:first-child::after {
+  content: "H" !important;
+  font-size: 14px !important; /* إرجاع حجم الخط للحرف الإنجليزي فقط */
+  color: #2f3450 !important;
+  font-weight: 600 !important;
+}
+
+/* 4. طباعة حرف G بوضوح ونظافة */
+html body .page[dir="ltr"] .date-chip:last-child span:first-child::after,
+html body .page[dir="ltr"] .date-chip:nth-child(2) span:first-child::after,
+html body .page[dir="ltr"] .date-chip:last-of-type span:first-child::after {
+  content: "G" !important;
+  font-size: 14px !important; /* إرجاع حجم الخط للحرف الإنجليزي فقط */
+  color: #2f3450 !important;
+  font-weight: 600 !important;
+}
+
+
+/* 3. طباعة حرف H بوضوح ولون أزرق داكن مطابق للتاريخ */
+html body .page[dir="ltr"] .date-chip:first-child span:first-child::after,
+html body .page[dir="ltr"] .date-chip:nth-child(1) span:first-child::after,
+html body .page[dir="ltr"] .date-chip:first-of-type span:first-child::after {
+  content: "H" !important;
+  font-size: 14px !important;
+  color: #1c224f !important; /* ده اللون الأزرق الداكن/الكحلي الزاهي بتاع الأرقام */
+  font-weight: 600 !important;
+}
+
+/* 4. طباعة حرف G بوضوح ولون أزرق داكن مطابق للتاريخ */
+html body .page[dir="ltr"] .date-chip:last-child span:first-child::after,
+html body .page[dir="ltr"] .date-chip:nth-child(2) span:first-child::after,
+html body .page[dir="ltr"] .date-chip:last-of-type span:first-child::after {
+  content: "G" !important;
+  font-size: 14px !important;
+  color: #1c224f !important; /* نفس درجة اللون الأزرق الداكن */
+  font-weight: 600 !important;
+}
+
+
+/* ======================================================= */
+/* 💰 إجبار رقم رأس المال (Total Capital) للنزول تحت الكلمة يساراً */
+/* ======================================================= */
+/* ======================================================= */
+/* 📅 الإصلاح النهائي: (H/G) بدون ظل وبسماكة خط أقل */
+/* ======================================================= */
+
+/* 2. إخفاء الحرف العربي ومسح أي ظل قديم */
+html body .page[dir="ltr"] .date-chip span:first-child {
+  font-size: 0 !important; 
+  color: transparent !important;
+  text-shadow: none !important; 
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 35px !important; 
+  padding: 0 !important;
+}
+
+/* 3. طباعة حرف H بوضوح وبدون ظل */
+html body .page[dir="ltr"] .date-chip:first-child span:first-child::after,
+html body .page[dir="ltr"] .date-chip:nth-child(1) span:first-child::after,
+html body .page[dir="ltr"] .date-chip:first-of-type span:first-child::after {
+  content: "H" !important;
+  font-size: 14px !important;
+  color: #222a68 !important; /* الأزرق الزاهي */
+  font-weight: 600 !important; /* قللنا السماكة (Bold) هنا */
+  text-shadow: none !important; /* مسحنا الظل الأبيض تماماً */
+}
+
+/* 4. طباعة حرف G بوضوح وبدون ظل */
+html body .page[dir="ltr"] .date-chip:last-child span:first-child::after,
+html body .page[dir="ltr"] .date-chip:nth-child(2) span:first-child::after,
+html body .page[dir="ltr"] .date-chip:last-of-type span:first-child::after {
+  content: "G" !important;
+  font-size: 14px !important;
+  color: #222a68 !important; /* الأزرق الزاهي */
+  font-weight: 600 !important; /* قللنا السماكة (Bold) هنا */
+  text-shadow: none !important; /* مسحنا الظل الأبيض تماماً */
+}
+
+
+/* ======================================================= */
+/* 🇬🇧 مطابقة الفوتر الإنجليزي: تكبير الخط وتقسيمه لسطرين */
+/* ======================================================= */
+
+/* تظبيط حاوية الفوتر عشان ترص اللوجو والكلام جنب بعض براحتهم */
+html body .page[dir="ltr"] .footer-right-group {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+}
+
+/* تكبير الخط والسماح بنزوله على سطرين */
+html body .page[dir="ltr"] .footer-right-group .footer-right-text {
+  font-size: 13px !important;       /* تكبير حجم الخط عشان يبقى واضح */
+  white-space: normal !important;   /* السر هنا: إلغاء السطر الواحد والسماح بكسر السطر */
+  line-height: 1.4 !important;      /* مسافة مريحة وأنيقة بين السطرين */
+  max-width: 250px !important;      /* تحديد عرض المربع يجبر الكلام ينزل سطر جديد مظبوط */
+  text-align: left !important;
+  font-weight: 500 !important;      /* تقلنا الخط سِنة عشان يطابق الصورة */
+  border-left: 1.5px solid #dcdce6 !important;
+  padding-left: 12px !important;
+  margin-left: 0 !important;
+}
+
+/* تظبيط مقاس اللوجو عشان يتناسب مع حجم الخط الجديد */
+html body .page[dir="ltr"] .footer-right-group .footer-logo-image {
+  width: 90px !important;           /* كبرنا اللوجو سِنة ليتناسب مع السطرين */
+  flex-shrink: 0 !important;        /* منع المتصفح من ضغط اللوجو */
+  margin-right: 12px !important;
+  margin-left: 0 !important;
+}
+
+
+/* ======================================================= */
+/* 📅 تقليل المسافة بين المربعات وعكس ترتيب التواريخ (الإنجليزي) */
+/* ======================================================= */
+
+/* 1. تقليل المسافة العمودية بين مربع الهجري ومربع الميلادي */
+html body .page[dir="ltr"] .date-chip {
+  margin-bottom: 3px !important; /* صغرنا المسافة جداً لتكون متقاربة وأنيقة */
+}
+
+/* 2. قلب ترتيب التواريخ (يوم-شهر-سنة للهجري / وسنة-شهر-يوم للميلادي) */
+html body .page[dir="ltr"] .date-chip span:last-child {
+  direction: rtl !important;        /* السر هنا: بيعكس ترتيب المقاطع المفصولة بشرطة */
+  unicode-bidi: isolate !important; /* بيعزل النص عشان يتقلب صح ككتلة واحدة */
+}
+
+
+/* ======================================================= */
+/* 📅 تظبيط المسافة بين المربعات وترتيب الأرقام بدقة (إنجليزي) */
+/* ======================================================= */
+
+/* 1. تقريب المربعين من بعض جداً (إلغاء أي مسافة إجبارية) */
+/* 1. مسافة "درجة واحدة" (2 بيكسل) بين المربعين */
+html body .page[dir="ltr"] .date-chip:first-child {
+  margin-bottom: 0px !important; 
+}
+html body .page[dir="ltr"] .date-chip:last-child {
+  margin-top: -3px !important; /* قللنا السحب هنا عشان نسيب مسافة شعرة بين المربعين */
+}
+
+/* 2. التاريخ الهجري (H): الترتيب من اليسار لليمين (يوم - شهر - سنة) */
+html body .page[dir="ltr"] .date-chip:first-child span:last-child,
+html body .page[dir="ltr"] .date-chip:nth-child(1) span:last-child {
+  direction: rtl !important;        /* الخدعة اللي بتقلب ترتيب المقاطع */
+  unicode-bidi: isolate !important;
+  text-align: left !important;
+  display: inline-block !important;
+}
+
+/* 3. التاريخ الميلادي (G): الترتيب من اليسار لليمين (سنة - شهر - يوم) */
+html body .page[dir="ltr"] .date-chip:last-child span:last-child,
+html body .page[dir="ltr"] .date-chip:nth-child(2) span:last-child {
+  direction: rtl !important;        /* الخدعة اللي بتقلب ترتيب المقاطع */
+  unicode-bidi: isolate !important;
+  text-align: left !important;
+  display: inline-block !important;
+}
+
+
+
+/* ======================================================= */
+/* 💰 إصلاح مشكلة هروب رأس المال (Total Capital) لليمين نهائياً */
+/* ======================================================= */
+
+html body .page[dir="ltr"] .info-item {
+  display: flex !important;
+  flex-direction: column !important; /* إجبار العناصر تنزل تحت بعض */
+  align-items: flex-start !important; /* محاذاة كل المحتوى لليسار */
+  justify-content: flex-start !important;
+}
+
+/* استهداف القيمة (الرقم والعملة) وسحبها لليسار بقوة */
+html body .page[dir="ltr"] .info-item > span:last-child,
+html body .page[dir="ltr"] .info-item > div:last-child {
+  margin-left: 0 !important;
+  margin-right: auto !important; /* الجوكر اللي بيسحب العنصر أقصى اليسار */
+  align-self: flex-start !important;
+  text-align: left !important;
+  direction: ltr !important; 
+  width: max-content !important; /* منعه من أخذ عرض الشاشة بالكامل */
+}
+
+
+
+/* ======================================================= */
+/* 💰 الضربة القاضية لهروب رقم رأس المال (Total Capital) لليمين */
+/* ======================================================= */
+
+/* 1. إجبار المربع نفسه إنه يرص العناصر تحت بعض من الشمال */
+html body .page[dir="ltr"] .info-item {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+}
+
+/* 2. تدمير أي عوامات (floats) أو محاذاة لليمين داخل المربع */
+html body .page[dir="ltr"] .info-item * {
+  float: none !important;            /* إلغاء أي كود قديم بيحدفه يمين */
+  text-align: left !important;       /* إجبار النص يكون على اليسار */
+}
+
+/* 3. إجبار السطر الأخير (اللي فيه الرقم والعملة) على الالتصاق باليسار */
+html body .page[dir="ltr"] .info-item > :last-child {
+  align-self: flex-start !important; 
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  display: flex !important;
+  flex-direction: row !important;    /* لضمان بقاء العملة بجوار الرقم بشكل سليم */
+  align-items: center !important;
+  margin-top: 4px !important;
+}
