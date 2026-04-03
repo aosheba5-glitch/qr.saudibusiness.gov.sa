@@ -4137,48 +4137,36 @@ html body .page .notice-inline-icon {
 /* ===== التعديل الإجباري للقائمة الجانبية (Sidebar) ===== */
 /* ======================================================= */
 
+
+/* ======================================================= */
+/* ===== التعديل الإجباري للقائمة الجانبية (النسخة المحدثة) ===== */
+/* ======================================================= */
+
+/* 1. إخفاء الخلفية المظللة في الويب وإظهارها في الموبايل فقط (Overlay) */
 .header-menu-overlay {
   position: fixed !important;
   inset: 0 !important;
-  background: rgba(18, 22, 44, 0.6) !important;
-  backdrop-filter: blur(4px) !important;
-  z-index: 9999 !important; /* إجبار لتكون فوق كل شيء */
+  background: transparent !important; /* شفاف في الويب */
+  backdrop-filter: none !important;
+  z-index: 9999 !important;
   display: flex !important;
 }
 
-/* زر الإغلاق الخارجي (X) */
-.drawer-outside-close-btn {
-  position: absolute !important;
-  top: 20px !important;
-  right: 20px !important;
-  background: transparent !important;
-  border: none !important;
-  color: white !important;
-  font-size: 32px !important;
-  cursor: pointer !important;
-  z-index: 10000 !important;
-  padding: 0 !important;
-  margin: 0 !important;
+@media (max-width: 768px) {
+  .header-menu-overlay {
+    background: rgba(18, 22, 44, 0.5) !important; /* مظلل في الموبايل */
+    backdrop-filter: blur(3px) !important;
+  }
 }
 
-.page[dir="rtl"] .drawer-outside-close-btn {
-  right: 20px !important;
-  left: auto !important;
-}
-
-.page[dir="ltr"] .drawer-outside-close-btn {
-  left: 20px !important;
-  right: auto !important;
-}
-
-/* القائمة الجانبية نفسها */
+/* 2. تكبير عرض الجزء الأبيض (القائمة) */
 .header-menu-drawer {
   position: absolute !important;
   top: 0 !important;
-  width: 320px !important;
-  max-width: 85vw !important;
+  width: 380px !important; /* تم التكبير هنا (كان 320) */
+  max-width: 88vw !important;
   height: 100vh !important;
-  background: #ffffff !important; /* خلفية بيضاء إجباري */
+  background: #ffffff !important;
   display: flex !important;
   flex-direction: column !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18) !important;
@@ -4199,26 +4187,52 @@ html body .page .notice-inline-icon {
   text-align: left !important;
 }
 
+/* زر الإغلاق الخارجي (X) - مخفي في الويب ويظهر في الموبايل مع الـ Overlay */
+.drawer-outside-close-btn {
+  position: absolute !important;
+  top: 20px !important;
+  right: 20px !important;
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  font-size: 32px !important;
+  cursor: pointer !important;
+  z-index: 10000 !important;
+  display: none !important; /* مخفي في الويب */
+}
+
+@media (max-width: 768px) {
+  .drawer-outside-close-btn {
+    display: block !important; /* يظهر في الموبايل للتحكم في الإغلاق */
+  }
+}
+
+/* ضبط الهوامش الداخلية والـ Overflow (السكرول) */
 .header-menu-body {
-  padding: 40px 20px 20px !important;
-  overflow-y: auto !important;
+  padding: 40px 24px 24px !important; 
+  overflow-y: auto !important; 
+  overflow-x: hidden !important;
   display: flex !important;
   flex-direction: column !important;
   gap: 30px !important;
 }
 
-/* زر منصة الأعمال البنفسجي */
+/* ======================================================= */
+/* 3. تعديل ألوان الأزرار لتطابق الصور الجديدة (بنفسجي)   */
+/* ======================================================= */
+
+/* زر منصة الأعمال الرئيسي */
 .business-sidebar-btn {
-  background-color: #6a5e8c !important;
+  background-color: #857ca3 !important; /* اللون البنفسجي المطابق لصورك */
   color: #ffffff !important;
   border: none !important;
-  padding: 12px 16px !important;
-  border-radius: 8px !important;
+  padding: 12px 18px !important;
+  border-radius: 10px !important;
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
   font-family: 'Cairo', sans-serif !important;
-  font-size: 16px !important;
+  font-size: 20px !important; 
   font-weight: 800 !important;
   cursor: pointer !important;
   width: 100% !important;
@@ -4226,26 +4240,26 @@ html body .page .notice-inline-icon {
 }
 
 .business-sidebar-btn .sidebar-btn-icon {
-  border: 1px solid rgba(255, 255, 255, 0.8) !important;
-  border-radius: 6px !important;
-  width: 28px !important;
-  height: 28px !important;
+  border: 2px solid #ffffff !important;
+  border-radius: 8px !important;
+  width: 32px !important;
+  height: 32px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
 }
 
 .business-sidebar-btn .sidebar-btn-icon img {
-  width: 14px !important;
-  height: 14px !important;
+  width: 16px !important;
+  height: 16px !important;
   filter: brightness(0) invert(1) !important;
 }
 
 .page[dir="rtl"] .sidebar-btn-icon img {
-  transform: rotate(180deg) !important;
+  transform: rotate(180deg) !important; /* لفة السهم لليسار في العربي */
 }
 
-/* قائمة الخيارات (اللغة وحجم الخط) */
+/* قائمة الخيارات */
 .sidebar-list {
   display: flex !important;
   flex-direction: column !important;
@@ -4255,41 +4269,56 @@ html body .page .notice-inline-icon {
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  padding: 18px 0 !important;
-  border-bottom: 1px solid #eeeeee !important;
+  padding: 20px 0 !important;
+  border-bottom: 1.5px solid #f0f0f0 !important;
 }
 
 .sidebar-item-label {
   font-family: 'Cairo', sans-serif !important;
-  font-size: 16px !important;
+  font-size: 18px !important;
   font-weight: 800 !important;
-  color: #11152b !important; /* إجبار اللون الداكن */
+  color: #11152b !important;
 }
 
-/* الأزرار المفرغة (En و A+) */
+/* أزرار اللغة وحجم الخط (تعديل لتصبح صلبة بنفسجية اللون) */
 .sidebar-outline-btn {
-  background-color: transparent !important;
-  border: 1px solid #11152b !important;
-  color: #11152b !important;
-  padding: 6px 12px !important;
+  background-color: #857ca3 !important; /* نفس لون الزر الرئيسي */
+  border: none !important;
+  color: #ffffff !important; /* النص باللون الأبيض */
+  padding: 6px 14px !important;
   border-radius: 8px !important;
   font-family: 'Cairo', sans-serif !important;
-  font-size: 14px !important;
+  font-size: 16px !important;
   font-weight: 800 !important;
   cursor: pointer !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  min-width: 46px !important;
-  min-height: 38px !important;
-}
-
-.sidebar-outline-btn:hover {
-  background-color: #f5f5f5 !important;
+  min-width: 54px !important;
+  min-height: 42px !important;
 }
 
 .sidebar-outline-btn .zoom-btn-text,
 .sidebar-outline-btn .zoom-sign,
 .sidebar-outline-btn .zoom-btn-letter {
-  color: #11152b !important;
+  color: #ffffff !important; /* إجبار اللون الأبيض للعلامات بداخلها */
+}
+
+/* ======================================================= */
+/* 4. إجبار القائمة البيضاء على ملء شاشة الموبايل بالكامل  */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* جعل القائمة البيضاء تأخذ 100% من عرض الشاشة */
+  .header-menu-drawer {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* تغيير لون زر الإغلاق (X) لداكن ليظهر بوضوح على الخلفية البيضاء */
+  .drawer-outside-close-btn {
+    color: #11152b !important; /* لون كحلي غامق */
+    z-index: 10001 !important; /* لضمان ظهوره فوق القائمة */
+    top: 30px !important; /* تظبيط المسافة من فوق */
+  }
 }
