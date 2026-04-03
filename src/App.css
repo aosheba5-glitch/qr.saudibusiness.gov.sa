@@ -5212,3 +5212,65 @@ html body .page[dir="ltr"] .sidebar-list {
   padding: 0 !important;
   margin: 0 !important;
 }
+
+
+
+
+
+/* ======================================================= */
+/* 🇬🇧 تظبيط الفوتر الإنجليزي: تصغير الخط لظهور النص واللوجو بالكامل */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. إجبار الحاوية تكون على سطر واحد بدون أي كسر */
+  html body .page[dir="ltr"] .footer-right-group {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important; /* السر هنا لمنع التكسير */
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  /* 2. حماية اللوجو من الانضغاط وتثبيت حجمه */
+  html body .page[dir="ltr"] .footer-right-group .footer-logo-image {
+    width: 75px !important;
+    flex-shrink: 0 !important; /* منع المتصفح من ضغط أو تصغير اللوجو */
+    margin-right: 8px !important; /* مسافة بسيطة بينه وبين الخط الفاصل */
+    margin-left: 0 !important;
+  }
+
+  /* 3. تصغير الخط الإنجليزي ليتناسب مع الشاشة في سطر واحد */
+  html body .page[dir="ltr"] .footer-right-group .footer-right-text {
+    font-size: 10px !important; /* تصغير الخط ليكون مناسباً */
+    white-space: nowrap !important; /* إجباره يفضل على سطر واحد */
+    border-left: 1.5px solid #dcdce6 !important; /* الخط الفاصل يسار النص */
+    border-right: none !important;
+    padding-left: 8px !important;
+    margin-left: 0 !important;
+  }
+}
+
+
+/* ======================================================= */
+/* 💰 التعديل الأخير: محاذاة قيمة رأس المال (Total Capital) لليسار */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* إجبار محتوى جميع مربعات البيانات على البدء من اليسار في الإنجليزي */
+  html body .page[dir="ltr"] .company-main-grid .info-item,
+  html body .page[dir="ltr"] .info-item {
+    align-items: flex-start !important; /* محاذاة العناصر لليسار */
+    text-align: left !important;
+  }
+
+  /* إجبار القيمة نفسها (الرقم) على النزول تحت العنوان والالتصاق باليسار */
+  html body .page[dir="ltr"] .info-item strong,
+  html body .page[dir="ltr"] .info-item span:last-child {
+    text-align: left !important;
+    align-self: flex-start !important; /* إجبار الالتصاق باليسار */
+    display: block !important;
+    width: 100% !important; /* أخذ عرض المربع بالكامل لضمان عدم الهروب لليمين */
+    direction: ltr !important; /* لضمان ترتيب رمز العملة بجوار الرقم بشكل صحيح */
+  }
+}
