@@ -5044,3 +5044,52 @@ html body .page[dir="ltr"] .activity-chip {
     display: block !important;
   }
 }
+
+
+
+
+/* ======================================================= */
+/* 🌆 تمديد صورة الخلفية للأسفل لتغطي خلفية الكروت */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* استهداف الجزء العلوي اللي بيحمل الصورة وتطويله للأسفل */
+  html body .page > div:first-child,
+  .hero-section,
+  .header-bg,
+  .top-section {
+    padding-bottom: 140px !important; /* الرقم ده هو اللي بينزل الخلفية لتحت */
+    min-height: 400px !important;     /* إجبار الخلفية على طول معين */
+    background-position: center bottom !important; /* تظبيط مكان الصورة عشان تبان صح */
+  }
+
+  /* سحب المحتوى (الكروت) لفوق عشان يركب على الخلفية الجديدة */
+  .page-content,
+  .main-content {
+    margin-top: -100px !important; /* سحب الكروت لفوق فوق الخلفية */
+    position: relative !important;
+    z-index: 10 !important;
+  }
+}
+
+
+/* ======================================================= */
+/* 🌆 تمديد صورة الخلفية للأسفل بمسافة أكبر (التعديل الثاني) */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* تمديد الخلفية بشكل ملحوظ للأسفل */
+  html body .page > div:first-child,
+  .hero-section,
+  .header-bg,
+  .top-section {
+    padding-bottom: 220px !important; /* كبرنا المساحة جداً هنا */
+    min-height: 500px !important;     /* زودنا الطول الإجمالي للخلفية */
+  }
+
+  /* سحب الكروت لفوق أكتر عشان تغطي مساحة أكبر من الصورة */
+  .page-content,
+  .main-content {
+    margin-top: -180px !important; /* سحبنا الكروت لفوق بمسافة أكبر */
+  }
+}
