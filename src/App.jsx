@@ -452,53 +452,53 @@ function App() {
         </section>
       </main>
 
-      {isHeaderMenuOpen && (
+     {isHeaderMenuOpen && (
         <div
           className="header-menu-overlay"
           onClick={() => setIsHeaderMenuOpen(false)}
         >
+          {/* تم إضافة زر الإغلاق هنا ليكون في الجزء المظلم كما في الصورة */}
+          <button
+            type="button"
+            className="drawer-outside-close-btn"
+            onClick={() => setIsHeaderMenuOpen(false)}
+          >
+            ✕
+          </button>
+
           <aside
             className="header-menu-drawer"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="header-menu-header">
-              <button
-                type="button"
-                className="close-drawer-btn"
-                onClick={() => setIsHeaderMenuOpen(false)}
-              >
-                ×
-              </button>
-              <h3>{t.menuTitle}</h3>
-            </div>
-
             <div className="header-menu-body">
+              {/* زر منصة الأعمال الرئيسي */}
               <a
                 href={businessLink}
                 target="_blank"
                 rel="noreferrer"
-                className="header-menu-item business-menu-item"
+                className="business-sidebar-btn"
               >
-                <img src={arrow} alt="arrow" className="btn-icon-img" />
                 <span>{t.businessPlatform}</span>
+                <span className="sidebar-btn-icon">
+                  <img src={arrow} alt="arrow" />
+                </span>
               </a>
 
-              <button
-                className="header-menu-item"
-                type="button"
-                onClick={toggleLanguage}
-              >
-                {t.languageBtn}
-              </button>
+              {/* قائمة الخيارات (اللغة وحجم الخط) */}
+              <div className="sidebar-list">
+                <div className="sidebar-list-item">
+                  <span className="sidebar-item-label">{t.dir === "rtl" ? "اللغة" : "Language"}</span>
+                  <button className="sidebar-outline-btn" onClick={toggleLanguage}>
+                    {t.languageBtn}
+                  </button>
+                </div>
 
-              <div className="zoom-actions">
-                <button
-                  className="header-menu-item small-menu-btn zoom-btn"
-                  type="button"
-                  onClick={toggleZoom}
-                >
-                  <ZoomButtonLabel zoomed={isZoomed} />
-                </button>
+                <div className="sidebar-list-item">
+                  <span className="sidebar-item-label">{t.dir === "rtl" ? "حجم الخط" : "Font Size"}</span>
+                  <button className="sidebar-outline-btn zoom-btn" onClick={toggleZoom}>
+                    <ZoomButtonLabel zoomed={isZoomed} />
+                  </button>
+                </div>
               </div>
             </div>
           </aside>

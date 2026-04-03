@@ -4127,3 +4127,169 @@ html body .page .notice-inline-icon {
     justify-content: flex-start !important; /* البداية من اليمين */
   }
 }
+
+
+
+
+/*-----------اجبار المينو الجانبي يكون مظبوط-----------------*/
+
+/* ======================================================= */
+/* ===== التعديل الإجباري للقائمة الجانبية (Sidebar) ===== */
+/* ======================================================= */
+
+.header-menu-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(18, 22, 44, 0.6) !important;
+  backdrop-filter: blur(4px) !important;
+  z-index: 9999 !important; /* إجبار لتكون فوق كل شيء */
+  display: flex !important;
+}
+
+/* زر الإغلاق الخارجي (X) */
+.drawer-outside-close-btn {
+  position: absolute !important;
+  top: 20px !important;
+  right: 20px !important;
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  font-size: 32px !important;
+  cursor: pointer !important;
+  z-index: 10000 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.page[dir="rtl"] .drawer-outside-close-btn {
+  right: 20px !important;
+  left: auto !important;
+}
+
+.page[dir="ltr"] .drawer-outside-close-btn {
+  left: 20px !important;
+  right: auto !important;
+}
+
+/* القائمة الجانبية نفسها */
+.header-menu-drawer {
+  position: absolute !important;
+  top: 0 !important;
+  width: 320px !important;
+  max-width: 85vw !important;
+  height: 100vh !important;
+  background: #ffffff !important; /* خلفية بيضاء إجباري */
+  display: flex !important;
+  flex-direction: column !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18) !important;
+  z-index: 10000 !important;
+}
+
+.page[dir="rtl"] .header-menu-drawer {
+  left: 0 !important;
+  right: auto !important;
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+.page[dir="ltr"] .header-menu-drawer {
+  right: 0 !important;
+  left: auto !important;
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+.header-menu-body {
+  padding: 40px 20px 20px !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 30px !important;
+}
+
+/* زر منصة الأعمال البنفسجي */
+.business-sidebar-btn {
+  background-color: #6a5e8c !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 12px 16px !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  font-family: 'Cairo', sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  width: 100% !important;
+  text-decoration: none !important;
+}
+
+.business-sidebar-btn .sidebar-btn-icon {
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  border-radius: 6px !important;
+  width: 28px !important;
+  height: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.business-sidebar-btn .sidebar-btn-icon img {
+  width: 14px !important;
+  height: 14px !important;
+  filter: brightness(0) invert(1) !important;
+}
+
+.page[dir="rtl"] .sidebar-btn-icon img {
+  transform: rotate(180deg) !important;
+}
+
+/* قائمة الخيارات (اللغة وحجم الخط) */
+.sidebar-list {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.sidebar-list-item {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 18px 0 !important;
+  border-bottom: 1px solid #eeeeee !important;
+}
+
+.sidebar-item-label {
+  font-family: 'Cairo', sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  color: #11152b !important; /* إجبار اللون الداكن */
+}
+
+/* الأزرار المفرغة (En و A+) */
+.sidebar-outline-btn {
+  background-color: transparent !important;
+  border: 1px solid #11152b !important;
+  color: #11152b !important;
+  padding: 6px 12px !important;
+  border-radius: 8px !important;
+  font-family: 'Cairo', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 46px !important;
+  min-height: 38px !important;
+}
+
+.sidebar-outline-btn:hover {
+  background-color: #f5f5f5 !important;
+}
+
+.sidebar-outline-btn .zoom-btn-text,
+.sidebar-outline-btn .zoom-sign,
+.sidebar-outline-btn .zoom-btn-letter {
+  color: #11152b !important;
+}
