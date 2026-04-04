@@ -11,20 +11,31 @@ import downLogoFooter from "./assets/downlogofooter.svg";
 function DatePair({ hijriDate, gregDate, dir = "rtl" }) {
   const isEnglish = dir === "ltr";
 
+  // دالة بتعكس التاريخ الميلادي بس 
+  const fixGregorianOrder = (dateStr) => {
+    if (!dateStr) return dateStr;
+    return dateStr.split('-').reverse().join('-');
+  };
+
   return (
     <span className={`dates-row ${isEnglish ? "dates-row-ltr" : ""}`}>
       <span className="date-chip">
         <span className="date-chip-era">{isEnglish ? "H" : "هـ"}</span>
-        <span className="date-chip-value">{hijriDate}</span>
+        {/* الهجري هينزل زي ما هو بالضبط من غير عكس */}
+        <span className="date-chip-value" style={{ direction: 'ltr', unicodeBidi: 'plaintext' }}>
+          {hijriDate}
+        </span>
       </span>
       <span className="date-chip">
         <span className="date-chip-era">{isEnglish ? "G" : "م"}</span>
-        <span className="date-chip-value">{gregDate}</span>
+        {/* الميلادي بس هو اللي هيتعكس في النسخة العربي */}
+        <span className="date-chip-value" style={{ direction: 'ltr', unicodeBidi: 'plaintext' }}>
+          {isEnglish ? gregDate : fixGregorianOrder(gregDate)}
+        </span>
       </span>
     </span>
   );
 }
-
 function ZoomButtonLabel({ zoomed }) {
   return (
     <span className="zoom-btn-text" aria-label={zoomed ? "A-" : "A+"}>

@@ -5964,3 +5964,262 @@ html body .footer-bottom {
   white-space: normal !important;
   text-align: center !important;
 }
+
+
+/* ======================================================= */
+/* 🗓️ إزالة الظل من حروف التاريخ (هـ / م - H / G) وضبط اللون */
+/* ======================================================= */
+
+/* ======================================================= */
+/* 🗓️ تنظيف تواريخ السجل (إزالة الشادو والبولد من الحروف والأرقام) */
+/* ======================================================= */
+
+/* 1. الحروف (هـ / م - H / G): إزالة الشادو والبولد (السماكة) */
+html body .date-chip-era {
+  text-shadow: none !important; /* إزالة الظل تماماً */
+  font-weight: 400 !important;  /* السر هنا: شيلنا البولد وخلينا الخط ناعم وعادي */
+  color: #2b2158 !important;    /* لون الموف الغامق اللي اتفقنا عليه */
+}
+
+/* 2. الأرقام (تاريخ السجل نفسه): إزالة الشادو */
+html body .date-chip-value {
+  text-shadow: none !important; /* إزالة الظل من الأرقام عشان تظهر نقية */
+  font-weight: 500 !important;  /* سماكة متوسطة عشان الرقم يبقى مقروء وأنيق */
+}
+
+/* 3. تأكيد إزالة أي شادو من مربع التاريخ بالكامل */
+html body .date-chip,
+html body .dates-row {
+  text-shadow: none !important; 
+}
+
+
+
+/*------- bold date -------*/
+
+/* ======================================================= */
+/* 🗓️ استعادة البولد الواقعي للأرقام والحروف (بدون ظل) */
+/* ======================================================= */
+
+/* 1. الحروف (هـ / م - H / G) */
+html body .date-chip-era {
+  text-shadow: none !important; /* بدون ظل عشان تفضل نقية */
+  font-weight: 700 !important;  /* السر هنا: استعادة البولد الواقعي */
+ color: #404287 !important;   /* لون الموف الغامق المظبوط */
+}
+
+/* 2. الأرقام */
+html body .date-chip-value {
+  text-shadow: none !important; /* إزالة الظل من الأرقام */
+  font-weight: 700 !important;  /* استعادة البولد للأرقام زي الحروف */
+ color: #404287 !important;     /* توحيد اللون الغامق */
+}
+
+
+/* ======================================================= */
+/* 🗓️ ضبط لون التواريخ وإلغاء خط Cairo للأرقام والحروف */
+/* ======================================================= */
+
+/* ======================================================= */
+/* 🗓️ ضبط لون التواريخ وتطبيق الخط الرسمي (DIN Next / Tajawal) */
+/* ======================================================= */
+
+html body .date-chip-era,
+html body .date-chip-value {
+  text-shadow: none !important; 
+  font-weight: 700 !important;  
+  color: #404287 !important;    
+  /* السر هنا: استخدام خط المنصات السعودية الرسمي أو بدائله المطابقة */
+  font-family: "DIN Next LT Arabic", "Tajawal", "Almarai", "Cairo", sans-serif !important; 
+}
+
+
+
+/* ======================================================= */
+/* 🗓️ تصغير حجم مربع التاريخ وتطبيق الخط المطابق للأصل */
+/* ======================================================= */
+
+/* 1. تظبيط حجم المربع (تحديد ارتفاع صغير وملموم) */
+html body .date-chip {
+  height: 28px !important;       /* تحديد ارتفاع ثابت وصغير زي صورتك */
+  min-height: 28px !important;
+  margin-bottom: 5px !important; /* مسافة صغيرة بين المربعين */
+}
+
+/* 2. تظبيط المسافات الداخلية وتطبيق الخط المظبوط */
+html body .date-chip-era,
+html body .date-chip-value {
+  padding: 0 12px !important;   /* تقليل المسافات الفاضية جوه المربع */
+  font-size: 14px !important;   /* حجم خط مناسب وملموم */
+  line-height: 28px !important; /* لضبط توسط الكلام بالطول */
+  
+  /* إجبار العنصر على استخدام الخط الهندسي اللي استدعيناه فوق */
+  font-family: 'DIN Next LT Arabic', 'Tajawal', sans-serif !important;
+  font-weight: 700 !important;  /* بولد واقعي */
+  color: #404287 !important;    /* لون أزرق في موف */
+  text-shadow: none !important; /* بدون ظل للنقاء */
+  
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+
+/* ======================================================= */
+/* 🗓️ منع المتصفح من قلب التاريخ (إجبار الترتيب: سنة-شهر-يوم) */
+/* ======================================================= */
+/* ======================================================= */
+/* 🗓️ ضبط ترتيب التاريخ للنسخة العربية (السنة بجوار الحرف) */
+/* ======================================================= */
+
+html body .date-chip-value {
+  direction: rtl !important;        /* إجبار القراءة من اليمين لليسار */
+  unicode-bidi: normal !important;  /* إلغاء العزل السابق */
+}
+
+
+/* ======================================================= */
+/* 🏷️ توحيد لون "سجل رئيسي" مع لون التواريخ (الأزرق الموف) */
+/* ======================================================= */
+
+html body .badge-value {
+  color: #404287 !important;    /* نفس درجة الأزرق الموف */
+  /* السطر اللي جاي ده اختياري: لو حابب توحد نوع الخط كمان مع التواريخ */
+  font-family: 'Almarai', 'Tajawal', 'DIN Next LT Arabic', sans-serif !important; 
+}
+
+/* ======================================================= */
+/* 🎯 المطابقة النهائية 100%: سجل رئيسي (بولد) والتاريخ (بدون بولد) */
+/* ======================================================= */
+
+/* 1. التواريخ: خط عادي تماماً بدون أي بولد (وزن 400) */
+html body .date-chip-era,
+html body .date-chip-value {
+  font-weight: 500 !important;  /* السر هنا: 400 يعني خط عادي جداً (Regular) */
+  font-size: 13px !important;   
+  color: #404287 !important;    /* اللون الأزرق الموف */
+  text-shadow: none !important; 
+  font-family: 'Almarai', 'Tajawal', 'DIN Next LT Arabic', sans-serif !important;
+}
+
+/* 2. سجل رئيسي: بولد صريح ونفس اللون الموف */
+html body .info-item strong.badge-value,
+html body .badge-value {
+  font-weight: 700 !important;  /* بولد صريح (Bold) */
+  color: #404287 !important;    /* مطابقة اللون 100% مع التاريخ */
+  text-shadow: none !important; 
+  font-family: 'Almarai', 'Tajawal', 'DIN Next LT Arabic', sans-serif !important;
+}
+
+
+/* ======================================================= */
+/* ➕ ضبط اتجاه ومحاذاة زر (نشاطاً آخر) لليمين */
+/* ======================================================= */
+
+html body .more-activities-btn {
+  text-align: right !important;       /* إجبار النص يكون على اليمين */
+  direction: rtl !important;          /* تأكيد اتجاه القراءة العربي */
+  unicode-bidi: plaintext !important; /* منع المتصفح من اللعب في مكان علامة الزائد (+) */
+  display: block !important;          /* عشان ياخد سطر لوحده ويتحاذى صح */
+  width: 100% !important;             /* يفرد عشان المحاذاة لليمين تبان */
+  padding-right: 0 !important;        /* تصفير أي مسافات بتزقه للشمال */
+  font-family: 'Almarai', 'Tajawal', 'DIN Next LT Arabic', sans-serif !important;
+  color: #404287 !important;          /* توحيد اللون الأزرق الموف */
+  font-weight: 700 !important;        /* بولد عشان يكون واضح */
+}
+
+/* ======================================================= */
+/* ➕ ضبط اتجاه زر "الأنشطة الأخرى" ليكون ذكياً (حسب اللغة) */
+/* ======================================================= */
+
+/* 1. الخصائص المشتركة للزرار في اللغتين (اللون والخط) */
+html body .more-activities-btn {
+  display: block !important;
+  width: 100% !important;
+  font-family: 'Almarai', 'Tajawal', 'DIN Next LT Arabic', sans-serif !important;
+  color: #404287 !important;  /* نفس درجة الأزرق الموف */
+  font-weight: 700 !important;
+  padding: 0 !important;
+  margin-top: 10px !important; /* مسافة خفيفة بينه وبين الأنشطة اللي فوقه */
+}
+
+/* 2. النسخة العربية: محاذاة لليمين */
+html body .page[dir="rtl"] .more-activities-btn {
+  text-align: right !important;
+  direction: rtl !important;
+  unicode-bidi: plaintext !important; /* للحفاظ على مكان علامة + */
+}
+
+/* 3. النسخة الإنجليزية: محاذاة لليسار */
+html body .page[dir="ltr"] .more-activities-btn {
+  text-align: left !important;
+  direction: ltr !important;
+  unicode-bidi: normal !important;
+}
+
+
+/* ======================================================= */
+/* 📱 تمديد مربع المدير لملء العرض (في الموبايل فقط) */
+/* ======================================================= */
+
+@media (max-width: 767px) {
+  /* 1. الحاوية في الموبايل */
+  html body .tags.managers {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    padding: 0 !important;
+    gap: 8px !important;
+  }
+
+  /* 2. المربع (البادج) في الموبايل */
+  html body .tags.managers span {
+    display: block !important;
+    width: 100% !important; /* يفرش العرض كامل */
+    box-sizing: border-box !important;
+    
+    padding: 12px 15px !important; /* مساحة داخلية مريحة */
+    border-radius: 10px !important;
+    background-color: #f0edf5 !important;
+    
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    
+    /* المحاذاة حسب اللغة */
+    text-align: left !important; /* لليسار في الإنجليزي */
+  }
+
+  /* 3. محاذاة اليمين للعربي في الموبايل */
+  html body .page[dir="rtl"] .tags.managers span {
+    text-align: right !important;
+  }
+}
+
+
+/* ======================================================= */
+/* 🏢 ضبط اسم الشركة (بولد صريح وقوي مطابق للصورة) */
+/* ======================================================= */
+
+/* ======================================================= */
+/* 🏢 إجبار اسم الشركة على أخذ البولد الصريح (الوزن الثقيل) */
+/* ======================================================= */
+
+/* ======================================================= */
+/* 🏢 إجبار اسم الشركة الإنجليزي على "البولد" العريض */
+/* ======================================================= */
+
+/* استهداف صفحة الإنجليزي [dir="ltr"] لضبط اسم الشركة */
+html body .page[dir="ltr"] .company-name {
+  /* استخدام خطوط إنجليزية تدعم الأوزان الثقيلة جداً */
+  font-family: 'Inter', 'Roboto', 'Arial Black', sans-serif !important;
+  font-weight: 550 !important;      /* أقصى درجة سماكة (Black) */
+  font-size: 16px !important;       /* حجم واضح */
+  letter-spacing: -0.5px !important; /* تقريب الحروف لبعضها عشان تبان كتلة واحدة فخمة */
+  color: #000000 !important;        /* اللون الكحلي الداكن */
+  display: block !important;
+ 
+
+/* ======================================================= */
+/* 🗓️ تعديل لون التاريخ الميلادي للأسود (في النسخة العربية) */
+/* ======================================================= */
+
