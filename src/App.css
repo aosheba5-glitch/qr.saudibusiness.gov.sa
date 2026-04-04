@@ -6273,19 +6273,33 @@ html body .page[dir="ltr"] .company-name {
 /* 📱 حل مشكلة الزحمة: تقسيم العنوان الطويل على سطرين */
 /* ======================================================= */
 
+/* ======================================================= */
+/* 📱 توحيد محاذاة العناوين وتوسيع الفراغ (النسخة الإنجليزية) */
+/* ======================================================= */
+
 @media (max-width: 767px) {
-  /* استهداف عناوين الأعمدة في النسخة الإنجليزية */
-  html body .page[dir="ltr"] .info-item label {
-    display: block !important;
-    max-width: 130px !important;    /* إجبار النص الطويل على النزول لسطر جديد */
-    line-height: 1.2 !important;    /* تقليل المسافة بين السطرين ليكون شكلها متناسق */
-    white-space: normal !important;  /* السماح للنص بالانقسام */
-    margin-bottom: 8px !important;   /* مسافة بسيطة بين العنوان والمحتوى */
+  /* 1. ضبط شبكة المعلومات لتوسيع الفراغ بين العمودين */
+  html body .page[dir="ltr"] .info-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important; /* تقسيم متساوي 50/50 */
+    column-gap: 40px !important;               /* توسيع الفراغ (الجاب) في المنتصف */
+    row-gap: 25px !important;
   }
 
-  /* الآن نوسع الجاب (الفراغ) بين العمودين بعد ما وفرنا مساحة */
-  html body .page[dir="ltr"] .info-grid {
-    column-gap: 30px !important;    /* جاب محترم يخلي العمودين بعاد عن بعض */
-    grid-template-columns: 1fr 1fr !important; /* توزيع متساوي للعمودين */
+  /* 2. توحيد العناوين لتكون على سطرين فقط ومحاذاة واحدة */
+  html body .page[dir="ltr"] .info-item label {
+    display: block !important;
+    min-height: 34px !important;    /* إجبار الكل ياخد مساحة سطرين حتى لو النص قصير */
+    max-width: 140px !important;    /* منع النص من الفرش العرضي المستفز */
+    line-height: 1.2 !important;
+    white-space: normal !important;
+    text-align: left !important;
+    font-size: 12px !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* 3. منع العناوين الطويلة جداً من الوصول لـ 3 سطور */
+  html body .page[dir="ltr"] .info-item:nth-child(odd) {
+    padding-right: 10px !important;
   }
 }
