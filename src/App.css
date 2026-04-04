@@ -6306,3 +6306,23 @@ html body .page[dir="ltr"] .company-name {
     max-width: 100% !important;
   }
 }
+
+
+/* ======================================================= */
+/* 💊 إجبار البادجات (زي Main CR) إنها تلم على قد الكلمة */
+/* ======================================================= */
+
+@media (max-width: 767px) {
+  /* استهداف أي عنصر واخد شكل "بادج" أو "تاج" داخل الأعمدة */
+  html body .page[dir="ltr"] .info-item [class*="tag"],
+  html body .page[dir="ltr"] .info-item [class*="badge"],
+  html body .page[dir="ltr"] .info-item > span:not(.info-value) {
+    display: inline-flex !important;       /* يلم على المحتوى */
+    width: fit-content !important;         /* 👈 الكلمة السحرية: العرض على قد النص بالظبط */
+    max-width: 100% !important;
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;        /* يمنع الكلمة من الانقسام داخل البادج */
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
