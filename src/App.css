@@ -6323,33 +6323,3 @@ html body .page[dir="ltr"] .company-name {
   }
 }
 
-/* ======================================================= */
-/* 🎯 إجبار النص الطويل على النزول لسطرين ومنع اختفائه مع الزوم */
-/* ======================================================= */
-
-@media (max-width: 767px) {
-  /* 1. إجبار العمود نفسه إنه يتقبل يصغر ويكسر الكلام جواه */
-  html body .page[dir="ltr"] .info-item {
-    min-width: 0 !important;       /* دي أهم جملة: بتمنع العمود من التمدد خارج الشاشة */
-    max-width: 100% !important;
-    overflow: hidden !important;   /* لو فيه زيادة بسيطة تتلم جوه العمود */
-  }
-
-  /* 2. استهداف عنوان الرياض لفك البولد وتصغير الخط وكسره لسطرين */
-  html body .page[dir="ltr"] .info-item > div,
-  html body .page[dir="ltr"] .info-item > span,
-  html body .page[dir="ltr"] .info-item > strong,
-  html body .page[dir="ltr"] .info-item > p,
-  html body .page[dir="ltr"] .info-item .info-value {
-    white-space: normal !important;      /* إلغاء أي كود بيمنع النزول لسطر جديد */
-    word-break: break-word !important;   /* إجبار الكلمة تنكسر لو الشاشة صغرت (الزوم) */
-    overflow-wrap: break-word !important;
-    max-width: 100% !important;
-    display: block !important;           /* لازم يكون بلوك عشان ياخد سطرين */
-    
-    font-weight: 650 !important;         /* شيلنا البولد وخليناه خط متوسط */
-    font-size: 11px !important;          /* صغرنا الخط درجة زي ما طلبت */
-    line-height: 1.4 !important;
-    color: #1c224f !important;
-  }
-}
