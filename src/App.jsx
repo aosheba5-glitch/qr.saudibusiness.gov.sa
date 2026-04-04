@@ -406,7 +406,7 @@ function App() {
                 <span>{t.crIssueDate}</span>
                 <strong>
                   <DatePair
-                    hijriDate="1432-11-07"
+                    hijriDate="07-11-1432"
                     gregDate="2011-10-05"
                     dir={t.dir}
                   />
@@ -417,7 +417,7 @@ function App() {
                 <span>{t.annualConfirmation}</span>
                 <strong>
                   <DatePair
-                    hijriDate="1448-09-24"
+                    hijriDate="24-09-1448"
                     gregDate="2027-03-03"
                     dir={t.dir}
                   />
