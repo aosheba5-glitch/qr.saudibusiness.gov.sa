@@ -6268,3 +6268,24 @@ html body .page[dir="ltr"] .company-name {
     font-size: 12px !important;    /* تصغير طفيف ليناسب المسافة الجديدة */
   }
 }
+
+/* ======================================================= */
+/* 📱 حل مشكلة الزحمة: تقسيم العنوان الطويل على سطرين */
+/* ======================================================= */
+
+@media (max-width: 767px) {
+  /* استهداف عناوين الأعمدة في النسخة الإنجليزية */
+  html body .page[dir="ltr"] .info-item label {
+    display: block !important;
+    max-width: 130px !important;    /* إجبار النص الطويل على النزول لسطر جديد */
+    line-height: 1.2 !important;    /* تقليل المسافة بين السطرين ليكون شكلها متناسق */
+    white-space: normal !important;  /* السماح للنص بالانقسام */
+    margin-bottom: 8px !important;   /* مسافة بسيطة بين العنوان والمحتوى */
+  }
+
+  /* الآن نوسع الجاب (الفراغ) بين العمودين بعد ما وفرنا مساحة */
+  html body .page[dir="ltr"] .info-grid {
+    column-gap: 30px !important;    /* جاب محترم يخلي العمودين بعاد عن بعض */
+    grid-template-columns: 1fr 1fr !important; /* توزيع متساوي للعمودين */
+  }
+}
