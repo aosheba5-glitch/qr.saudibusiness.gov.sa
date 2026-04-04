@@ -6241,3 +6241,30 @@ html body .page[dir="ltr"] .company-name {
     display: inline-block !important;
   }
 }
+
+
+
+
+/* ======================================================= */
+/* 📱 توسيع المسافة بين العمودين (اليمين واليسار) في الموبايل */
+/* ======================================================= */
+
+@media (max-width: 767px) {
+  /* استهداف حاوية شبكة المعلومات في النسخة الإنجليزية */
+  html body .page[dir="ltr"] .info-grid {
+    display: grid !important;
+    /* توزيع متوازن للعمودين مع إعطاء مساحة أكبر قليلاً لجهة التواريخ */
+    grid-template-columns: 1fr 1.1fr !important; 
+    /* زيادة المسافة الأفقية بين العمودين (العمود الشمال والعمود اليمين) */
+    column-gap: 35px !important; 
+    /* التأكد من أن الكلام لا يلتصق ببعضه */
+    width: 100% !important;
+    padding: 0 5px !important;
+  }
+
+  /* التأكد من أن العناوين لا تتداخل */
+  html body .page[dir="ltr"] .info-item label {
+    white-space: nowrap !important; /* منع العناوين من النزول لسطر جديد لو المساحة سمحت */
+    font-size: 12px !important;    /* تصغير طفيف ليناسب المسافة الجديدة */
+  }
+}
