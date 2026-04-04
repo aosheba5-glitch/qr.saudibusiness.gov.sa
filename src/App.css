@@ -5806,3 +5806,23 @@ html body .page[dir="ltr"] .info-item strong {
     width: 85px !important; 
   }
 }
+
+
+/* ======================================================= */
+/* 👨‍💼 تعديل مربع المديرين للعرض الكامل يميناً (للنسخة العربية فقط) */
+/* ======================================================= */
+
+/* استهداف المربع اللي جوه قائمة المديرين فقط في العربي */
+html body .page[dir="rtl"] .managers-section .badge,
+html body .page[dir="rtl"] .managers-list .badge,
+html body .page[dir="rtl"] .manager-item,
+html body .page[dir="rtl"] .managers-container div,
+html body .page[dir="rtl"] .manager-chip {
+  width: 100% !important;               /* المربع ياخد عرض الحاوية بالكامل */
+  max-width: 100% !important;           /* إلغاء أي حدود قديمة للعرض */
+  display: flex !important;             /* استخدام الفليكس لسهولة المحاذاة */
+  justify-content: flex-start !important; /* محاذاة النص لليمين (بداية المربع في العربي) */
+  text-align: right !important;         /* تأكيد محاذاة النص لليمين */
+  padding-right: 15px !important;       /* مسافة جمالية عشان الاسم ميكونش لازق في الحافة */
+  box-sizing: border-box !important;    /* لضمان عدم خروج المربع بره الشاشة */
+}
