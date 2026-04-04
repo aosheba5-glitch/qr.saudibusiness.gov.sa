@@ -6309,20 +6309,30 @@ html body .page[dir="ltr"] .company-name {
 
 
 /* ======================================================= */
-/* 💊 إجبار البادجات (زي Main CR) إنها تلم على قد الكلمة */
+/* 🛠️ إصلاح تداخل العناوين + لم الكبسولة (Main CR) بشكل آمن */
 /* ======================================================= */
 
 @media (max-width: 767px) {
-  /* استهداف أي عنصر واخد شكل "بادج" أو "تاج" داخل الأعمدة */
+  /* 1. إجبار العناوين على النزول لسطرين ومنع التداخل نهائياً */
+  html body .page[dir="ltr"] .info-item label,
+  html body .page[dir="ltr"] .info-item > span:first-child,
+  html body .page[dir="ltr"] .info-item .info-label {
+    white-space: normal !important;      /* 👈 ده اللي بيفك الاشتباك وينزلهم سطرين */
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    display: block !important;
+    width: 100% !important;
+  }
+
+  /* 2. استهداف الكبسولة (البادج) فقطططط بدون المساس بالعناوين */
   html body .page[dir="ltr"] .info-item [class*="tag"],
   html body .page[dir="ltr"] .info-item [class*="badge"],
-  html body .page[dir="ltr"] .info-item > span:not(.info-value) {
-    display: inline-flex !important;       /* يلم على المحتوى */
-    width: fit-content !important;         /* 👈 الكلمة السحرية: العرض على قد النص بالظبط */
+  html body .page[dir="ltr"] .info-item [class*="MainCR"] {
+    display: inline-flex !important;
+    width: fit-content !important;       /* على قد الكلمة */
     max-width: 100% !important;
     flex: 0 0 auto !important;
-    white-space: nowrap !important;        /* يمنع الكلمة من الانقسام داخل البادج */
-    align-items: center !important;
-    justify-content: center !important;
+    white-space: nowrap !important;      /* الكبسولة بس اللي متتكسرش */
+    padding: 6px 12px !important;
   }
 }
