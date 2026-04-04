@@ -6218,8 +6218,26 @@ html body .page[dir="ltr"] .company-name {
   color: #000000 !important;        /* اللون الكحلي الداكن */
   display: block !important;
  
+}
+
 
 /* ======================================================= */
-/* 🗓️ تعديل لون التاريخ الميلادي للأسود (في النسخة العربية) */
+/* 📱 إجبار زر الأنشطة في النسخة العربي (موبايل) على اليمين */
 /* ======================================================= */
 
+@media (max-width: 767px) {
+  /* استهداف الحاوية التي تضم الزرار في وضع العربي فقط */
+  html body .page[dir="rtl"] .more-activities-container {
+    text-align: right !important;
+    display: block !important;
+    width: 100% !important;
+  }
+
+  /* إجبار الزرار نفسه على المحاذاة لليمين */
+  html body .page[dir="rtl"] .more-activities-btn {
+    margin-right: 0 !important;
+    margin-left: auto !important;
+    text-align: right !important;
+    display: inline-block !important;
+  }
+}
