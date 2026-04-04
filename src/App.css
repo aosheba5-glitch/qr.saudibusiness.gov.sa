@@ -6278,45 +6278,46 @@ html body .page[dir="ltr"] .company-name {
 /* ======================================================= */
 
 /* ======================================================= */
-/* 🛠️ الحل الجذري: تقسيم 50% وإجبار العناوين على سطرين */
+/* ⚖️ ميزان الـ 50/50: توحيد عرض الأعمدة في النسخة الإنجليزية */
 /* ======================================================= */
 
 @media (max-width: 767px) {
-  /* 1. تقسيم الكارت لنصفين متساويين تماماً 50% و 50% */
+  /* 1. الحاوية الأساسية: إجبار تقسيم الشاشة لنصفين متساويين */
   html body .page[dir="ltr"] .info-grid {
     display: flex !important;
     flex-wrap: wrap !important;
-    justify-content: space-between !important;
-    gap: 0 !important; /* تصفير الجاب للتحكم الكامل */
+    width: 100% !important;
+    padding: 0 !important;
+    gap: 0 !important; /* تصفير الفراغ التلقائي للتحكم اليدوي */
   }
 
-  /* 2. كل عمود ياخد نص الشاشة بالضبط */
+  /* 2. العمود الواحد: 50% من عرض الشاشة بالملي */
   html body .page[dir="ltr"] .info-item {
-    flex: 0 0 50% !important; /* 50% لكل عمود */
-    max-width: 50% !important;
+    flex: 0 0 50% !important;       /* إجبار العرض على 50% */
+    max-width: 50% !important;      /* منع أي تمدد */
     box-sizing: border-box !important;
-    padding-right: 15px !important; /* مسافة (جاب) في النص */
-    margin-bottom: 20px !important;
+    padding-right: 20px !important; /* خلق الـ (Gap) أو الفراغ في منتصف الكارت */
+    margin-bottom: 25px !important;
+    display: block !important;
   }
 
-  /* 3. إجبار العنوان (Label) على الانقسام لسطرين فقط */
+  /* 3. العناوين (Labels): إجبارها على سطرين ومحاذاة واحدة */
   html body .page[dir="ltr"] .info-item label {
     display: block !important;
     width: 100% !important;
-    max-width: 130px !important;    /* العرض ده "بيكسر" الكلمة سطرين أوتوماتيك */
-    min-height: 40px !important;    /* توحيد الارتفاع عشان المحتوى يبدأ من نفس الخط */
-    line-height: 1.1 !important;    /* تقريب السطور من بعضها */
-    white-space: normal !important;  /* السماح بالانقسام */
+    min-height: 40px !important;    /* لضمان أن المعلومات تبدأ من نفس الخط الأفقي */
+    max-width: 135px !important;    /* العرض ده هيخلي العنوان الطويل ينزل سطرين أوتوماتيك */
+    line-height: 1.1 !important;
     font-size: 12.5px !important;
-    color: #666 !important;
+    white-space: normal !important;
+    margin-bottom: 8px !important;
     text-align: left !important;
+    color: #666 !important;
   }
 
-  /* 4. ضبط المحتوى (الأرقام والعناوين) تحت الـ Label */
-  html body .page[dir="ltr"] .info-item .info-value,
-  html body .page[dir="ltr"] .info-item strong {
-    display: block !important;
-    font-size: 14px !important;
-    word-break: break-word !important; /* عشان العناوين الطويلة متدخلش في بعضها */
+  /* 4. محاذاة العمود الثاني (اليمين) لضمان عدم الالتصاق */
+  html body .page[dir="ltr"] .info-item:nth-child(even) {
+    padding-left: 5px !important;
+    padding-right: 0 !important;
   }
 }
