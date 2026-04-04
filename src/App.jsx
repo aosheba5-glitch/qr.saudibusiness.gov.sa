@@ -402,27 +402,27 @@ function App() {
                 <strong>1010317565</strong>
               </div>
 
-              <div className="info-item">
-                <span>{t.crIssueDate}</span>
-                <strong>
-                  <DatePair
-                    hijriDate="1432-11-07"
-                    gregDate="2011-10-05"
-                    dir={t.dir}
-                  />
-                </strong>
-              </div>
+            <div className="info-item">
+  <span>{t.crIssuedDate}</span>
+  <strong>
+    <DatePair
+      hijriDate={t.dir === 'ltr' ? "1432-11-07".split('-').reverse().join('-') : "1432-11-07"}
+      gregDate="2011-10-05"
+      dir={t.dir}
+    />
+  </strong>
+</div>
 
-              <div className="info-item">
-                <span>{t.annualConfirmation}</span>
-                <strong>
-                  <DatePair
-                    hijriDate="1448-09-24"
-                    gregDate="2027-03-03"
-                    dir={t.dir}
-                  />
-                </strong>
-              </div>
+<div className="info-item">
+  <span>{t.annualConfirmation}</span>
+  <strong>
+    <DatePair
+      hijriDate={t.dir === 'ltr' ? "1448-09-24".split('-').reverse().join('-') : "1448-09-24"}
+      gregDate="2027-03-03"
+      dir={t.dir}
+    />
+  </strong>
+</div>
 
               <div className="info-item">
                 <span>{t.businessAddress}</span>
