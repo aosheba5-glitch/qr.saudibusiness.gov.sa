@@ -5903,3 +5903,64 @@ html body .page[dir="rtl"] .managers-section .badge span {
     padding: 12px 20px !important; /* مسافة داخلية عشان الاسم ميكونش لازق في الحرف */
   }
 }
+
+
+/*------تعديل الفوتر داخل الزوم -------*/
+
+
+/* ======================================================= */
+/* 📱🖥️ إصلاح الفوتر ليدعم الزوم العالي (500%) في جميع الشاشات */
+/* ======================================================= */
+
+/* 1. منع الفوتر بالكامل من تخطي عرض الشاشة */
+html body .footer {
+  width: 100% !important;
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+}
+
+/* 2. إجبار الحاوية العلوية على الالتفاف (wrap) في حالة الزوم العالي */
+html body .footer-top {
+  display: flex !important;
+  flex-wrap: wrap !important; /* السر هنا: بيسمح للعناصر تنزل سطر جديد */
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* 3. تظبيط مجموعة اللوجو والنص */
+html body .footer-right-group {
+  display: flex !important;
+  flex-wrap: wrap !important; /* السماح للنص بالنزول تحت اللوجو لو الشاشة ضاقت جداً */
+  align-items: center !important;
+  max-width: 100% !important;
+  flex: 1 1 auto !important; /* المرونة في التمدد والانكماش */
+}
+
+/* 4. حماية اللوجو من التشوه */
+html body .footer-logo-image {
+  max-width: 90px !important;
+  flex-shrink: 0 !important;
+  height: auto !important;
+}
+
+/* 5. إجبار النص على التكسر (كسر الكلمات والسطور) بدلاً من الخروج من الشاشة */
+html body .footer-right-text {
+  white-space: normal !important;       /* إلغاء السطر الواحد الإجباري */
+  word-break: break-word !important;    /* كسر الكلمة لو مفيش مساحة */
+  overflow-wrap: break-word !important;
+  max-width: 100% !important;
+  flex: 1 1 0% !important;              /* إجبار النص على أخذ المساحة المتبقية فقط والتكسر */
+  line-height: 1.5 !important;
+  padding: 5px 0 !important;
+}
+
+/* 6. السماح للحقوق السفلية بالانقسام في الزوم العالي */
+html body .footer-bottom {
+  display: flex !important;
+  flex-wrap: wrap !important; 
+  justify-content: center !important;
+  white-space: normal !important;
+  text-align: center !important;
+}
