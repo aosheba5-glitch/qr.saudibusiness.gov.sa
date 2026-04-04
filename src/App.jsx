@@ -9,16 +9,16 @@ import riyalIcon from "./assets/reyal.svg";
 import downLogoFooter from "./assets/downlogofooter.svg";
 
 function DatePair({ hijriDate, gregDate, dir = "rtl" }) {
+  const isEnglish = dir === "ltr";
+
   return (
-    <span className={`dates-row ${dir === "ltr" ? "dates-row-ltr" : ""}`}>
+    <span className={`dates-row ${isEnglish ? "dates-row-ltr" : ""}`}>
       <span className="date-chip">
-        {/* الحرف أولاً */}
-        <span className="date-chip-era">هـ</span>
+        <span className="date-chip-era">{isEnglish ? "H" : "هـ"}</span>
         <span className="date-chip-value">{hijriDate}</span>
       </span>
       <span className="date-chip">
-        {/* الحرف أولاً */}
-        <span className="date-chip-era">م</span>
+        <span className="date-chip-era">{isEnglish ? "G" : "م"}</span>
         <span className="date-chip-value">{gregDate}</span>
       </span>
     </span>
@@ -57,29 +57,29 @@ function App() {
         zoomBtn: isZoomed ? "A-" : "A+",
         menuTitle: "Menu",
         notice:
-          "The Saudi Competitiveness & Business Center is not responsible for any missing or inconsistent data. Information is retrieved through full integration with the relevant entities.",
-        companyName: <>Milad Al Ebdaa Contracting Company</>,
+          "Saudi Competitiveness & Business Center does not hold responsibility for any data mismatch, as it is fetched from the relevant providers.",
+        companyName: "milad alibda Company For Contracting",
         active: "Active",
-        entityType: "Entity Type",
+        entityType: "Entity type",
         entityTypeValue: "Company",
         companyType: "Company Type",
-        companyTypeValue: "Limited Liability Company",
-        registrationType: "Registration Type",
+        companyTypeValue: "Limited liability company",
+        registrationType: "CR Type",
         registrationTypeValue: "Main CR",
         unifiedNumber: "Unified National Number",
-        crNumber: "Commercial Registration No.",
-        crIssueDate: "CR Registration Date",
-        annualConfirmation: "Annual Confirmation Date",
-        businessAddress: "Approved Business Address",
-        crCopyNumber: "CR Copy Number",
-        capital: "Total Capital",
-        contactTitle: "Contact Information",
+        crNumber: "CR Number",
+        crIssueDate: "Commercial Record Issue Date",
+        annualConfirmation: "Commercial Registration confirmation Date",
+        businessAddress: "City of Official Business Address",
+        crCopyNumber: "Commercial Record Copy Number",
+        capital: "Total capital value",
+        contactTitle: "Contact Details",
         mobile: "Mobile Number",
         email: "Email",
-        website: "Website",
-        activitiesTitle: "Commercial Registration Activities",
-        moreActivities: "+ 24 more activities",
-        managersTitle: "Managers List",
+        website: "Website Url",
+        activitiesTitle: "CR Activities",
+        moreActivities: "+ 24 Other activity",
+        managersTitle: "Managers list",
         footerText:
           "Developed by the Saudi Data & Artificial Intelligence Authority",
         privacy: "Privacy Policy",
@@ -88,47 +88,45 @@ function App() {
         rights:
           "All rights reserved to the Saudi Competitiveness & Business Center 2026",
         version: "Version 1.1.9",
-        address:
-          "Riyadh, Al Malaz District, Prince Mansour bin Abdulaziz Street",
+        address: "RIYADH Al Malaz Dist. Prince Mansour Ibn Abdulaziz",
         visibleActivities: [
-          "General construction of residential buildings 410010",
-          "General construction of government buildings 410023",
-          "Construction of prefabricated buildings on sites 410030",
-          "Restoration of residential and non-residential buildings 410040",
+          "Construction of all types of residential buildings 410010",
+          "General constructions of government buildings 410023",
+          "Erection of prefabricated constructions on the site 410030",
+          "remodeling or renovating existing residential and non residential structures 410040",
         ],
         allActivities: [
-          "General construction of residential buildings 410010",
-          "General construction of government buildings 410023",
-          "Construction of prefabricated buildings on sites 410030",
-          "Restoration of residential and non-residential buildings 410040",
-          "Site preparation, excavation, and leveling 431210",
-          "Casting of bases and foundations 431220",
-          "Installation, maintenance, and repair of sanitary tools 432230",
-          "Installation, maintenance, and repair of cooling and air-conditioning systems 432240",
-          "Building finishing works 433010",
-          "Installation of doors, windows, frames, shutters, railings, stairs, and wooden kitchens 433021",
-          "Installation of doors, windows, frames, shutters, railings, stairs, and aluminum kitchens 433022",
-          "Installation of doors, windows, frames, shutters, railings, stairs, and metal kitchens 433023",
-          "Installation of shades and screens 433024",
-          "Installation of internal ceilings, partitions, and wooden wall cladding 433030",
-          "Ceramic and tile installation 433041",
-          "Marble installation 433042",
-          "Stone installation 433043",
-          "Roof tile installation 433044",
-          "Various decoration and decor works 433061",
-          "Plastering and rendering works 433071",
-          "Painting works for internal and external buildings 433072",
-          "Painting works for civil engineering structures 433073",
-          "Installation of glass and mirrors for buildings 433081",
-          "Internal installations of elevators, moving buildings, and insulation 433092",
-          "Brick installation works 439011",
-          "Stone installation works 439012",
-          "Swimming pool construction 439030",
-          "Rental of construction equipment with operator 439050",
+          "Construction of all types of residential buildings 410010",
+          "General constructions of government buildings 410023",
+          "Erection of prefabricated constructions on the site 410030",
+          "remodeling or renovating existing residential and non residential structures 410040",
+          "Drilling and earth moving for site preparation purposes 431210",
+          "Landfill 431220",
+          "Installation maintenance and repair of plumbing and sanitary equipment 432230",
+          "Installation, maintenance and repair of refrigeration or air-conditioning equipment 432240",
+          "Building finishing 433010",
+          "Installation of doors (except automated and revolving), windows, door and window frames, fitted kitchens, staircases of wood 433021",
+          "Installation of doors (except automated and revolving), windows, door and window frames, fitted kitchens, staircases of aluminum 433022",
+          "Installation of doors (except automated and revolving), windows, door and window frames, fitted kitchens, staircases of steel 433023",
+          "Installation of umbrellas and a fences 433024",
+          "Interior completion such as ceilings, wooden wall coverings, movable partitions, etc. 433030",
+          "Installation of ceramic 433041",
+          "Installation of marble 433042",
+          "Installation of cut stone tiles 433043",
+          "Installation of granite 433044",
+          "Works and installation of various decorations 433061",
+          "Works of plaster or stucco 433071",
+          "Interior and exterior painting of buildings 433072",
+          "Painting of civil engineering structures 433073",
+          "Installation of glass, mirrors of buildings 433081",
+          "Interior installation of shops, mobile homes, boats etc. 433092",
+          "Bricklaying 439011",
+          "Stone setting 439012",
+          "Construction of outdoor swimming pools 439030",
+          "Renting of construction machinery and equipment with operator 439050",
         ],
         managers: [
-          "Khaled Mohammed Hamad Al-Bassam"
-        ],
+          "KHALID MOHAMMED H ALBASSAM"        ],
       };
     }
 
@@ -142,7 +140,11 @@ function App() {
       menuTitle: "القائمة",
       notice:
         "المركز السعودي للتنافسية والأعمال غير مسؤول عن أي نقص أو اختلاف في البيانات، حيث يتم استرجاع البيانات بالتكامل مع الجهات المعنية.",
-      companyName: <>شركة <span className="mobile-underline">ميلاد الإبداع</span> للمقاولات</>,
+      companyName: (
+        <>
+          شركة <span className="mobile-underline">ميلاد الإبداع</span> للمقاولات
+        </>
+      ),
       active: "نشط",
       entityType: "نوع المنشأة",
       entityTypeValue: "شركة",
@@ -187,27 +189,27 @@ function App() {
         "تركيب الأدوات الصحية وصيانتها وإصلاحها 432230",
         "تركيب أنظمة التبريد وتكييف الهواء وصيانتها وإصلاحها 432240",
         "تشطيب المباني 433010",
-        "تركيب الأبواب والشبابيك وإطارات الأبواب الشترشوب والدربزينات والسلالم والمطابخ الخشبية 433021",
-        "تركيب الأبواب والشبابيك وإطارات الأبواب الشترشوب والدربزينات والسلالم والمطابخ الألومنيوم 433022",
-        "تركيب الأبواب والشبابيك وإطارات الأبواب الشترشوب والدربزينات والسلالم والمطابخ المعدنية 433023",
-        "تركيب المظلات والسواتر 433024",
-        "تركيب الأسقف الداخلية والحواجز وتلبيس الجدران بالأخشاب 433030",
-        "تركيب السيراميك والكاشي 433041",
+        "تركيب الأبواب والشبابيك وإطارات الأبواب والشبابيك والمطابخ المجهزة والسلالم الخشبية 433021",
+        "تركيب الأبواب والشبابيك وإطارات الأبواب والشبابيك والمطابخ المجهزة والسلالم الألومنيوم 433022",
+        "تركيب الأبواب والشبابيك وإطارات الأبواب والشبابيك والمطابخ المجهزة والسلالم الفولاذية 433023",
+        "تركيب المظلات والأسوار 433024",
+        "الأعمال الداخلية مثل الأسقف وتكسية الجدران الخشبية والفواصل المتحركة وغيرها 433030",
+        "تركيب السيراميك 433041",
         "تركيب الرخام 433042",
-        "تركيب الحجر 433043",
-        "تركيب القرميد 433044",
-        "أعمال وتركيب الديكورات المختلفة 433061",
-        "أعمال التجصيص والمساح 433071",
-        "أعمال الدهانات والطلاء للمباني الداخلية والخارجية 433072",
-        "أعمال الدهانات والطلاء لهياكل الهندسة المدنية 433073",
-        "تركيب الزجاج والمرايا للمباني 433081",
-        "التركيبات الداخلية للمصاعد والمباني المتحركة والعوازل 433092",
-        "أعمال تركيب الطابوق 439011",
-        "أعمال تركيب الحجر 439012",
-        "إنشاء حمامات السباحة 439030",
-        "تأجير معدات التشييد والبناء مع مشغل 439050",
+        "تركيب بلاط الحجر المقطوع 433043",
+        "تركيب الجرانيت 433044",
+        "أعمال وتركيب الزخارف المختلفة 433061",
+        "أعمال الجبس أو الجص 433071",
+        "أعمال دهان المباني من الداخل والخارج 433072",
+        "دهان منشآت الهندسة المدنية 433073",
+        "تركيب زجاج ومرايا المباني 433081",
+        "التركيبات الداخلية للمحال والبيوت المتنقلة والقوارب وغيرها 433092",
+        "أعمال الطوب 439011",
+        "تركيب الحجر 439012",
+        "إنشاء أحواض السباحة الخارجية 439030",
+        "تأجير معدات وآلات التشييد مع مشغل 439050",
       ],
-      managers: ["خالد محمد حمد البسام"],
+      managers: ["خالد محمد حمد البسام", "عمرو عبدالقادر دسوقي أشيبة"],
     };
   }, [isEnglish, isZoomed]);
 
@@ -295,11 +297,35 @@ function App() {
                   aria-label={t.menuTitle}
                   onClick={() => setIsHeaderMenuOpen(true)}
                 >
-                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M4 6H20" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M4 12H14" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M4 18H20" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
+                  <svg
+                    width="30"
+                    height="30"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M4 6H20"
+                      stroke="white"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M4 12H14"
+                      stroke="white"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M4 18H20"
+                      stroke="white"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </button>
               </div>
             </div>
@@ -350,7 +376,9 @@ function App() {
             <div className="company-main-grid">
               <div className="info-item">
                 <span>{t.registrationType}</span>
-                <strong className="badge-value">{t.registrationTypeValue}</strong>
+                <strong className="badge-value">
+                  {t.registrationTypeValue}
+                </strong>
               </div>
 
               <div className="info-item">
@@ -368,7 +396,7 @@ function App() {
                 <strong>
                   <DatePair
                     hijriDate="1432-11-07"
-                    gregDate="05-10-2011"
+                    gregDate="2011-10-05"
                     dir={t.dir}
                   />
                 </strong>
@@ -379,7 +407,7 @@ function App() {
                 <strong>
                   <DatePair
                     hijriDate="1448-09-24"
-                    gregDate="03-03-2027"
+                    gregDate="2027-03-03"
                     dir={t.dir}
                   />
                 </strong>
@@ -452,12 +480,11 @@ function App() {
         </section>
       </main>
 
-     {isHeaderMenuOpen && (
+      {isHeaderMenuOpen && (
         <div
           className="header-menu-overlay"
           onClick={() => setIsHeaderMenuOpen(false)}
         >
-          {/* تم إضافة زر الإغلاق هنا ليكون في الجزء المظلم كما في الصورة */}
           <button
             type="button"
             className="drawer-outside-close-btn"
@@ -471,7 +498,6 @@ function App() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="header-menu-body">
-              {/* زر منصة الأعمال الرئيسي */}
               <a
                 href={businessLink}
                 target="_blank"
@@ -484,18 +510,24 @@ function App() {
                 </span>
               </a>
 
-              {/* قائمة الخيارات (اللغة وحجم الخط) */}
               <div className="sidebar-list">
                 <div className="sidebar-list-item">
-                  <span className="sidebar-item-label">{t.dir === "rtl" ? "اللغة" : "Language"}</span>
+                  <span className="sidebar-item-label">
+                    {t.dir === "rtl" ? "اللغة" : "Language"}
+                  </span>
                   <button className="sidebar-outline-btn" onClick={toggleLanguage}>
                     {t.languageBtn}
                   </button>
                 </div>
 
                 <div className="sidebar-list-item">
-                  <span className="sidebar-item-label">{t.dir === "rtl" ? "حجم الخط" : "Font Size"}</span>
-                  <button className="sidebar-outline-btn zoom-btn" onClick={toggleZoom}>
+                  <span className="sidebar-item-label">
+                    {t.dir === "rtl" ? "حجم الخط" : "Font Size"}
+                  </span>
+                  <button
+                    className="sidebar-outline-btn zoom-btn"
+                    onClick={toggleZoom}
+                  >
                     <ZoomButtonLabel zoomed={isZoomed} />
                   </button>
                 </div>

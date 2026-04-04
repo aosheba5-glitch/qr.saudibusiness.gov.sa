@@ -5711,3 +5711,67 @@ html body .page-content,
 html body .container-main {
   padding-top: 0 !important;
 }
+
+
+
+
+
+
+
+
+
+/* ======================================================= */
+/* 🏢 مطابقة اسم الشركة والخطوط للنسخة المطلوبة (بدون Bold) */
+/* ======================================================= */
+
+/* 1. إزالة السماكة (Bold) من اسم الشركة وتنعيم الخط */
+html body .page[dir="ltr"] .company-name,
+html body .page[dir="ltr"] .company-title,
+html body .page[dir="ltr"] .profile-name,
+html body .page[dir="ltr"] .header-title h1,
+html body .page[dir="ltr"] .header-title h2,
+html body .page[dir="ltr"] h1, 
+html body .page[dir="ltr"] h2 {
+  font-weight: 500 !important; /* السر هنا: لغينا الـ Bold القوي وخليناه متوسط/أنيق */
+  font-size: 18px !important;  /* حجم مناسب ومطابق للصورة */
+  line-height: 1.5 !important; /* مسافة مريحة بين السطرين */
+}
+
+/* 2. لمسة إضافية: تفتيح لون العناوين الفرعية (الرمادي) لتتطابق مع المطلوب */
+html body .page[dir="ltr"] .info-item > span:first-child,
+html body .page[dir="ltr"] .info-label,
+html body .page[dir="ltr"] .text-muted {
+  color: #83889b !important; /* درجة رمادي أفتح وأهدى زي الصورة المطلوبة */
+  font-weight: 400 !important;
+}
+
+
+/* ======================================================= */
+/* 📏 زيادة مسافات التباعد وتصغير الخطوط في البيانات (للإنجليزي) */
+/* ======================================================= */
+
+/* 1. زيادة التباعد العمودي بين العناصر عشان تتنفس وتبقى مريحة للعين */
+html body .page[dir="ltr"] .info-item {
+  margin-bottom: 18px !important; /* كبرنا المسافة بين كل بلوك واللي تحته */
+}
+
+/* زيادة المسافة لو التصميم شغال بنظام الشبكة (Grid) */
+html body .page[dir="ltr"] .company-main-grid,
+html body .page[dir="ltr"] .info-grid {
+  row-gap: 22px !important; 
+}
+
+/* 2. تصغير خط العناوين الفرعية (الرمادي) وإضافة تباعد داخلي */
+html body .page[dir="ltr"] .info-item > span:first-child,
+html body .page[dir="ltr"] .info-label,
+html body .page[dir="ltr"] .text-muted {
+  font-size: 12px !important; /* صغرنا الخط درجة ليكون أنيق */
+  margin-bottom: 6px !important; /* مسافة صغيرة بين العنوان الرمادي والقيمة اللي تحته */
+  display: block !important;
+}
+
+/* 3. تصغير خط القيم الأساسية (الأسود) درجة */
+html body .page[dir="ltr"] .info-item > span:last-child,
+html body .page[dir="ltr"] .info-item strong {
+  font-size: 12px !important; /* صغرنا خط الأرقام والنصوص درجة عشان يطابق الرسمي */
+}
