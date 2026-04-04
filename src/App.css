@@ -301,6 +301,7 @@ font-family: 'Cairo', sans-serif;
   font-size: 34px;
   line-height: 1;
   cursor: pointer;
+  
 }
 
 /* ===== CONTENT ===== */
@@ -621,27 +622,21 @@ font-family: 'Cairo', sans-serif;
 
 .info-item strong {
   color: #0f1735;
-  font-size: calc(15px * var(--zoom-scale));
-  font-weight: 800;
+  font-size: calc(12px * var(--zoom-scale));
+  font-weight: 550;
   line-height: 1.5;
 }
-
-.badge-value {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: fit-content;
-  min-height: calc(30px * var(--space-scale));
-  background: #ebe8f8;
-  border: 1px solid #cdc6e7;
-  color: #0f2d78 !important;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.96), 0 0 1px rgba(15,45,120,0.18);
-  border-radius: 11px;
-  padding: calc(4px * var(--space-scale)) calc(12px * var(--space-scale));
-  font-size: calc(12px * var(--zoom-scale));
-  font-weight: 800;
-  line-height: 1;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 1px 2px rgba(56,62,104,0.06);
+/* --- إصلاح وسام "سجل رئيسي" ليتغلب على اللون الأسود --- */
+.info-item strong.badge-value {
+  background: #f0eef6 !important; /* خلفية بنفسجية فاتحة جداً */
+  border: 1px solid #d8d4e7 !important;
+  color: #262968 !important; /* اللون الأزرق الغامق النقي */
+  border-radius: 10px !important;
+  padding: 6px 18px !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .page[dir="rtl"] .badge-value {
@@ -655,7 +650,7 @@ font-family: 'Cairo', sans-serif;
 .dates-row {
   display: flex;
   flex-wrap: nowrap;
-  gap: 8px;
+  gap: 10px;
 }
 
 .dates-row-ltr {
@@ -666,49 +661,48 @@ font-family: 'Cairo', sans-serif;
   display: inline-flex;
   align-items: stretch;
   justify-content: center;
-  min-width: 0;
-  height: calc(28px * var(--space-scale));
-  border-radius: 14px;
+  min-width: 140px;
+  height: 36px;
+  border-radius: 12px; /* حواف دائرية ناعمة كما في الصورة */
   overflow: hidden;
   white-space: nowrap;
-  border: 1px solid #c9c3de;
-  background: #f2f0f9;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 2px 6px rgba(45, 39, 91, 0.08);
+  border: 1px solid #d6d1e8;
+  background: #eeeaf4; /* لون خلفية التاريخ */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03); /* ظل خفيف جداً يطابق الصورة */
 }
-
+/* تنسيق مربع الحرف (هـ / م) */
 .date-chip-era {
-  min-width: calc(30px * var(--space-scale));
-  padding: 0 calc(9px * var(--space-scale));
-  background: #cfc9e6;
-  color: #0f2d78 !important;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.94), 0 1px 2px rgba(15,45,120,0.16);
+  min-width: 38px;
+  padding: 0;
+  background: #cdc5e3; /* لون خلفية الحرف (أغمق قليلاً) */
+  color: #171c50; /* لون كحلي داكن */
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(12px * var(--zoom-scale));
+  font-size: 16px;
   font-weight: 800;
   line-height: 1;
-  border-inline-start: 1px solid #beb7d6;
+  border-inline-end: 1px solid #d6d1e8; /* الخط الفاصل بين الحرف والتاريخ */
 }
 
+/* لضبط الخط الفاصل في النسخة الإنجليزية */
 .page[dir="ltr"] .date-chip-era {
+  border-inline-end: 1px solid #d6d1e8;
   border-inline-start: none;
-  border-inline-end: 1px solid #beb7d6;
 }
-
+/* تنسيق الأرقام */
 .date-chip-value {
-  padding: 0 calc(16px * var(--space-scale));
-  background: #f2f0f9;
-  color: #0f2d78 !important;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.98), 0 1px 2px rgba(15,45,120,0.16);
+  padding: 0 16px;
+  background: transparent;
+  color: #171c50; /* لون الأرقام */
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(12px * var(--zoom-scale));
+  font-size: 16px;
   font-weight: 800;
   line-height: 1;
+  flex-grow: 1;
 }
-
 .money {
   display: inline-flex;
   align-items: center;
@@ -3775,9 +3769,9 @@ html body .page .notice-inline-icon {
 /* حل مشكلة التداخل والتباعد عند الزووم */
 
 /* 1. إرجاع الهيدر للتدفق الطبيعي بدلاً من Absolute */
-.hero-inner {
+/* .hero-inner {
   position: relative !important; /* هذا السطر يمنع التباعد عند 200% */
-  inset: auto !important; 
+  /* inset: auto !important; 
   height: auto !important;
   min-height: 240px;
   display: flex !important;
@@ -3785,33 +3779,33 @@ html body .page .notice-inline-icon {
   justify-content: flex-start !important;
   padding-top: clamp(30px, 6vh, 60px) !important;
   z-index: 10 !important;
-}
+} */ 
 
 /* 2. جعل الحاوية الزرقاء مرنة لتتمدد مع الزووم */
-.hero {
+/* .hero {
   height: auto !important;
   min-height: 240px !important; /* يسمح للهيدر بالتمدد بدلاً من قص النص */
-  display: flex !important;
+  /* display: flex !important;
   flex-direction: column !important;
   overflow: visible !important;
-}
+}  */
 
 /* 3. سحب البانل الأبيض ليلتصق بالعنوان ومنع الفجوات */
-.content {
+/* .content {
   margin-top: -40px !important; /* سحب ثابت يمنع الفراغ */
-  position: relative !important;
+  /* position: relative !important;
   z-index: 20 !important;
-}
+}  */
 
 /* 4. معالجة وضع الموبايل (زووم 200% فأكثر) */
-@media (max-width: 700px) {
+/* @media (max-width: 700px) {
   .hero {
     min-height: 200px !important;
   }
   .content {
     margin-top: -30px !important;
   }
-}
+} */
 
 
 
@@ -3864,10 +3858,1951 @@ html body .page .notice-inline-icon {
 /*-----------------------تعديل الخط بتاع بيانات السجل التجارى -----------------------------*/
 
 /* تصغير حجم خط العنوان في الزووم والموبايل لمنع التداخل مع البانل */
+/* ================================================= */
+/* الحل النهائي: الحفاظ على 60% مع منع الانهيار في الزووم 200% */
+/* ================================================= */
+
+/* @media (max-width: 700px) { */
+  
+  /* 1. الدمج الذكي بين الـ vh والـ px */
+  /* .hero {
+    height: 60vh !important; /* شكل الهيدر الطبيعي */
+    /* min-height: 280px !important; /* 🎯 الفرامل: مهما عملت زووم 200%، الهيدر مستحيل يصغر عن 280 بيكسل */
+    /* overflow: visible !important;  */
+  /* } */ 
+
+  /* 2. سحب الكارت الأبيض */
+  /* .content {
+    margin-top: -60px !important; /* السحبة دي هتكون مستقرة دلوقتي */
+    /* position: relative !important; */
+    /* z-index: 100 !important;
+  }
+}  */
+
+/* إزالة الإطار (البردر) من حول زر القائمة نهائياً */
+.menu-toggle {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+
+/*---------------نيتو بار ابيض ---------------*/
+
+/* ================================================= */
+/* النسخة البيضاء الرسمية (مطابقة لتصميم المنصة بالمللي) */
+/* ================================================= */
+
+
+
+
+/*--------------------تعديل لون سجل رئيسي --------*/
+/* --- التعديل الإجباري لكلمة سجل رئيسي --- */
+
+
+
+/* --- إصلاح وسام "سجل رئيسي" (لون نقي بدون ظلال مشوهة) --- */
+.badge-value {
+  background: #f0eef6 !important; /* خلفية بنفسجية فاتحة جداً وراقية */
+  border: 1px solid #d8d4e7 !important; /* إطار متناسق */
+  color: #262968 !important; /* لون أزرق غامق نقي واحترافي */
+  border-radius: 10px !important;
+  padding: 6px 18px !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  text-shadow: none !important; /* إزالة الظل الأبيض البشع تماماً */
+  box-shadow: none !important;
+}
+
+/* --- إصلاح مربعات التواريخ (شكل أنيق ومرتب) --- */
+.date-chip {
+  display: inline-flex !important;
+  align-items: stretch !important;
+  justify-content: center !important;
+  height: 32px !important;
+  border-radius: 10px !important;
+  border: 1px solid #d8d4e7 !important;
+  background: #f5f4f9 !important;
+  overflow: hidden !important;
+}
+
+.date-chip-era {
+  background: #e3dff0 !important; /* تمييز خفيف لمربع الحرف */
+  color: #262968 !important;
+  padding: 0 12px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 10px !important;
+  font-weight: 550 !important;
+  border-inline-end: 1px solid #d8d4e7 !important; /* الخط الفاصل بين الحرف والتاريخ */
+}
+
+.date-chip-value {
+  color: #262968 !important; /* لون التاريخ أزرق غامق */
+  padding: 0 14px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 10px !important;
+  font-weight: 550 !important;
+  background: transparent !important;
+}
+
+/* --- إصلاح وسام "ذات مسؤولية محدودة" --- */
+.meta-badge {
+  background: #ffffff !important;
+  border: 1px solid #e1e3ea !important;
+  color: #42465e !important;
+  border-radius: 8px !important;
+  padding: 0 10px !important;
+  font-weight: 550 !important;
+  box-shadow: none !important;
+}
+
+
+
+
+/*---------------تعديل بانل بشكل احترافي مهم جدا بتاع ميلاد الابداع ---------------*/
+
+
+
+
+/* إجبار تصغير حجم شريحة التاريخ */
+.date-chip {
+  display: inline-flex !important;
+  align-items: stretch !important;
+  height: 28px !important; /* الارتفاع الصغير المطلوب */
+  border-radius: 8px !important;
+  border: 1px solid #c9c3de !important;
+  background: #f2f0f9 !important;
+  overflow: hidden !important;
+  min-width: 120px !important;
+}
+
+/* تصغير حجم الحرف (هـ / م) */
+.date-chip-era {
+  background: #cfc9e6 !important;
+  color: #2f3189 !important;
+  padding: 0 10px !important;
+  font-size: 11px !important; /* خط صغير جداً للحرف */
+  font-weight: 800 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  border-inline-end: 1px solid #beb7d6 !important;
+}
+
+/* تصغير حجم أرقام التاريخ */
+.date-chip-value {
+  color: #2f3189 !important;
+  padding: 0 10px !important;
+  font-size: 12px !important; /* خط صغير للأرقام */
+  font-weight: 800 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+
+/* تصغير الجزء الخاص بالحرف هـ / م */
+.date-chip-era {
+  min-width: 26px !important; /* تقليل العرض ليكون ملموم أكثر */
+  padding: 0 !important;
+  background: #cfc9e6 !important;
+  color: #2f3189 !important;
+  font-size: 11px !important; /* تصغير الخط */
+  font-weight: 800 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-inline-end: 1px solid #beb7d6 !important;
+}
+
+/* تصغير المربع بالكامل وتنسيقه */
+.date-chip {
+  height: 26px !important; /* ارتفاع أقل للرشاقة */
+  min-width: 110px !important; /* تقليل العرض الكلي */
+  border-radius: 6px !important; /* حواف أنعم */
+  border: 1px solid #c9c3de !important;
+  background: #f2f0f9 !important;
+  display: inline-flex !important;
+  overflow: hidden !important;
+}
+
+/* ضبط أرقام التاريخ داخل المربع */
+.date-chip-value {
+  padding: 0 8px !important; /* تقليل المسافات الجانبية */
+  font-size: 12px !important; /* خط متناسق */
+  color: #2f3189 !important;
+  font-weight: 800 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-grow: 1 !important;
+}
+
+/* --- تصغير الخط درجتين للعناوين والقيم --- */
+
+/* 1. تصغير خط العنوان (الرياض حي الملز...) */
+.info-item strong {
+  font-size: 11.5px !important; /* تقليل إضافي ليصل للشكل المطلوب */
+  letter-spacing: -0.1px !important;
+}
+
+/* 2. تصغير خط العناوين الفرعية (مثل: رقم السجل، التاريخ) */
+.info-item span {
+  font-size: 11px !important; /* تصغير العناوين الجانبية لتتناسق مع المحتوى */
+}
+
+/* 3. تصغير الخط داخل مربعات التاريخ */
+.date-chip-value {
+  font-size: 10.5px !important; /* تصغير أرقام التاريخ درجتين */
+  padding: 0 6px !important;
+}
+
+.date-chip-era {
+  font-size: 9.5px !important; /* تصغير الحرف هـ / م درجتين */
+  min-width: 22px !important; /* تقليل العرض قليلاً ليناسب الخط الجديد */
+}
+
+/* 4. تصغير خط "سجل رئيسي" ليبقى متناسقاً */
+.badge-value {
+  font-size: 12px !important;
+  padding: 2px 12px !important;
+  min-height: 26px !important;
+}
+
+
+/* ==============================================================
+   تنسيق نص التنبيه في الموبايل (ليصبح 3 أسطر)
+============================================================== */
+
 @media (max-width: 700px) {
-  .page-title {
-    font-size: 24px !important; /* حجم خط مناسب مش هيكسر سطر جديد بسهولة */
-    line-height: 1.2 !important; /* لم المسافة بين السطور */
-    margin-bottom: 5px !important;
+  /* استهداف النص داخل صندوق التنبيه */
+  .notice-text {
+    font-size: 11.5px !important; /* تصغير الخط ليتناسب مع عرض الموبايل */
+    line-height: 1.6 !important;  /* براح بين السطور عشان الكلام ميبقاش محشور */
+    text-align: center !important; /* توسيط النص ليعطي شكل الـ 3 أسطر الاحترافي */
+    padding: 0 10px !important;   /* مسافة جانبية بسيطة */
+    display: block !important;
+  }
+
+  /* تكبير الصندوق الأبيض شوية عشان يشيل الـ 3 أسطر مرتاحين */
+  .notice {
+    padding: 12px 10px !important; 
+    height: auto !important;
+    min-height: 85px !important;
+  }
+}
+
+/* ==============================================================
+   الضبط النهائي: سطرين فقط، محاذاة يمين، وزن خفيف 500
+============================================================== */
+
+@media (max-width: 700px) {
+  .notice-text {
+    /* تكبير الخط سنة بسيطة عشان يفرش لسطرين بس */
+    font-size: 11.5px !important; 
+    
+    /* الوزن المطلوب: 500 (خفيف) */
+    font-weight: 450 !important; 
+    
+    /* المحاذاة تبدأ من اليمين تماماً */
+    text-align: right !important; 
+    direction: rtl !important;
+    
+    /* ضبط الارتفاع لضمان السطرين */
+    line-height: 1.4 !important;
+    display: block !important;
+    padding-right: 5px !important; /* مسافة بسيطة عن الأيقونة */
+    margin: 0 !important;
+  }
+
+  .notice {
+    /* تقليل المسافة الداخلية لزيادة العرض المتاح للنص */
+    padding: 8px 10px !important; 
+    min-height: 45px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important; /* البداية من اليمين */
+  }
+}
+
+
+
+
+/*-----------اجبار المينو الجانبي يكون مظبوط-----------------*/
+
+/* ======================================================= */
+/* ===== التعديل الإجباري للقائمة الجانبية (Sidebar) ===== */
+/* ======================================================= */
+
+
+/* ======================================================= */
+/* ===== التعديل الإجباري للقائمة الجانبية (النسخة المحدثة) ===== */
+/* ======================================================= */
+
+/* 1. إخفاء الخلفية المظللة في الويب وإظهارها في الموبايل فقط (Overlay) */
+.header-menu-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  background: transparent !important; /* شفاف في الويب */
+  backdrop-filter: none !important;
+  z-index: 9999 !important;
+  display: flex !important;
+}
+
+@media (max-width: 768px) {
+  .header-menu-overlay {
+    background: rgba(18, 22, 44, 0.5) !important; /* مظلل في الموبايل */
+    backdrop-filter: blur(3px) !important;
+  }
+}
+
+/* 2. تكبير عرض الجزء الأبيض (القائمة) */
+.header-menu-drawer {
+  position: absolute !important;
+  top: 0 !important;
+  width: 380px !important; /* تم التكبير هنا (كان 320) */
+  max-width: 88vw !important;
+  height: 100vh !important;
+  background: #ffffff !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18) !important;
+  z-index: 10000 !important;
+}
+
+.page[dir="rtl"] .header-menu-drawer {
+  left: 0 !important;
+  right: auto !important;
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+.page[dir="ltr"] .header-menu-drawer {
+  right: 0 !important;
+  left: auto !important;
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+/* زر الإغلاق الخارجي (X) - مخفي في الويب ويظهر في الموبايل مع الـ Overlay */
+.drawer-outside-close-btn {
+  position: absolute !important;
+  top: 20px !important;
+  right: 20px !important;
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  font-size: 32px !important;
+  cursor: pointer !important;
+  z-index: 10000 !important;
+  display: none !important; /* مخفي في الويب */
+}
+
+@media (max-width: 768px) {
+  .drawer-outside-close-btn {
+    display: block !important; /* يظهر في الموبايل للتحكم في الإغلاق */
+  }
+}
+
+/* ضبط الهوامش الداخلية والـ Overflow (السكرول) */
+.header-menu-body {
+  padding: 40px 24px 24px !important; 
+  overflow-y: auto !important; 
+  overflow-x: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 30px !important;
+}
+
+/* ======================================================= */
+/* 3. تعديل ألوان الأزرار لتطابق الصور الجديدة (بنفسجي)   */
+/* ======================================================= */
+
+/* زر منصة الأعمال الرئيسي */
+.business-sidebar-btn {
+  background-color: #857ca3 !important; /* اللون البنفسجي المطابق لصورك */
+  color: #ffffff !important;
+  border: none !important;
+  padding: 12px 18px !important;
+  border-radius: 10px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  font-family: 'Cairo', sans-serif !important;
+  font-size: 20px !important; 
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  width: 100% !important;
+  text-decoration: none !important;
+}
+
+.business-sidebar-btn .sidebar-btn-icon {
+  border: 2px solid #ffffff !important;
+  border-radius: 8px !important;
+  width: 32px !important;
+  height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.business-sidebar-btn .sidebar-btn-icon img {
+  width: 16px !important;
+  height: 16px !important;
+  filter: brightness(0) invert(1) !important;
+}
+
+.page[dir="rtl"] .sidebar-btn-icon img {
+  transform: rotate(180deg) !important; /* لفة السهم لليسار في العربي */
+}
+
+/* قائمة الخيارات */
+.sidebar-list {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.sidebar-list-item {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 20px 0 !important;
+  border-bottom: 1.5px solid #f0f0f0 !important;
+}
+
+.sidebar-item-label {
+  font-family: 'Cairo', sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  color: #11152b !important;
+}
+
+/* أزرار اللغة وحجم الخط (تعديل لتصبح صلبة بنفسجية اللون) */
+.sidebar-outline-btn {
+  background-color: #857ca3 !important; /* نفس لون الزر الرئيسي */
+  border: none !important;
+  color: #ffffff !important; /* النص باللون الأبيض */
+  padding: 6px 14px !important;
+  border-radius: 8px !important;
+  font-family: 'Cairo', sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 54px !important;
+  min-height: 42px !important;
+}
+
+.sidebar-outline-btn .zoom-btn-text,
+.sidebar-outline-btn .zoom-sign,
+.sidebar-outline-btn .zoom-btn-letter {
+  color: #ffffff !important; /* إجبار اللون الأبيض للعلامات بداخلها */
+}
+
+/* ======================================================= */
+/* 4. إجبار القائمة البيضاء على ملء شاشة الموبايل بالكامل  */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* جعل القائمة البيضاء تأخذ 100% من عرض الشاشة */
+  .header-menu-drawer {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* تغيير لون زر الإغلاق (X) لداكن ليظهر بوضوح على الخلفية البيضاء */
+  .drawer-outside-close-btn {
+    color: #11152b !important; /* لون كحلي غامق */
+    z-index: 10001 !important; /* لضمان ظهوره فوق القائمة */
+    top: 30px !important; /* تظبيط المسافة من فوق */
+  }
+}
+
+
+
+/*----------تعديل القايمه الجانيه موبيل --------------------------*/
+
+
+/* ======================================================= */
+/* 6. إصلاح مكان القائمة (يسار) وزر الإغلاق (يمين) وتفعيل الاسكرول */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. القائمة البيضاء تفتح من اليسار (Left) مع ترك مساحة للضباب */
+  .page[dir="rtl"] .header-menu-drawer,
+  .header-menu-drawer {
+    width: calc(100% - 60px) !important; /* هنسيب 60 بيكسل للضباب في اليمين */
+    max-width: 400px !important;
+    left: 0 !important; /* إجبار القائمة تكون على الشمال */
+    right: auto !important;
+  }
+
+  /* 2. زر الإغلاق (X) يظهر في اليمين (Right) فوق الضباب */
+  .page[dir="rtl"] .drawer-outside-close-btn,
+  .drawer-outside-close-btn {
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    width: 60px !important; /* نفس عرض مساحة الضباب */
+    height: 60px !important;
+    color: #ffffff !important; /* أبيض عشان ينور على الضباب */
+    font-size: 34px !important;
+    top: 20px !important;
+    right: 0 !important; /* إجبار الـ X تكون في اليمين */
+    left: auto !important;
+    font-weight: 300 !important;
+  }
+
+  /* 3. تظبيط وتفعيل الاسكرول (Scroll) جوه القائمة */
+  .header-menu-body {
+    max-height: 100vh !important;
+    overflow-y: auto !important; /* تفعيل الاسكرول العمودي */
+    overflow-x: hidden !important;
+    padding-bottom: 50px !important; /* مسافة أمان من تحت عشان مفيش محتوى يستخبى */
+  }
+}
+/* ======================================================= */
+/* إرجاع أزرار اللغة (En و A+) للشكل المفرغ كما في الأصل  */
+/* ======================================================= */
+.sidebar-outline-btn {
+  background-color: transparent !important; /* خلفية شفافة/بيضاء */
+  border: 1px solid #11152b !important; /* إطار كحلي */
+  color: #11152b !important; /* نص كحلي */
+  padding: 6px 14px !important;
+  border-radius: 8px !important;
+  font-family: 'Cairo', sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 48px !important;
+  min-height: 40px !important;
+}
+
+/* إجبار لون النص والرموز بداخل أزرار اللغة ليكون داكناً */
+.sidebar-outline-btn .zoom-btn-text,
+.sidebar-outline-btn .zoom-sign,
+.sidebar-outline-btn .zoom-btn-letter {
+  color: #11152b !important; 
+}
+
+
+
+/* ======================================================= */
+/* 🎯 الإصلاح النهائي لزر "منصة الأعمال" (بدون تمدد + محاذاة لليمين) */
+/* ======================================================= */
+
+.header-menu-drawer .business-sidebar-btn {
+  /* 1. منع التمدد بعرض الشاشة */
+  width: max-content !important;       
+  min-width: 0 !important;
+  
+  /* 2. إجبار الزرار يلزق في اليمين تماماً */
+  align-self: flex-start !important;   
+  margin-right: 0 !important;
+  margin-left: auto !important;
+
+  /* 3. التنسيق الداخلي للزرار */
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  padding: 8px 16px !important;
+  background-color: #726b96 !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+}
+
+/* 4. ضبط حجم المربع الأبيض حول السهم ليطابق الصورة */
+.header-menu-drawer .business-sidebar-btn .sidebar-btn-icon {
+  border: 2px solid #ffffff !important;
+  border-radius: 6px !important;
+  width: 26px !important;
+  height: 26px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* 5. ضبط اتجاه السهم لليسار (←) وجعله باللون الأبيض */
+.page[dir="rtl"] .business-sidebar-btn .sidebar-btn-icon img {
+  width: 14px !important;
+  height: 14px !important;
+  transform: rotate(180deg) !important; /* يعكس السهم لليسار */
+  filter: brightness(0) invert(1) !important; /* يضمن أن اللون أبيض */
+}
+
+
+/* ======================================================= */
+/* 🔄 التعديل الأخير: القائمة في اليسار والـ X في اليمين */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. إجبار القائمة البيضاء تفتح من اليسار (Left) */
+  .page[dir="rtl"] .header-menu-drawer,
+  .header-menu-drawer {
+    left: 0 !important;
+    right: auto !important;
+  }
+
+  /* 2. إجبار زر الإغلاق (X) يروح أقصى اليمين (Right) فوق الضباب */
+  .page[dir="rtl"] .drawer-outside-close-btn,
+  .drawer-outside-close-btn,
+  .close-drawer-btn {
+    right: 0 !important;
+    left: auto !important;
+    
+    /* تظبيط مكان الـ X جوه المساحة الـ 60 بيكسل */
+    width: 60px !important;
+    display: flex !important;
+    justify-content: center !important;
+    top: 20px !important;
+  }
+}
+
+
+/* ======================================================= */
+/* 🎯 التعديل النهائي الدقيق: المسافات العلوية وتصغير الأزرار */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. إنزال المحتوى للأسفل (تزويد المسافة العلوية) وتقليل الفراغ بين العناصر */
+  .header-menu-body {
+    padding-top: 90px !important; /* السر هنا: نزلنا المحتوى لتحت */
+    gap: 15px !important;         /* تقليل المسافة بين زر المنصة والقائمة اللي تحته */
+  }
+
+  /* 2. تصغير زر "منصة الأعمال" وتنعيمه */
+  .header-menu-drawer .business-sidebar-btn {
+    padding: 6px 14px 6px 10px !important; /* تقليل الحجم الداخلي للزر */
+    font-size: 15px !important;            /* تصغير الخط */
+    border-radius: 6px !important;         /* تنعيم الحواف */
+    gap: 10px !important;                  /* تقليل المسافة بين الكلمة والمربع */
+  }
+
+  /* تصغير المربع الأبيض والسهم داخل زر منصة الأعمال */
+  .header-menu-drawer .business-sidebar-btn .sidebar-btn-icon {
+    width: 22px !important;
+    height: 22px !important;
+    border-radius: 4px !important;
+  }
+  
+  .header-menu-drawer .business-sidebar-btn .sidebar-btn-icon img {
+    width: 11px !important;
+    height: 11px !important;
+  }
+
+  /* 3. تصغير أزرار اللغة وحجم الخط (En / A+) */
+  .sidebar-outline-btn {
+    min-width: 40px !important;
+    min-height: 32px !important;
+    padding: 4px 8px !important;
+    font-size: 14px !important;
+    border-radius: 6px !important;
+  }
+
+  /* تصغير كلمات "اللغة" و "حجم الخط" لتليق مع الأزرار الجديدة */
+  .sidebar-item-label {
+    font-size: 15px !important;
+  }
+
+  /* تقليل المسافات بين سطور (اللغة) و (حجم الخط) */
+  .sidebar-list-item {
+    padding: 12px 0 !important;
+  }
+}
+
+
+
+/*-------------تعديل الانشظه ------------*/
+
+/* ======================================================= */
+/* 📋 إصلاح أنشطة السجل وقائمة المديرين (على قد الكلام ويمين) */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. إجبار الحاوية على رص العناصر تحت بعض */
+  .tags {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important; /* في العربي ده بيزقهم ناحية اليمين */
+    gap: 12px !important;
+  }
+
+  /* 2. المربعات البنفسجية (الأنشطة والمديرين) */
+  .tags span,
+  .managers span {
+    width: fit-content !important; /* السر هنا: المربع يلم على قد الكلام بالظبط */
+    max-width: 100% !important;    /* حماية عشان لو الكلام طويل ينزل سطر بدل ما يخرج بره الشاشة */
+    
+    text-align: right !important;  /* النص جوه المربع يبدأ من اليمين */
+    
+    /* إجبار إضافي للزق المربع في اليمين تماماً */
+    margin-right: 0 !important;
+    margin-left: auto !important; 
+    
+    padding: 12px 18px !important; /* تظبيط الهوامش الداخلية عشان يبقى شكلها مريح */
+    border-radius: 10px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* 3. زرار (+ 24 نشاطاً آخر) */
+  .more-activities-btn {
+    width: max-content !important;
+    text-align: left !important;
+    
+    /* في صورتك الأصلية الزرار ده محاذي لليسار، الكود ده هيعمل كده */
+    align-self: flex-end !important; 
+    margin-right: auto !important;
+    margin-left: 0 !important;
+    padding: 5px 0 10px 0 !important;
+    font-size: 15px !important;
+  }
+}
+
+
+
+/*----------تعديل الخط بتاع التاريخ --------*/
+
+
+/* ======================================================= */
+/* 📅 تكبير خط التاريخ درجة واحدة مع ضبط أبعاد المربع */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. تكبير أرقام التاريخ (مثل 1432-11-07) */
+  .date-chip-value {
+    font-size: 12.5px !important; /* تم التكبير درجة */
+    padding: 0 8px !important;    /* إعطاء مساحة جانبية ليتنفس الرقم */
+  }
+
+  /* 2. تكبير مربع الحرف (هـ / م) */
+  .date-chip-era {
+    font-size: 12.5px !important; /* تم تكبير الحرف درجة */
+    min-width: 24px !important;   /* تكبير عرض مربع الحرف ليستوعبه */
+  }
+
+  /* 3. زيادة ارتفاع المربع الكلي لتناسب الخط الجديد */
+  .date-chip {
+    height: 28px !important;      /* زيادة الارتفاع درجة ليتناسق مع الخط */
+    min-width: 115px !important;
+  }
+}
+
+
+
+
+/*--------------عمل الخط -------------------*/
+
+/* ======================================================= */
+/* 🖋️ إجبار جميع عناصر الموقع على استخدام خط Cairo */
+/* ======================================================= */
+
+*, 
+body, 
+.page, 
+button, 
+input, 
+textarea, 
+.notice-text, 
+h1, h2, h3, h4, h5, h6, 
+span, 
+strong, 
+a {
+  font-family: 'Cairo', sans-serif !important;
+}
+
+
+
+/*----------علامه التعجب بالملي ----------*/
+
+/* ======================================================= */
+/* 🎯 وضع الأيقونة يميناً (توسيط عمودي) والنص يسارها */
+/* ======================================================= */
+
+html body .page .notice-text {
+  display: flex !important;
+  align-items: center !important; /* السر: توسيط الأيقونة والنص عمودياً مهما زاد عدد السطور */
+  justify-content: flex-start !important;
+  gap: 16px !important; /* المسافة المريحة بين الأيقونة والكلام */
+  text-align: right !important;
+}
+
+html body .page .notice-inline-icon {
+  float: none !important; /* إلغاء نظام الطفو القديم اللي كان بيبوظ التوسيط */
+  margin: 0 !important; /* تصفير المسافات لأننا استخدمنا gap */
+  flex-shrink: 0 !important; /* حماية الأيقونة من الانضغاط لو الكلام كتر */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+
+
+/* ======================================================= */
+/* 🔍 تصغير خط التنبيه (الملاحظة) درجتين */
+/* ======================================================= */
+
+html body .page .notice-text {
+  font-size: 12px !important; /* تم تصغير الخط درجتين (كان 11.5px أو 12px) */
+  line-height: 1.6 !important; /* الحفاظ على مسافة مريحة بين السطور عشان يفضل مقروء */
+    /* font-weight: 1100 !important;جعل الخط بالوزن العادي (Regular)  */
+  }
+
+/* ======================================================= */
+/* ⚖️ إجبار سُمك خط التنبيه ليكون 400 في الموبايل تحديداً */
+/* ======================================================= */
+
+/* @media (max-width: 768px) {
+  html body div.page .notice .notice-text {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+  }
+}
+
+html body div.page .notice .notice-text {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+} */
+
+
+
+/* ======================================================= */
+/* 📱 التعديل النهائي لفوتر الموبايل (سطر واحد + اللوجو يمين) */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. إجبار الترتيب: اللوجو يمين والنص يسار في النسخة العربية */
+  html body .page[dir="rtl"] .footer-right-group {
+    display: flex !important;
+    flex-direction: row !important; /* هذا السطر يجبر اللوجو ليكون في اليمين */
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  /* ترتيب النسخة الإنجليزية (اللوجو يسار) */
+  html body .page[dir="ltr"] .footer-right-group {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  /* 2. إجبار النص ليكون على سطر واحد فقط */
+  html body .page .footer-right-text {
+    white-space: nowrap !important; /* السر هنا: منع النزول لسطرين نهائياً */
+    max-width: none !important; /* إلغاء التقييد القديم للعرض */
+    font-size: 11.5px !important; /* تصغير الخط درجة بسيطة لضمان ظهوره في سطر واحد */
+    color: #2f3450 !important;
+  }
+
+  /* 3. تظبيط الخط الفاصل للنسخة العربية (يمين النص) */
+  html body .page[dir="rtl"] .footer-right-text {
+    border-right: 1.5px solid #dcdce6 !important; 
+    border-left: none !important;
+    padding-right: 12px !important;
+    margin-right: 12px !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  /* تظبيط الخط الفاصل للنسخة الإنجليزية (يسار النص) */
+  html body .page[dir="ltr"] .footer-right-text {
+    border-left: 1.5px solid #dcdce6 !important; 
+    border-right: none !important;
+    padding-left: 12px !important;
+    margin-left: 12px !important;
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* 4. تظبيط حجم اللوجو ليتناسق مع السطر الواحد */
+  html body .page .footer-logo-image {
+    width: 75px !important;
+    height: auto !important;
+    flex-shrink: 0 !important; /* منع انضغاط أو تشوه اللوجو */
+    margin: 0 !important;
+  }
+}
+
+/* ======================================================= */
+/* 📱 إجبار جملة "جميع الحقوق محفوظة" لتكون على سطر واحد */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  html body .page .footer-bottom span:first-child {
+    max-width: none !important;      /* إلغاء حاجز الـ 250 بيكسل القديم */
+    white-space: nowrap !important;  /* السر: منع النزول لسطر جديد إجبارياً */
+    font-size: 11px !important;      /* تصغير الخط درجة لضمان احتواء الشاشة للجملة كاملة */
+    width: auto !important;
+    display: inline-block !important; 
+  }
+}
+
+
+/* ======================================================= */
+/* ✉️ إزالة الخط من تحت البريد الإلكتروني */
+/* ======================================================= */
+
+.contact-grid .info-item .mobile-underline,
+.contact-grid .info-item strong {
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+/* ======================================================= */
+/* 🔎 تكبير خطوط الفوتر (الهيئة، الروابط، والحقوق) لمطابقة الصورة */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. تكبير جملة "تطوير الهيئة السعودية..." */
+  html body .page .footer-right-text {
+    font-size: 13.5px !important; /* تكبير الخط */
+    font-weight: 600 !important;  /* إعطاء سُمك للخط ليكون واضحاً */
+  }
+
+  /* 2. تكبير الروابط (سياسة الخصوصية، الشروط والأحكام، الأسئلة الشائعة) */
+  html body .page .footer-links a {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+  }
+
+  /* 3. تكبير جملة "جميع الحقوق محفوظة..." ورقم الإصدار */
+  html body .page .footer-bottom span,
+  html body .page .footer-bottom span:first-child {
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+  }
+
+  /* 4. تكبير اللوجو (SDAIA) درجة بسيطة ليتناسق مع الحجم الجديد للخط */
+  html body .page .footer-logo-image {
+    width: 85px !important; 
+  }
+}
+
+/* ======================================================= */
+/* ✉️ إزالة الخط من تحت البريد الإلكتروني (الحل الجذري لمتصفحات الجوال) */
+/* ======================================================= */
+
+html body div.page .contact-grid .info-item strong.mobile-underline,
+html body div.page .contact-grid .info-item a,
+html body div.page .contact-grid .info-item strong a {
+  text-decoration: none !important;
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  color: inherit !important; /* إجبار المتصفح على الاحتفاظ باللون الداكن ومنعه من التحول للأزرق */
+}
+
+
+/* ======================================================= */
+/* 🚫 الإزالة النهائية لخطوط متصفح الآيفون (Apple Data Detectors) */
+/* ======================================================= */
+
+/* استهداف الروابط الوهمية التي يصنعها نظام iOS للأرقام والإيميلات */
+a[x-apple-data-detectors],
+a[x-apple-data-detectors]:hover,
+a[x-apple-data-detectors]:focus,
+html body div.page .contact-grid .info-item *,
+html body div.page .contact-grid .info-item a {
+  color: inherit !important;
+  text-decoration: none !important;
+  -webkit-text-decoration-line: none !important;
+  text-decoration-line: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+
+
+
+
+
+
+/* ======================================================= */
+/* 🌐 النسخة الإنجليزية (LTR): قلب الاتجاهات واللوجوهات والمحاذاة */
+/* ======================================================= */
+
+/* 1. الهيدر واللوجو الرئيسي (الموبايل) */
+@media (max-width: 768px) {
+  html body .page[dir="ltr"] .top-row {
+    direction: ltr !important; /* إجبار الاتجاه من اليسار لليمين */
+  }
+  
+  html body .page[dir="ltr"] .logo-wrap {
+    align-items: flex-start !important; /* اللوجو في اليسار */
+  }
+  
+  html body .page[dir="ltr"] .page-title {
+    text-align: left !important; /* العنوان في اليسار */
+  }
+}
+
+/* 2. صندوق التنبيه (Notice) */
+html body .page[dir="ltr"] .notice {
+  direction: ltr !important;
+}
+
+html body .page[dir="ltr"] .notice-text {
+  text-align: left !important; /* النص يسار */
+  direction: ltr !important;
+  padding-left: 5px !important; /* المسافة عن الأيقونة */
+  padding-right: 0 !important;
+}
+
+html body .page[dir="ltr"] .notice-inline-icon {
+  margin-right: 14px !important; /* الأيقونة يسار، والمسافة يمينها */
+  margin-left: 0 !important;
+}
+
+/* 3. كارت الشركة (اللوجو، الاسم، حالة نشط، التاجات) */
+@media (max-width: 768px) {
+  html body .page[dir="ltr"] .company-topbar {
+    /* الترتيب: لوجو (يسار)، اسم (وسط)، حالة (يمين) */
+    grid-template-columns: 65px 1fr auto !important; 
+    grid-template-areas:
+        "logo name status"
+        "logo tags tags" !important;
+    direction: ltr !important;
+  }
+
+  /* قلب اللوجو والخط الفاصل للناحية الثانية */
+  html body .page[dir="ltr"] .saudi-logo {
+    border-right: 2px solid #e5e7eb !important; /* الخط الفاصل على اليمين */
+    border-left: none !important;
+    padding-right: 10px !important;
+    padding-left: 0 !important;
+  }
+
+  html body .page[dir="ltr"] .company-name {
+    text-align: left !important;
+  }
+
+  html body .page[dir="ltr"] .status {
+    justify-self: end !important; /* كلمة "Active" تروح أقصى اليمين */
+  }
+
+  html body .page[dir="ltr"] .company-topbar-inline-meta {
+    justify-content: start !important; /* التاجات تبدأ من اليسار */
+    direction: ltr !important;
+  }
+
+  html body .page[dir="ltr"] .meta-text {
+    text-align: left !important;
+  }
+}
+
+/* 4. شبكة البيانات (النصوص، التواريخ، المديرين، الأنشطة) */
+@media (max-width: 768px) {
+  html body .page[dir="ltr"] .company-main-grid,
+  html body .page[dir="ltr"] .contact-grid {
+    direction: ltr !important;
+  }
+
+  html body .page[dir="ltr"] .info-item {
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+
+  /* المربعات البنفسجية للأنشطة والمديرين */
+  html body .page[dir="ltr"] .tags span,
+  html body .page[dir="ltr"] .managers span {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: auto !important; /* دفع المربع لليسار */
+  }
+  
+  html body .page[dir="ltr"] .managers span {
+    padding-left: 20px !important; /* المسافة الجمالية من اليسار */
+    padding-right: 0 !important;
+  }
+
+  /* زرار (+24 نشاط) يروح لليمين في النسخة الإنجليزية */
+  html body .page[dir="ltr"] .more-activities-btn {
+    text-align: right !important;
+    margin-right: 0 !important;
+    margin-left: auto !important;
+  }
+
+  /* التواريخ */
+  html body .page[dir="ltr"] .dates-row {
+    align-items: flex-start !important; /* محاذاة التواريخ لليسار */
+  }
+  
+  html body .page[dir="ltr"] .date-chip {
+    direction: ltr !important;
+  }
+}
+
+/* 5. الفوتر (قلب لوجو سدايا والنصوص) */
+@media (max-width: 768px) {
+  html body .page[dir="ltr"] .footer-right-group {
+    flex-direction: row !important; /* لوجو يسار، كلام يمين */
+    direction: ltr !important;
+  }
+
+  html body .page[dir="ltr"] .footer-right-text {
+    text-align: left !important;
+    border-left: 1.5px solid #dcdce6 !important; /* الخط الفاصل يسار الكلام */
+    border-right: none !important;
+    padding-left: 10px !important;
+    margin-left: 10px !important;
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* ======================================================= */
+/* 🌐 الإصلاح النهائي للنسخة الإنجليزية (LTR) */
+/* ======================================================= */
+
+/* 1. إرجاع اللوجو والعنوان لليسار في النسخة الإنجليزية */
+html body .page[dir="ltr"] .top-row {
+  flex-direction: row !important; /* هذا السطر يلغي العكس القديم ويضع اللوجو يساراً */
+  direction: ltr !important;
+}
+
+html body .page[dir="ltr"] .logo-wrap {
+  align-items: flex-start !important;
+  text-align: left !important;
+}
+
+html body .page[dir="ltr"] .page-title {
+  text-align: left !important;
+}
+
+/* 2. محاذاة اسم المدير (Khaled) والأنشطة لتبدأ من اليسار (Left-to-Right) */
+html body .page[dir="ltr"] .tags span,
+html body .page[dir="ltr"] .managers span,
+html body .page[dir="ltr"] .activity-chip {
+  text-align: left !important;
+  direction: ltr !important; /* إجبار اتجاه النص من اليسار لليمين */
+  display: block !important;
+  padding-left: 20px !important; /* مسافة جمالية من اليسار */
+  padding-right: 14px !important;
+  
+  /* دفع المربع نفسه ليكون في اليسار */
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+/* ======================================================= */
+/* 🚀 إجبار اللوجو لليسار والقائمة لليمين في النسخة الإنجليزية */
+/* ======================================================= */
+
+/* ======================================================= */
+/* 🔨 الحل الجذري والنهائي لمكان اللوجو في النسخة الإنجليزية */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. تظبيط الهيدر بالكامل ليكون من اليسار لليمين */
+  html body .page[dir="ltr"] .top-row {
+    display: flex !important;
+    flex-direction: row !important;
+    direction: ltr !important;
+    justify-content: space-between !important; /* بيوزع المساحة: اللوجو في ناحية والقائمة في ناحية */
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  /* 2. إجبار المربع اللي شايل اللوجو والصورة نفسها يروحوا أقصى الشمال */
+  html body .page[dir="ltr"] .logo-wrap {
+    display: flex !important;
+    justify-content: flex-start !important; /* السر هنا: بيزق اللوجو نفسه لليسار */
+    align-items: center !important;
+    text-align: left !important;
+    flex-grow: 1 !important; /* بياخد باقي المساحة المتاحة */
+    margin: 0 !important;
+  }
+
+  html body .page[dir="ltr"] .logo-wrap img,
+  html body .page[dir="ltr"] .saudi-logo {
+    margin-left: 0 !important;
+    margin-right: auto !important; /* تأكيد إضافي لدفع الصورة لليسار */
+  }
+
+  /* 3. إجبار زرار القائمة (الثلاث شرط) يترمي أقصى اليمين */
+  html body .page[dir="ltr"] .open-drawer-btn,
+  html body .page[dir="ltr"] .header-menu-btn,
+  html body .page[dir="ltr"] button[aria-label="menu"],
+  html body .page[dir="ltr"] .hamburger {
+    order: 10 !important; /* بنرميه آخر حاجة في الترتيب (يعني يمين) */
+    margin-left: auto !important; /* بنزقه من الشمال لليمين */
+    margin-right: 0 !important;
+    display: block !important;
+  }
+}
+
+
+
+
+/* ======================================================= */
+/* 🌆 تمديد صورة الخلفية للأسفل لتغطي خلفية الكروت */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* استهداف الجزء العلوي اللي بيحمل الصورة وتطويله للأسفل */
+  html body .page > div:first-child,
+  .hero-section,
+  .header-bg,
+  .top-section {
+    padding-bottom: 140px !important; /* الرقم ده هو اللي بينزل الخلفية لتحت */
+    min-height: 400px !important;     /* إجبار الخلفية على طول معين */
+    background-position: center bottom !important; /* تظبيط مكان الصورة عشان تبان صح */
+  }
+
+  /* سحب المحتوى (الكروت) لفوق عشان يركب على الخلفية الجديدة */
+  .page-content,
+  .main-content {
+    margin-top: -100px !important; /* سحب الكروت لفوق فوق الخلفية */
+    position: relative !important;
+    z-index: 10 !important;
+  }
+}
+
+
+/* ======================================================= */
+/* 🌆 تمديد صورة الخلفية للأسفل بمسافة أكبر (التعديل الثاني) */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* تمديد الخلفية بشكل ملحوظ للأسفل */
+  html body .page > div:first-child,
+  .hero-section,
+  .header-bg,
+  .top-section {
+    padding-bottom: 290px !important; /* كبرنا المساحة جداً هنا */
+    min-height: 600px !important;     /* زودنا الطول الإجمالي للخلفية */
+  }
+
+  /* سحب الكروت لفوق أكتر عشان تغطي مساحة أكبر من الصورة */
+  .page-content,
+  .main-content {
+    margin-top: -180px !important; /* سحبنا الكروت لفوق بمسافة أكبر */
+  }
+}
+
+
+
+/* ======================================================= */
+/* ❌ إظهار زر الإغلاق (X) في يسار الشاشة للنسخة الإنجليزية */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. إجبار القائمة البيضاء تفتح من اليمين في الإنجليزي */
+  html body .page[dir="ltr"] .header-menu-drawer {
+    right: 0 !important;
+    left: auto !important;
+  }
+
+  /* 2. إجبار زر الـ (X) يظهر في أقصى الشمال (منطقة الضباب) */
+  html body .page[dir="ltr"] .drawer-outside-close-btn,
+  html body .page[dir="ltr"] .close-drawer-btn {
+    left: 0 !important;      /* سحب الزرار لأقصى الشمال */
+    right: auto !important;
+    position: fixed !important;
+    top: 20px !important;
+    width: 60px !important;
+    display: flex !important;
+    justify-content: center !important;
+    color: #ffffff !important; /* لونه أبيض عشان ينور على الضباب */
+    font-size: 38px !important;
+    z-index: 100000 !important; /* عشان يكون فوق أي حاجة تانية */
+  }
+}
+
+/* ======================================================= */
+/* ❌ إظهار زر الإغلاق (X) بقوة في الويب والموبايل (النسخة الإنجليزية) */
+/* ======================================================= */
+
+html body .page[dir="ltr"] .drawer-outside-close-btn,
+html body .page[dir="ltr"] .close-drawer-btn,
+html body .page[dir="ltr"] .header-menu-drawer button.close-btn,
+html body .page[dir="ltr"] .close-btn {
+  position: fixed !important;
+  left: 20px !important;       /* إجبار الزرار يروح أقصى الشمال */
+  right: auto !important;      /* إلغاء أي ارتباط باليمين */
+  top: 25px !important;
+  
+  /* أوامر الإظهار الإجبارية */
+  display: flex !important;    
+  visibility: visible !important; 
+  opacity: 1 !important;
+  
+  /* الشكل والتنسيق */
+  color: #ffffff !important;   /* لون أبيض ناصع */
+  font-size: 38px !important;
+  background: transparent !important;
+  border: none !important;
+  width: 50px !important;
+  height: 50px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  
+  /* أعلى طبقة ممكنة عشان مفيش حاجة تغطي عليه */
+  z-index: 2147483647 !important; 
+}
+
+
+/* ======================================================= */
+/* ⬇️ رص زرار البيزنس فوق كلمة Language ومحاذاتهم لليسار (إنجليزي) */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. إجبار حاوية القائمة إنها ترص العناصر تحت بعضها (عمودياً) وتبدأ من الشمال */
+  html body .page[dir="ltr"] .header-menu-body {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important; /* كل حاجة تبدأ من الشمال */
+    gap: 20px !important; /* مسافة مريحة بين الزرار والقائمة اللي تحته */
+  }
+
+  /* 2. إجبار زرار "Business Platform" إنه يكون أول عنصر فوق (رقم 1) */
+  html body .page[dir="ltr"] .header-menu-drawer .business-sidebar-btn,
+  html body .page[dir="ltr"] .business-sidebar-btn {
+    order: -1 !important; /* السر هنا: ده بيجبره يروح فوق أي حاجة تانية */
+    margin: 0 !important; /* تصفير الهوامش عشان يلزق في الشمال مع Language بالملي */
+    align-self: flex-start !important;
+  }
+
+  /* 3. تظبيط قائمة اللغة وحجم الخط عشان تمشي على نفس الخط */
+  html body .page[dir="ltr"] .sidebar-list {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+/* ======================================================= */
+/* ⬅️ إجبار زر منصة الأعمال لليسار فوق Language (للويب والموبايل) */
+/* ======================================================= */
+
+html body .page[dir="ltr"] .header-menu-body {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+}
+
+/* السحر هنا: زق الزرار للشمال ومنعه من التمدد */
+html body .page[dir="ltr"] .header-menu-drawer .business-sidebar-btn,
+html body .page[dir="ltr"] .business-sidebar-btn {
+  order: -1 !important;              /* يجبره يطلع أول واحد فوق */
+  margin-left: 0 !important;         /* يلغي أي مسافة من الشمال */
+  margin-right: auto !important;     /* يزقه من اليمين للشمال بقوة */
+  align-self: flex-start !important; /* تأكيد المحاذاة لليسار */
+  width: auto !important;            /* منعه من إنه يكبر أو يمتد */
+  display: inline-flex !important;
+}
+
+/* تظبيط عرض قائمة اللغة عشان تبقى تحته مضبوطة */
+html body .page[dir="ltr"] .sidebar-list {
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+
+
+
+
+/* ======================================================= */
+/* 🇬🇧 تظبيط الفوتر الإنجليزي: تصغير الخط لظهور النص واللوجو بالكامل */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. إجبار الحاوية تكون على سطر واحد بدون أي كسر */
+  html body .page[dir="ltr"] .footer-right-group {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important; /* السر هنا لمنع التكسير */
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  /* 2. حماية اللوجو من الانضغاط وتثبيت حجمه */
+  html body .page[dir="ltr"] .footer-right-group .footer-logo-image {
+    width: 75px !important;
+    flex-shrink: 0 !important; /* منع المتصفح من ضغط أو تصغير اللوجو */
+    margin-right: 8px !important; /* مسافة بسيطة بينه وبين الخط الفاصل */
+    margin-left: 0 !important;
+  }
+
+  /* 3. تصغير الخط الإنجليزي ليتناسب مع الشاشة في سطر واحد */
+  html body .page[dir="ltr"] .footer-right-group .footer-right-text {
+    font-size: 10px !important; /* تصغير الخط ليكون مناسباً */
+    white-space: nowrap !important; /* إجباره يفضل على سطر واحد */
+    border-left: 1.5px solid #dcdce6 !important; /* الخط الفاصل يسار النص */
+    border-right: none !important;
+    padding-left: 8px !important;
+    margin-left: 0 !important;
+  }
+}
+
+
+/* ======================================================= */
+/* 💰 التعديل الأخير: محاذاة قيمة رأس المال (Total Capital) لليسار */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* إجبار محتوى جميع مربعات البيانات على البدء من اليسار في الإنجليزي */
+  html body .page[dir="ltr"] .company-main-grid .info-item,
+  html body .page[dir="ltr"] .info-item {
+    align-items: flex-start !important; /* محاذاة العناصر لليسار */
+    text-align: left !important;
+  }
+
+  /* إجبار القيمة نفسها (الرقم) على النزول تحت العنوان والالتصاق باليسار */
+  html body .page[dir="ltr"] .info-item strong,
+  html body .page[dir="ltr"] .info-item span:last-child {
+    text-align: left !important;
+    align-self: flex-start !important; /* إجبار الالتصاق باليسار */
+    display: block !important;
+    width: 100% !important; /* أخذ عرض المربع بالكامل لضمان عدم الهروب لليمين */
+    direction: ltr !important; /* لضمان ترتيب رمز العملة بجوار الرقم بشكل صحيح */
+  }
+}
+
+
+/* ======================================================= */
+/* 🛠️ إنقاذ المربعات والتواريخ من التشوه (النسخة الإنجليزية) */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. إلغاء التمدد العشوائي وإرجاع المربعات لحجمها الطبيعي (Main CR والتواريخ) */
+  html body .page[dir="ltr"] .info-item span:last-child,
+  html body .page[dir="ltr"] .date-chip,
+  html body .page[dir="ltr"] .date-chip span,
+  html body .page[dir="ltr"] .date-chip span:last-child {
+    display: inline-flex !important; 
+    width: auto !important; /* السر هنا: نلغي الـ 100% عشان المربع يلم نفسه */
+  }
+
+  /* 2. إرجاع التواريخ لترتيبها الأفقي السليم (حرف هـ / م جنب الرقم) */
+  html body .page[dir="ltr"] .date-chip {
+    flex-direction: row !important; /* جنب بعض مش تحت بعض */
+    align-items: stretch !important;
+    margin-bottom: 6px !important;
+  }
+
+  /* 3. ضمان بقاء رقم رأس المال وكل النصوص العادية لازقة في اليسار */
+  html body .page[dir="ltr"] .info-item strong {
+    display: block !important;
+    text-align: left !important;
+    width: 100% !important;
+  }
+}
+
+/* ======================================================= */
+/* 🛠️ إنقاذ المربعات والتواريخ من التشوه (النسخة الإنجليزية) */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. إلغاء التمدد العشوائي وإرجاع المربعات لحجمها الطبيعي (Main CR والتواريخ) */
+  html body .page[dir="ltr"] .info-item span:last-child,
+  html body .page[dir="ltr"] .date-chip,
+  html body .page[dir="ltr"] .date-chip span,
+  html body .page[dir="ltr"] .date-chip span:last-child {
+    display: inline-flex !important; 
+    width: auto !important; /* السر هنا: نلغي الـ 100% عشان المربع يلم نفسه */
+  }
+
+  /* 2. إرجاع التواريخ لترتيبها الأفقي السليم (حرف هـ / م جنب الرقم) */
+  html body .page[dir="ltr"] .date-chip {
+    flex-direction: row !important; /* جنب بعض مش تحت بعض */
+    align-items: stretch !important;
+    margin-bottom: 6px !important;
+  }
+
+  /* 3. ضمان بقاء رقم رأس المال وكل النصوص العادية لازقة في اليسار */
+  html body .page[dir="ltr"] .info-item strong {
+    display: block !important;
+    text-align: left !important;
+    width: 100% !important;
+  }
+}
+
+/* ======================================================= */
+/* 📅 تحويل (هـ/م) إلى (H/G) في النسخة الإنجليزية (للويب والموبايل) */
+/* ======================================================= */
+
+/* 1. إخفاء الحروف العربية (هـ / م) مع الاحتفاظ بمكانهم */
+html body .page[dir="ltr"] .date-chip span:first-child {
+  color: transparent !important; 
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* 2. طباعة حرف (H) على المربع الأول (الهجري) */
+html body .page[dir="ltr"] .date-chip:first-child span:first-child::after,
+html body .page[dir="ltr"] .date-chip:nth-child(1) span:first-child::after,
+html body .page[dir="ltr"] .date-chip:first-of-type span:first-child::after {
+  content: "H" !important;
+  color: #2f3450 !important; /* نفس درجة اللون الكحلي */
+  position: absolute !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+/* 3. طباعة حرف (G) على المربع الثاني (الميلادي) */
+html body .page[dir="ltr"] .date-chip:last-child span:first-child::after,
+html body .page[dir="ltr"] .date-chip:nth-child(2) span:first-child::after,
+html body .page[dir="ltr"] .date-chip:last-of-type span:first-child::after {
+  content: "G" !important;
+  color: #2f3450 !important; /* نفس درجة اللون الكحلي */
+  position: absolute !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+
+/* ======================================================= */
+/* 🏷️ تضييق مربع (Main CR) ليكون بحجم الكلمة فقط (للويب والموبايل) */
+/* ======================================================= */
+
+html body .page[dir="ltr"] .info-item span:last-child,
+html body .page[dir="ltr"] .info-item strong {
+  width: max-content !important; /* السر هنا: بيلم المربع على قد الكلام بالظبط */
+  min-width: auto !important;    /* بيلغي أي عرض إجباري قديم */
+}
+
+
+/* ======================================================= */
+/* 📅 الإصلاح الجذري للتواريخ وحروف (H/G) بدون أي ظلال */
+/* ======================================================= */
+
+/* 1. تظبيط حجم المربعات بالكامل ولمّها على قد الكلام بشكل أنيق */
+html body .page[dir="ltr"] .date-chip {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  width: max-content !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  margin-bottom: 8px !important;
+}
+
+/* تظبيط مربع الرقم (التاريخ) */
+html body .page[dir="ltr"] .date-chip span:last-child {
+  display: flex !important;
+  align-items: center !important;
+  width: auto !important; 
+  padding: 4px 12px !important; /* مسافات داخلية مريحة للرقم */
+}
+
+/* 2. إخفاء الحرف العربي (هـ/م) نهائياً من الوجود (السر في font-size: 0) */
+html body .page[dir="ltr"] .date-chip span:first-child {
+  font-size: 0 !important; /* يخفي الحرف العربي تماماً بدون ترك أي أثر أو ظل */
+  color: transparent !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 35px !important; /* تثبيت عرض المربع الرمادي عشان الـ H والـ G يبقوا قد بعض بالملي */
+  padding: 0 !important;
+}
+
+/* 3. طباعة حرف H بوضوح ونظافة */
+html body .page[dir="ltr"] .date-chip:first-child span:first-child::after,
+html body .page[dir="ltr"] .date-chip:nth-child(1) span:first-child::after,
+html body .page[dir="ltr"] .date-chip:first-of-type span:first-child::after {
+  content: "H" !important;
+  font-size: 14px !important; /* إرجاع حجم الخط للحرف الإنجليزي فقط */
+  color: #2f3450 !important;
+  font-weight: 600 !important;
+}
+
+/* 4. طباعة حرف G بوضوح ونظافة */
+html body .page[dir="ltr"] .date-chip:last-child span:first-child::after,
+html body .page[dir="ltr"] .date-chip:nth-child(2) span:first-child::after,
+html body .page[dir="ltr"] .date-chip:last-of-type span:first-child::after {
+  content: "G" !important;
+  font-size: 14px !important; /* إرجاع حجم الخط للحرف الإنجليزي فقط */
+  color: #2f3450 !important;
+  font-weight: 600 !important;
+}
+
+
+/* 3. طباعة حرف H بوضوح ولون أزرق داكن مطابق للتاريخ */
+html body .page[dir="ltr"] .date-chip:first-child span:first-child::after,
+html body .page[dir="ltr"] .date-chip:nth-child(1) span:first-child::after,
+html body .page[dir="ltr"] .date-chip:first-of-type span:first-child::after {
+  content: "H" !important;
+  font-size: 14px !important;
+  color: #1c224f !important; /* ده اللون الأزرق الداكن/الكحلي الزاهي بتاع الأرقام */
+  font-weight: 600 !important;
+}
+
+/* 4. طباعة حرف G بوضوح ولون أزرق داكن مطابق للتاريخ */
+html body .page[dir="ltr"] .date-chip:last-child span:first-child::after,
+html body .page[dir="ltr"] .date-chip:nth-child(2) span:first-child::after,
+html body .page[dir="ltr"] .date-chip:last-of-type span:first-child::after {
+  content: "G" !important;
+  font-size: 14px !important;
+  color: #1c224f !important; /* نفس درجة اللون الأزرق الداكن */
+  font-weight: 600 !important;
+}
+
+
+/* ======================================================= */
+/* 💰 إجبار رقم رأس المال (Total Capital) للنزول تحت الكلمة يساراً */
+/* ======================================================= */
+/* ======================================================= */
+/* 📅 الإصلاح النهائي: (H/G) بدون ظل وبسماكة خط أقل */
+/* ======================================================= */
+
+/* 2. إخفاء الحرف العربي ومسح أي ظل قديم */
+html body .page[dir="ltr"] .date-chip span:first-child {
+  font-size: 0 !important; 
+  color: transparent !important;
+  text-shadow: none !important; 
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 35px !important; 
+  padding: 0 !important;
+}
+
+/* 3. طباعة حرف H بوضوح وبدون ظل */
+html body .page[dir="ltr"] .date-chip:first-child span:first-child::after,
+html body .page[dir="ltr"] .date-chip:nth-child(1) span:first-child::after,
+html body .page[dir="ltr"] .date-chip:first-of-type span:first-child::after {
+  content: "H" !important;
+  font-size: 14px !important;
+  color: #222a68 !important; /* الأزرق الزاهي */
+  font-weight: 600 !important; /* قللنا السماكة (Bold) هنا */
+  text-shadow: none !important; /* مسحنا الظل الأبيض تماماً */
+}
+
+/* 4. طباعة حرف G بوضوح وبدون ظل */
+html body .page[dir="ltr"] .date-chip:last-child span:first-child::after,
+html body .page[dir="ltr"] .date-chip:nth-child(2) span:first-child::after,
+html body .page[dir="ltr"] .date-chip:last-of-type span:first-child::after {
+  content: "G" !important;
+  font-size: 14px !important;
+  color: #222a68 !important; /* الأزرق الزاهي */
+  font-weight: 600 !important; /* قللنا السماكة (Bold) هنا */
+  text-shadow: none !important; /* مسحنا الظل الأبيض تماماً */
+}
+
+
+/* ======================================================= */
+/* 🇬🇧 مطابقة الفوتر الإنجليزي: تكبير الخط وتقسيمه لسطرين */
+/* ======================================================= */
+
+/* تظبيط حاوية الفوتر عشان ترص اللوجو والكلام جنب بعض براحتهم */
+html body .page[dir="ltr"] .footer-right-group {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+}
+
+/* تكبير الخط والسماح بنزوله على سطرين */
+html body .page[dir="ltr"] .footer-right-group .footer-right-text {
+  font-size: 13px !important;       /* تكبير حجم الخط عشان يبقى واضح */
+  white-space: normal !important;   /* السر هنا: إلغاء السطر الواحد والسماح بكسر السطر */
+  line-height: 1.4 !important;      /* مسافة مريحة وأنيقة بين السطرين */
+  max-width: 250px !important;      /* تحديد عرض المربع يجبر الكلام ينزل سطر جديد مظبوط */
+  text-align: left !important;
+  font-weight: 500 !important;      /* تقلنا الخط سِنة عشان يطابق الصورة */
+  border-left: 1.5px solid #dcdce6 !important;
+  padding-left: 12px !important;
+  margin-left: 0 !important;
+}
+
+/* تظبيط مقاس اللوجو عشان يتناسب مع حجم الخط الجديد */
+html body .page[dir="ltr"] .footer-right-group .footer-logo-image {
+  width: 90px !important;           /* كبرنا اللوجو سِنة ليتناسب مع السطرين */
+  flex-shrink: 0 !important;        /* منع المتصفح من ضغط اللوجو */
+  margin-right: 12px !important;
+  margin-left: 0 !important;
+}
+
+
+/* ======================================================= */
+/* 📅 تقليل المسافة بين المربعات وعكس ترتيب التواريخ (الإنجليزي) */
+/* ======================================================= */
+
+/* 1. تقليل المسافة العمودية بين مربع الهجري ومربع الميلادي */
+html body .page[dir="ltr"] .date-chip {
+  margin-bottom: 3px !important; /* صغرنا المسافة جداً لتكون متقاربة وأنيقة */
+}
+
+/* 2. قلب ترتيب التواريخ (يوم-شهر-سنة للهجري / وسنة-شهر-يوم للميلادي) */
+html body .page[dir="ltr"] .date-chip span:last-child {
+  direction: rtl !important;        /* السر هنا: بيعكس ترتيب المقاطع المفصولة بشرطة */
+  unicode-bidi: isolate !important; /* بيعزل النص عشان يتقلب صح ككتلة واحدة */
+}
+
+
+/* ======================================================= */
+/* 📅 تظبيط المسافة بين المربعات وترتيب الأرقام بدقة (إنجليزي) */
+/* ======================================================= */
+
+/* 1. تقريب المربعين من بعض جداً (إلغاء أي مسافة إجبارية) */
+/* 1. مسافة "درجة واحدة" (2 بيكسل) بين المربعين */
+html body .page[dir="ltr"] .date-chip:first-child {
+  margin-bottom: 0px !important; 
+}
+html body .page[dir="ltr"] .date-chip:last-child {
+  margin-top: -3px !important; /* قللنا السحب هنا عشان نسيب مسافة شعرة بين المربعين */
+}
+
+/* 2. التاريخ الهجري (H): الترتيب من اليسار لليمين (يوم - شهر - سنة) */
+html body .page[dir="ltr"] .date-chip:first-child span:last-child,
+html body .page[dir="ltr"] .date-chip:nth-child(1) span:last-child {
+  direction: rtl !important;        /* الخدعة اللي بتقلب ترتيب المقاطع */
+  unicode-bidi: isolate !important;
+  text-align: left !important;
+  display: inline-block !important;
+}
+
+/* 3. التاريخ الميلادي (G): الترتيب من اليسار لليمين (سنة - شهر - يوم) */
+html body .page[dir="ltr"] .date-chip:last-child span:last-child,
+html body .page[dir="ltr"] .date-chip:nth-child(2) span:last-child {
+  direction: rtl !important;        /* الخدعة اللي بتقلب ترتيب المقاطع */
+  unicode-bidi: isolate !important;
+  text-align: left !important;
+  display: inline-block !important;
+}
+
+
+
+/* ======================================================= */
+/* 💰 إصلاح مشكلة هروب رأس المال (Total Capital) لليمين نهائياً */
+/* ======================================================= */
+
+html body .page[dir="ltr"] .info-item {
+  display: flex !important;
+  flex-direction: column !important; /* إجبار العناصر تنزل تحت بعض */
+  align-items: flex-start !important; /* محاذاة كل المحتوى لليسار */
+  justify-content: flex-start !important;
+}
+
+/* استهداف القيمة (الرقم والعملة) وسحبها لليسار بقوة */
+html body .page[dir="ltr"] .info-item > span:last-child,
+html body .page[dir="ltr"] .info-item > div:last-child {
+  margin-left: 0 !important;
+  margin-right: auto !important; /* الجوكر اللي بيسحب العنصر أقصى اليسار */
+  align-self: flex-start !important;
+  text-align: left !important;
+  direction: ltr !important; 
+  width: max-content !important; /* منعه من أخذ عرض الشاشة بالكامل */
+}
+
+
+
+/* ======================================================= */
+/* 💰 الضربة القاضية لهروب رقم رأس المال (Total Capital) لليمين */
+/* ======================================================= */
+
+/* 1. إجبار المربع نفسه إنه يرص العناصر تحت بعض من الشمال */
+html body .page[dir="ltr"] .info-item {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+}
+
+/* 2. تدمير أي عوامات (floats) أو محاذاة لليمين داخل المربع */
+html body .page[dir="ltr"] .info-item * {
+  float: none !important;            /* إلغاء أي كود قديم بيحدفه يمين */
+  text-align: left !important;       /* إجبار النص يكون على اليسار */
+}
+
+/* 3. إجبار السطر الأخير (اللي فيه الرقم والعملة) على الالتصاق باليسار */
+html body .page[dir="ltr"] .info-item > :last-child {
+  align-self: flex-start !important; 
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  display: flex !important;
+  flex-direction: row !important;    /* لضمان بقاء العملة بجوار الرقم بشكل سليم */
+  align-items: center !important;
+  margin-top: 4px !important;
+}
+
+
+/* ======================================================= */
+/* 🏷️ تصغير خط مربعات نوع الكيان والشركة (Company / Limited Liability) */
+/* ======================================================= */
+
+html body .page[dir="ltr"] .entity-type-value,
+html body .page[dir="ltr"] .company-type-value,
+html body .page[dir="ltr"] .badge, 
+html body .page[dir="ltr"] .badge-outline,
+html body .page[dir="ltr"] .tag,
+html body .page[dir="ltr"] .chip {
+  font-size: 12px !important; /* نزلنا الخط درجتين ليكون أنيق ومناسب */
+  padding: 2px 10px !important; /* تظبيط المسافة الفاضية جوه المربع عشان تليق مع الخط الجديد */
+}
+
+
+/* ======================================================= */
+/* 🏷️ تصغير خط مربعات نوع الكيان والشركة (Company / Limited Liability) */
+/* ======================================================= */
+
+html body .page[dir="ltr"] .entity-type-value,
+html body .page[dir="ltr"] .company-type-value,
+html body .page[dir="ltr"] .badge, 
+html body .page[dir="ltr"] .badge-outline,
+html body .page[dir="ltr"] .tag,
+html body .page[dir="ltr"] .chip {
+  font-size: 12px !important; /* نزلنا الخط درجتين ليكون أنيق ومناسب */
+  padding: 2px 10px !important; /* تظبيط المسافة الفاضية جوه المربع عشان تليق مع الخط الجديد */
+}
+
+
+/* ======================================================= */
+/* 📍 تصغير خط العنوان وإجباره على النزول لسطرين (للإنجليزي) */
+/* ======================================================= */
+
+html body .page[dir="ltr"] .info-item strong,
+html body .page[dir="ltr"] .info-item span:last-child {
+  font-size: 13px !important;       /* صغرنا الخط درجة ليكون أنيق */
+  white-space: normal !important;   /* السر هنا: إلغاء السطر الواحد والسماح بكسر النص */
+  line-height: 1.4 !important;      /* مسافة جمالية مريحة بين السطرين */
+  max-width: 220px !important;      /* تحديد عرض يخلي العنوان الطويل ينزل سطر جديد فوراً */
+  word-wrap: break-word !important; /* ضمان عدم خروج الكلام بره الشاشة */
+}
+
+
+/* ======================================================= */
+/* 🚀 إلغاء الفراغ بين العنوان الرئيسي وصندوق التنبيه (عربي وإنجليزي) */
+/* ======================================================= */
+
+/* 1. مسح المسافة الفاضية من تحت العنوان الرئيسي */
+html body .page-title,
+html body .hero-title,
+html body .header-title,
+html body .banner h1,
+html body h1.title {
+  margin-bottom: 5px !important; /* تقليل المسافة لـ 5 بيكسل بس عشان يتنفس */
+  padding-bottom: 0 !important;
+}
+
+/* 2. سحب الصندوق الأبيض (التنبيه) لأعلى ليلتصق بالعنوان */
+html body .alert,
+html body .alert-info,
+html body .alert-box,
+html body .disclaimer-box,
+html body .notice {
+  margin-top: 0px !important; /* إلغاء أي مسافة كانت بتزقه لتحت */
+}
+
+/* 3. في حالة كانت الحاوية كلها محتاجة تتسحب لفوق */
+html body .main-content,
+html body .page-content,
+html body .container-main {
+  padding-top: 0 !important;
+}
+
+
+
+
+
+
+
+
+
+/* ======================================================= */
+/* 🏢 مطابقة اسم الشركة والخطوط للنسخة المطلوبة (بدون Bold) */
+/* ======================================================= */
+
+/* 1. إزالة السماكة (Bold) من اسم الشركة وتنعيم الخط */
+html body .page[dir="ltr"] .company-name,
+html body .page[dir="ltr"] .company-title,
+html body .page[dir="ltr"] .profile-name,
+html body .page[dir="ltr"] .header-title h1,
+html body .page[dir="ltr"] .header-title h2,
+html body .page[dir="ltr"] h1, 
+html body .page[dir="ltr"] h2 {
+  font-weight: 500 !important; /* السر هنا: لغينا الـ Bold القوي وخليناه متوسط/أنيق */
+  font-size: 18px !important;  /* حجم مناسب ومطابق للصورة */
+  line-height: 1.5 !important; /* مسافة مريحة بين السطرين */
+}
+
+/* 2. لمسة إضافية: تفتيح لون العناوين الفرعية (الرمادي) لتتطابق مع المطلوب */
+html body .page[dir="ltr"] .info-item > span:first-child,
+html body .page[dir="ltr"] .info-label,
+html body .page[dir="ltr"] .text-muted {
+  color: #83889b !important; /* درجة رمادي أفتح وأهدى زي الصورة المطلوبة */
+  font-weight: 400 !important;
+}
+
+
+/* ======================================================= */
+/* 📏 زيادة مسافات التباعد وتصغير الخطوط في البيانات (للإنجليزي) */
+/* ======================================================= */
+
+/* 1. زيادة التباعد العمودي بين العناصر عشان تتنفس وتبقى مريحة للعين */
+html body .page[dir="ltr"] .info-item {
+  margin-bottom: 18px !important; /* كبرنا المسافة بين كل بلوك واللي تحته */
+}
+
+/* زيادة المسافة لو التصميم شغال بنظام الشبكة (Grid) */
+html body .page[dir="ltr"] .company-main-grid,
+html body .page[dir="ltr"] .info-grid {
+  row-gap: 22px !important; 
+}
+
+/* 2. تصغير خط العناوين الفرعية (الرمادي) وإضافة تباعد داخلي */
+html body .page[dir="ltr"] .info-item > span:first-child,
+html body .page[dir="ltr"] .info-label,
+html body .page[dir="ltr"] .text-muted {
+  font-size: 12px !important; /* صغرنا الخط درجة ليكون أنيق */
+  margin-bottom: 6px !important; /* مسافة صغيرة بين العنوان الرمادي والقيمة اللي تحته */
+  display: block !important;
+}
+
+/* 3. تصغير خط القيم الأساسية (الأسود) درجة */
+html body .page[dir="ltr"] .info-item > span:last-child,
+html body .page[dir="ltr"] .info-item strong {
+  font-size: 12px !important; /* صغرنا خط الأرقام والنصوص درجة عشان يطابق الرسمي */
+} 
+
+
+/* ======================================================= */
+/* 🔎 تكبير خطوط الفوتر (الهيئة، الروابط، والحقوق) لمطابقة الصورة */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  /* 1. تكبير جملة "تطوير الهيئة السعودية..." */
+  html body .page .footer-right-text {
+    font-size: 13.5px !important; /* تكبير الخط */
+    font-weight: 600 !important;  /* إعطاء سُمك للخط ليكون واضحاً */
+  }
+
+  /* 2. تكبير الروابط (سياسة الخصوصية، الشروط والأحكام، الأسئلة الشائعة) */
+  html body .page .footer-links a {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+  }
+
+  /* 3. تكبير جملة "جميع الحقوق محفوظة..." ورقم الإصدار */
+  html body .page .footer-bottom span,
+  html body .page .footer-bottom span:first-child {
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+  }
+
+  /* 4. تكبير اللوجو (SDAIA) درجة بسيطة ليتناسق مع الحجم الجديد للخط */
+  html body .page .footer-logo-image {
+    width: 85px !important; 
   }
 }
