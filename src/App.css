@@ -5809,20 +5809,97 @@ html body .page[dir="ltr"] .info-item strong {
 
 
 /* ======================================================= */
-/* 👨‍💼 تعديل مربع المديرين للعرض الكامل يميناً (للنسخة العربية فقط) */
+/* 👨‍💼 إعادة تصميم قسم المديرين ليطابق الصورة (عربي فقط) */
 /* ======================================================= */
 
-/* استهداف المربع اللي جوه قائمة المديرين فقط في العربي */
+/* 1. تظبيط الحاوية الرئيسية للمديرين (عشان تفرد صح) */
+html body .page[dir="rtl"] .managers-section,
+html body .page[dir="rtl"] .managers-list {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important; /* رص المديرين تحت بعض */
+  gap: 12px !important;             /* مسافة جمالية بين كل مدير واللي بعده */
+  padding: 0 15px !important;       /* مسافة من الأطراف عشان ميبقوش لازقين */
+}
+
+/* 2. استهداف المربع نفسه (اللي جواه اسم خالد) وتحويله لعرض كامل */
 html body .page[dir="rtl"] .managers-section .badge,
 html body .page[dir="rtl"] .managers-list .badge,
-html body .page[dir="rtl"] .manager-item,
-html body .page[dir="rtl"] .managers-container div,
+html body .page[dir="rtl"] .managers-container div.badge,
 html body .page[dir="rtl"] .manager-chip {
-  width: 100% !important;               /* المربع ياخد عرض الحاوية بالكامل */
-  max-width: 100% !important;           /* إلغاء أي حدود قديمة للعرض */
-  display: flex !important;             /* استخدام الفليكس لسهولة المحاذاة */
-  justify-content: flex-start !important; /* محاذاة النص لليمين (بداية المربع في العربي) */
-  text-align: right !important;         /* تأكيد محاذاة النص لليمين */
-  padding-right: 15px !important;       /* مسافة جمالية عشان الاسم ميكونش لازق في الحافة */
-  box-sizing: border-box !important;    /* لضمان عدم خروج المربع بره الشاشة */
+  width: 100% !important;               /* أهم سطر: العرض الكامل */
+  max-width: 100% !important;           /* ضمان العرض الكامل */
+  display: flex !important;             /* استخدام الفليكس لضبط الأيقونة والاسم */
+  align-items: center !important;
+  justify-content: flex-start !important; /* الاسم يبدأ من اليمين (في العربي) */
+  text-align: right !important;         /* محاذاة النص لليمين */
+  
+  /* تظبيط الشكل الجمالي ليطابق الصورة المرجعية */
+  padding: 12px 20px !important;        /* مسافات داخلية مريحة */
+  background-color: #f7f7f9 !important; /* لون خلفية فاتح زي الصورة */
+  border: 1px solid #e1e3ea !important; /* لون إطار خفيف */
+  border-radius: 8px !important;       /* حواف ناعمة زي الصورة المرجعية */
+  color: #1c224f !important;            /* لون الخط الكحلي */
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  margin: 0 !important;                 /* إلغاء أي هوامش جانبية */
+  box-shadow: none !important;          /* إلغاء أي ظل لو موجود */
+  cursor: pointer;                      /* إيحاء بإنها قائمة قابلة للضغط */
+}
+
+/* 3. استهداف النص جوه المربع لضمان الالتصاق باليمين */
+html body .page[dir="rtl"] .managers-section .badge span {
+  flex-grow: 1 !important;
+  text-align: right !important;
+}
+
+
+/* ======================================================= */
+/* 👨‍💼 إجبار مربع المدير على العرض الكامل (عربي فقط) */
+/* ======================================================= */
+
+/* ======================================================= */
+/* 📱 ترويض مربع المديرين على شاشات الموبايل (عربي فقط) */
+/* ======================================================= */
+
+@media screen and (max-width: 768px) {
+  html body .page[dir="rtl"] .managers-section .badge,
+  html body .page[dir="rtl"] .manager-full-box,
+  /* ضيف هنا اسم الكلاس بتاع المربع لو تعرفه */
+  html body .page[dir="rtl"] .managers-list > div,
+  html body .page[dir="rtl"] .manager-chip {
+    display: block !important;
+    width: 100% !important;
+    min-width: 100% !important; /* السر اللي هيفرده غصب عنه في الموبايل */
+    text-align: right !important;
+    padding: 12px 20px !important;
+    box-sizing: border-box !important;
+  }
+}
+
+
+
+
+
+
+/* ======================================================= */
+/* 📱 إصلاح مربع المديرين للموبايل فقط (النسخة العربية) */
+/* ======================================================= */
+
+@media screen and (max-width: 768px) {
+  /* إجبار الحاوية إنها تاخد عرض الشاشة وتلغي أي ضغط */
+  html body .page[dir="rtl"] .tags.managers {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  /* تحويل الـ span لمربع كامل بعرض الشاشة ومحاذاة لليمين */
+  html body .page[dir="rtl"] .tags.managers span {
+    display: block !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    text-align: right !important;
+    box-sizing: border-box !important;
+    padding: 12px 20px !important; /* مسافة داخلية عشان الاسم ميكونش لازق في الحرف */
+  }
 }
