@@ -6243,83 +6243,66 @@ html body .page[dir="ltr"] .company-name {
 }
 
 
-
-
 /* ======================================================= */
-/* 📱 توسيع المسافة بين العمودين (اليمين واليسار) في الموبايل */
+/* 📱 الحل النهائي والأنظف للموبايل: خط أصغر، جاب ثابت، 50/50 */
 /* ======================================================= */
 
 @media (max-width: 767px) {
-  /* استهداف حاوية شبكة المعلومات في النسخة الإنجليزية */
+  /* 1. الجريد المبسط: 50% لكل عمود مع جاب ثابت 15px */
   html body .page[dir="ltr"] .info-grid {
     display: grid !important;
-    /* توزيع متوازن للعمودين مع إعطاء مساحة أكبر قليلاً لجهة التواريخ */
-    grid-template-columns: 1fr 1.1fr !important; 
-    /* زيادة المسافة الأفقية بين العمودين (العمود الشمال والعمود اليمين) */
-    column-gap: 35px !important; 
-    /* التأكد من أن الكلام لا يلتصق ببعضه */
-    width: 100% !important;
-    padding: 0 5px !important;
-  }
-
-  /* التأكد من أن العناوين لا تتداخل */
-  html body .page[dir="ltr"] .info-item label {
-    white-space: nowrap !important; /* منع العناوين من النزول لسطر جديد لو المساحة سمحت */
-    font-size: 12px !important;    /* تصغير طفيف ليناسب المسافة الجديدة */
-  }
-}
-
-/* ======================================================= */
-/* 📱 حل مشكلة الزحمة: تقسيم العنوان الطويل على سطرين */
-/* ======================================================= */
-
-/* ======================================================= */
-/* 📱 توحيد محاذاة العناوين وتوسيع الفراغ (النسخة الإنجليزية) */
-/* ======================================================= */
-
-/* ======================================================= */
-/* 🎯 النسخة الأصلية: 50/50 إجباري وتنسيق العناوين (موبايل) */
-/* ======================================================= */
-
-@media (max-width: 767px) {
-  /* 1. التقسيم الصارم 50/50 (السر في كلمة minmax و min-width: 0) */
-  html body .page[dir="ltr"] .info-grid {
-    display: grid !important;
-    /* الجملة دي بتمنع أي عمود يتمدد ملي واحد زيادة عن مساحته الـ 50% */
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 15px !important;          /* المسافة (الجاب) المريحة بين العمودين */
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 15px !important; 
     width: 100% !important;
   }
 
-  /* 2. تصفير الهوامش الداخلية عشان نستغل كل بيكسل في الـ 50% */
+  /* 2. حماية العمود من التمدد خارج الشاشة */
   html body .page[dir="ltr"] .info-item {
-    min-width: 0 !important;       /* أمر إجباري للسماح للنص بالانقسام */
+    min-width: 0 !important; 
     width: 100% !important;
     padding: 0 !important;
-    margin-bottom: 20px !important;
+    margin-bottom: 0 !important; /* شلنا المارجن عشان الجاب هو اللي هيعمل المسافة */
   }
 
-  /* 3. ضبط العناوين الرمادي لتكون سطرين (بحجم خط صغير ومطابق للصورة) */
+  /* 3. العناوين الرمادي: تصغير الخط جداً عشان يظبط سطرين */
   html body .page[dir="ltr"] .info-item label {
+    font-size: 10.5px !important;    /* خط صغير جداً ومقروء */
+    line-height: 1.3 !important;
+    margin-bottom: 4px !important;
     display: block !important;
-    font-size: 11px !important;    /* الحجم ده هيخلي الكلمتين ينزلوا سطرين بس */
-    color: #8e8e93 !important;     /* لون رمادي مطابق للصورة */
-    line-height: 1.4 !important;
     white-space: normal !important;
-    margin-bottom: 6px !important;
   }
 
-  /* 4. ترويض النصوص الداكنة الطويلة (زي عنوان الرياض) عشان متزقش العواميد */
-  html body .page[dir="ltr"] .info-item strong,
-  html body .page[dir="ltr"] .info-item .info-value,
-  html body .page[dir="ltr"] .info-item span.value {
-    display: block !important;
-    font-size: 12px !important;    /* حجم النص البولد */
-    font-weight: 650 !important;
-    color: #020207 !important;
+  /* 4. النصوص والأرقام (زي الرياض): تصغير الخط وإلغاء البولد وتكسير النص */
+  html body .page[dir="ltr"] .info-item > *:not(label) {
+    font-size: 11px !important;      /* خط أصغر ومناسب */
+    font-weight: 500 !important;     /* بدون بولد عريض */
     line-height: 1.3 !important;
     white-space: normal !important;
-    word-wrap: break-word !important; /* لو الكلمة طويلة تتكسر لتحت فوراً */
+    word-break: break-word !important; /* أمر صريح بكسر الكلمة لتناسب المساحة */
+    display: block !important;
   }
 }
 
+/* ======================================================= */
+/* 🔴 إجبار نهائي (بدون مسح القديم) - الحفاظ على البولد ومنع قص الكلمات */
+/* ======================================================= */
+
+@media (max-width: 767px) {
+  html body .page[dir="ltr"] .info-item strong,
+  html body .page[dir="ltr"] .info-item .info-value,
+  html body .page[dir="ltr"] .info-item span.value,
+  html body .page[dir="ltr"] .info-item > *:not(label) {
+    font-size: 11.5px !important;        /* تصغير الخط نسبة بسيطة جداً */
+    font-weight: 700 !important;         /* إجبار البولد زي ما طلبت */
+    white-space: normal !important;      /* السماح بالنزول لسطر جديد */
+    
+    /* 👈 السطرين الجايين هما اللي بيمنعوا الكلمة تتقطع من النص */
+    word-break: normal !important;       /* إلغاء القص العشوائي للحروف */
+    overflow-wrap: break-word !important; /* الكلمة تنزل كاملة للسطر اللي تحته لو مفيش مكان */
+    
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
